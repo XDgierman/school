@@ -2,6 +2,13 @@
 napisz funkcjê do której przeka¿esz liczbê binarn¹, a zwrócisz jej wartoœæ dziesiêtn¹*/
 #include <iostream>
 using namespace std;
+int StrToInt(string a){
+	int x=(int)a[0]-48;
+	for (int i=1; i<=a.length()-1;i++){
+		x=x*10+a[i]-48;
+	}
+	return x;
+}
 
 int ToDec (string a, int p){
 	int c;
@@ -19,11 +26,21 @@ int ToDec (string a, int p){
 	}
 	return c;
 }
-int ToAny (string a, int p){
-string w;
-int l=(int)a;
-while (l!=0)
-l%p
+string ToAny (string a, int p){
+string w="",o="";
+int r, le;
+int l=StrToInt(a);
+while (l!=0){
+r=l%p;
+if (r>=0 & r<=9) w+=(char)r+48;
+	else w+=(char)r+87;
+l=l/p;
+}
+le=w.length();
+for (int i=le-1; i>=0;i--){
+	o+=w[i];
+}
+return o;
 }
 int main(){
 	int w=100;
@@ -53,15 +70,27 @@ switch (w){
 	cout<<ToDec(a,16)<<endl;
 		break;
 	}
-	case 4: {cout<<"cz";
+	case 4: {
+		system("cls");
+	cout<<"Wpisz liczbe"<<endl;
+	cin>>a;
+	cout<<ToAny(a,2)<<endl;
 		break;
 	}
-	case 5: {cout<<"pt";
+	case 5: {
+		system("cls");
+	cout<<"Wpisz liczbe"<<endl;
+	cin>>a;
+	cout<<ToAny(a,8)<<endl;
 		break;
 	}
-	case 6: {cout<<"sb";
+	case 6: {
+		system("cls");
+	cout<<"Wpisz liczbe"<<endl;
+	cin>>a;
+	cout<<ToAny(a,16)<<endl;
 		break;
-	}
+	}			
 	case 0: {return 0;
 	}
 	default:cout<<"Nie ma takiej konwersji";
