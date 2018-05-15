@@ -10,6 +10,22 @@ int StrToInt(string a){
 	return x;
 }
 
+string ToAnyInt (int a, int p){
+string w="",o="";
+int r, le;
+while (a!=0){
+r=a%p;
+if (r>=0 & r<=9) w+=(char)r+48;
+	else w+=(char)r+87;
+a=a/p;
+}
+le=w.length();
+for (int i=le-1; i>=0;i--){
+	o+=w[i];
+}
+return o;
+}
+
 int ToDec (string a, int p){
 	int c;
 	if (a[0]>='0' & a[0]<='9'){c=(int)a[0]-48;}
@@ -90,10 +106,21 @@ switch (w){
 	cin>>a;
 	cout<<ToAny(a,16)<<endl;
 		break;
-	}			
+	}
+/*	case 7: {
+		system("cls");
+	cout<<"Wpisz liczbe"<<endl;
+	cin>>a;
+	cout<<ToAnyInt(ToDec(a,2),16)<<endl;
+		break;
+	}*/			
 	case 0: {return 0;
 	}
-	default:cout<<"Nie ma takiej konwersji";
+	default:{
+	system("cls");
+	cout<<"Nie ma takiej konwersji"<<endl;
+		break;
+	}
 }
 }
 }
