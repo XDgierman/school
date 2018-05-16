@@ -1,4 +1,4 @@
-//Horner Scheme - input binary, return decimal etc.
+//Horner Method - input binary, return decimal etc.
 #include <iostream>
 using namespace std;
 int StrToInt(string a){
