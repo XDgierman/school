@@ -1,5 +1,4 @@
-/*Schemat Hornera
-napisz funkcjê do której przeka¿esz liczbê binarn¹, a zwrócisz jej wartoœæ dziesiêtn¹*/
+//Horner Scheme - input binary, return decimal etc.
 #include <iostream>
 using namespace std;
 int StrToInt(string a){
@@ -9,6 +8,7 @@ int StrToInt(string a){
 	}
 	return x;
 }
+
 int ToDec (string a, int p){
 	int c;
 	if (a[0]>='0' & a[0]<='9'){c=(int)a[0]-48;}
@@ -41,6 +41,7 @@ for (int i=le-1; i>=0;i--){
 }
 return o;
 }
+
 string ToAnyInt (int a, int p){
 string w="",o="";
 int r, le;
@@ -56,67 +57,68 @@ for (int i=le-1; i>=0;i--){
 }
 return o;
 }
+
 int main(){
 	int w=100;
 	string a;
 	while (w!=0){
-		cout<<"Wybierz konwersje:\n1.Binarne do dziesietne\n2.Oktalne do dziesietne\n3.Heksagonalne do dziesietne\n4.Dziesietne do binarnych\n5.Dziesietne do oktalnych\n6.Dziesietne do heksagonalnych\n0.Koniec"<<endl;
+		cout<<"Choose conversion:\n1.Binary to decimal\n2.Octal to decimal\n3.Hexagonal to decmal\n4.Decimal to binary\n5.Decimal to octal\n6.Decimal to hexagonal\n0.End"<<endl;
 		cin>>w;
 switch (w){
 	case 1: {
 		system("cls");
-	cout<<"Wpisz liczbe"<<endl;
+	cout<<"Write down the number"<<endl;
 	cin>>a;
 	cout<<ToDec(a,2)<<endl;
 		break;
 	}
 	case 2: {
 		system("cls");
-	cout<<"Wpisz liczbe"<<endl;
+	cout<<"Write down the number"<<endl;
 	cin>>a;
 	cout<<ToDec(a,8)<<endl;
 		break;
 	}
 	case 3: {
 		system("cls");
-	cout<<"Wpisz liczbe"<<endl;
+	cout<<"Write down the number"<<endl;
 	cin>>a;
 	cout<<ToDec(a,16)<<endl;
 		break;
 	}
 	case 4: {
 		system("cls");
-	cout<<"Wpisz liczbe"<<endl;
+	cout<<"Write down the number"<<endl;
 	cin>>a;
 	cout<<ToAny(a,2)<<endl;
 		break;
 	}
 	case 5: {
 		system("cls");
-	cout<<"Wpisz liczbe"<<endl;
+	cout<<"Write down the number"<<endl;
 	cin>>a;
 	cout<<ToAny(a,8)<<endl;
 		break;
 	}
 	case 6: {
 		system("cls");
-	cout<<"Wpisz liczbe"<<endl;
+	cout<<"Write down the number"<<endl;
 	cin>>a;
 	cout<<ToAny(a,16)<<endl;
 		break;
 	}
 	case 7: {
 		system("cls");
-	cout<<"Znalazles sekretna konwersje!\nTa konwersja umozliwia konwersje z binarnej do heksagonalnej\nWpisz liczbe"<<endl;
+	cout<<"You've found a secret conversion! \nThis conversion allow you to perform conversion from binary to hexagonal\nWrite down the number"<<endl;
 	cin>>a;
 	cout<<ToAnyInt(ToDec(a,2),16)<<endl;
 		break;
-	}		
+	}			
 	case 0: {return 0;
 	}
 	default:{
 	system("cls");
-	cout<<"Nie ma takiej konwersji"<<endl;
+	cout<<"The conversion doesn't exist"<<endl;
 		break;
 	}
 }
