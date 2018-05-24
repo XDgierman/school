@@ -29,17 +29,14 @@ object Form2: TForm2
     ItemHeight = 13
     TabOrder = 0
     Text = 'ComboBox1'
-    Items.Strings = (
-      'a. Mercedes'
-      'b. Toyota'
-      'c. Volvo')
+    Items.Strings = ()
   end
   object Button1: TButton
     Left = 80
     Top = 88
     Width = 75
     Height = 25
-    Caption = 'NEXT'
+    Caption = 'Dalej'
     TabOrder = 1
     OnClick = Button1Click
   end
