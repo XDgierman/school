@@ -19,18 +19,24 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 void __fastcall TForm1::RadioButton1Click(TObject *Sender)
 {
 Panel1->Color=RGB(255,0,0);
+if (CheckBox1->Checked) Panel1->Caption="255,0,0";
+else Panel1->Caption="";
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::RadioButton2Click(TObject *Sender)
 {
 Panel1->Color=RGB(0,255,0);
+if (CheckBox1->Checked) Panel1->Caption="0,255,0";
+else Panel1->Caption="";
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::RadioButton3Click(TObject *Sender)
 {
 Panel1->Color=RGB(0,0,255);
+if (CheckBox1->Checked) Panel1->Caption="0,0,255";
+else Panel1->Caption="";
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::ScrollBar1Change(TObject *Sender)
