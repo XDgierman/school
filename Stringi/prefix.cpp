@@ -2,15 +2,14 @@
 
 using namespace std; 
  
-string substring (string a,int p, int k){
+string prefix (string a,int p){
 	string w="";
-	for (int i=p;i<=k;i++){
+	for (int i=0;i<=p;i++){
 		w+=a[i];
 	}
 	return w;
 }
  
 int main(){ 
-cout<<substring("ABCDEFGH",3,6);
+cout<<prefix("ABCDEFGH",3);
 }
-
