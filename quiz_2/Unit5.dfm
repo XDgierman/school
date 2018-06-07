@@ -1,6 +1,6 @@
 object Form5: TForm5
-  Left = 761
-  Top = 334
+  Left = 912
+  Top = 320
   Width = 427
   Height = 129
   Caption = 'Form5'
@@ -16,7 +16,7 @@ object Form5: TForm5
   object Label1: TLabel
     Left = 43
     Top = 32
-    Width = 334
+    Width = 9
     Height = 37
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText

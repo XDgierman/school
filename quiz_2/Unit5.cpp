@@ -15,8 +15,9 @@ TForm5 *Form5;
 //---------------------------------------------------------------------------
 __fastcall TForm5::TForm5(TComponent* Owner)
         : TForm(Owner)
-{         Label1->Caption="Twój wynik wynosi " + IntToStr(Form1->punkty);
+{        
 }
 //---------------------------------------------------------------------------
+
 
 

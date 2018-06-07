@@ -23,10 +23,11 @@ void __fastcall TForm3::Button1Click(TObject *Sender)
 {
         if(CheckBox1->Checked ==true && CheckBox3->Checked ==true){
         Form1->punkty++;
+        }
         Form4->Show();
         Form3->Hide();
-        }
 }
 //---------------------------------------------------------------------------
+
 
 
