@@ -21,13 +21,14 @@ __fastcall TForm3::TForm3(TComponent* Owner)
 
 void __fastcall TForm3::Button1Click(TObject *Sender)
 {
-        if(CheckBox1->Checked ==true && CheckBox3->Checked ==true){
+        if(CheckBox1->Checked ==true && CheckBox3->Checked ==true && CheckBox2->Checked ==false && CheckBox4->Checked ==false){
         Form1->punkty++;
         }
         Form4->Show();
         Form3->Hide();
 }
 //---------------------------------------------------------------------------
+
 
 
 
