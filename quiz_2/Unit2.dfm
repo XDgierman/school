@@ -1,6 +1,6 @@
 object Form2: TForm2
-  Left = 1082
-  Top = 375
+  Left = 452
+  Top = 69
   Width = 730
   Height = 447
   Caption = 'Form2'
@@ -29,7 +29,6 @@ object Form2: TForm2
     ItemHeight = 13
     TabOrder = 0
     Text = 'ComboBox1'
-    Items.Strings = ()
   end
   object Button1: TButton
     Left = 80

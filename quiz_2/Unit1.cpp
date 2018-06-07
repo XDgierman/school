@@ -24,7 +24,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 {
         punkty = 0;
         if(RadioGroup1->ItemIndex == 2)
-                punkty++;
+                {punkty++;}
                 Form2->Show();
                 Form1->Hide();
 }

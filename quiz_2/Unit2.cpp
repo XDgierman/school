@@ -21,8 +21,8 @@ __fastcall TForm2::TForm2(TComponent* Owner)
 
 void __fastcall TForm2::Button1Click(TObject *Sender)
 {
-        if(ComboBox1->ItemIndex ==0)
-        Form1->punkty++;
+        if(ComboBox1->ItemIndex ==0){
+        Form1->punkty++;}
         Form3->Show();
         Form2->Hide();
 }
