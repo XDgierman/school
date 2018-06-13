@@ -2,13 +2,14 @@
 
 using namespace std; 
  
-bool panindrom (string a){
+bool palindrom (string a){
 	string w="";
-	for (int i=a.length();i>=0;i--){
+	for (int i=a.length()-1;i>=0;i--){
 	
 	w+=a[i];
 	}
 	for (int i=0; i<=a.length();i++){
+		cout<<a[i]<<"  "<<w[i]<<endl;
 	if (a[i]!=w[i]){
 	return false;	
 	}
@@ -17,5 +18,8 @@ bool panindrom (string a){
 }
  
 int main(){ 
-cout<<panindrom("kajak");
+if (palindrom("kajak")) {cout<<"Tak";
+}
+else {cout<<"Nie";
+}
 }

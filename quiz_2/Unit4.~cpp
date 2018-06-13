@@ -33,8 +33,10 @@ void __fastcall TForm4::Button2Click(TObject *Sender)
 {
         Form5->Show();
         Form4->Hide();
+        Form5->Label1->Caption="Twój wynik wynosi " + IntToStr(Form1->punkty);
 }
 //---------------------------------------------------------------------------
+
 
 
 
