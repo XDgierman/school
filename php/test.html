@@ -1,0 +1,27 @@
+<!DOCTYPEhtml>
+<html>
+<head>
+  <script>
+  var x=0;
+  function moja(){
+  document.getElementById('p1').style.color="red"
+}
+function out(){
+  document.getElementById('p1').style.color="black"
+}
+function dodaj(){
+  x=Number(x)+Number(document.getElementById('box').value);
+  document.getElementById('wynik').innerHTML=x
+}
+  </script>
+</head>
+<body>
+  <span id="p1" onclick="out();">Kliknij mnie!</span><br>
+  <span id="p2" onclick="moja();">Kliknij mnie!</span><br>
+
+  <p>x: <input id="box" type="number" name="cyfry"></p><br>
+  <input onclick="dodaj();" type="submit" value="zapisz"><br>
+  <p>x=<span id="wynik" itemtype="value"></span></p>
+
+</body>
+</html>
