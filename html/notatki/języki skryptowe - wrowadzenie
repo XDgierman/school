@@ -1,0 +1,3 @@
+rozróżniamy dwa rodzaje jężyków programowanie:
+a) kompilowalne - są to takie języki które są tłumaczone w procesie kompilacji z kodu żródłowego na kod maszynowy, i w procesie kompilacji i konsolidacji (linkowania), otrzymujemy plik/i uruchomieniowy/e
+b) skryptowe/interpretowane - są to języki używane do pisania skryptów, które następnie są interpretowane i wykonywane przez inne programy, np. przeglądarka internetowa, system operacyjny, gry komputerowe itp.. Dla programów skryptowych nie zachodzi proces kompilacji, a skrypty interpretowane w czasie rzeczywistym przez wyżej wymienione programy
