@@ -1,0 +1,5 @@
+aplikacje internetorwe - wprowadzenie
+
+narzędzia aplikacji internetowych - można podzieli na dwie grupy:
+narzędzia po stronie klienta: javascript, aplety java, AJAX i inne
+narzędzia po stronie servera - pozwalają wykonywa na serwerze zadania służące do obsługi żądań klienta: ASP.NET (microsoft), JSP (java server page), interpreter kodu php wraz z serverem Apache (oracle)
