@@ -1,0 +1,3 @@
+DOM (document object model) to obiektowy model dokumentów, czyli sposób reprezentacji dokumentów xml i xhtml w postaci modelu obiektowego.
+jest on niezalerzny od platformy i języka programowania.
+standard dla DOM zdefiniowany przez W3C opiera się na zespole klas i interfejsów pozwalających na dostęp do struktury dokumentów oraz jej modyfikację
