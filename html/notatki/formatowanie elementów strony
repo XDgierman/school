@@ -1,0 +1,5 @@
+istnieją cztery formaty stylów w html:
+-styl lokalny (przy pomocy atrybutu style)
+-wewnątrzny arkusz stylów (wypisywanie danego kodu css w style)
+-zewnętrzny arkusz stylów 
+-import zewnętrznego arkusza stylu
