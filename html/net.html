@@ -4,14 +4,27 @@
       Metody DOM
     </title>
     <script>
+    function klik2(){
+      var hh1 = document.getElementsByTagName('h1');
+      hh1[0].style.visibility='hidden';
+      hh1[1].style.visibility='visible';
+      hh1[1].style.fontFamily='sans-serif';
+    }
     function klik(){
-      var pp = document.getElementById('p1');
-      pp.innerHTML='Zmiana zawartości paragrafu';
+      var pp = document.getElementsByTagName('p');
+      pp[0].style.color='red';
+      pp[1].style.color='lightgreen';
+      pp[2].style.color='blue';
     }
     </script>
   </head>
     <body>
-      <p id="p1">Paragraf</p>
+      <h1 style="visibility:visible">Nagłówek jeden</h1>
+      <h1 style="visibility:hidden">Nagłówek dwa</h2>
+      <p>Paragraf</p>
+      <p>Paragraf dwa</p>
+      <p>paragraf trzy</p>
       <button onclick="klik()">Kliknij</button>
+      <button onclick="klik2()">Kliknij</button>
     </body>
-</hlml>
+</html>
