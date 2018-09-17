@@ -4,6 +4,7 @@
       Metody DOM
     </title>
     <script>
+    var i=true;
     function klik2(){
       var hh1 = document.getElementsByTagName('h1');
       hh1[0].style.visibility='hidden';
@@ -16,15 +17,35 @@
       pp[1].style.color='lightgreen';
       pp[2].style.color='blue';
     }
+    function klik3(){
+      var cc = document.getElementsByClassName('cl');
+      cc[0].innerHTML='red';
+      cc[1].innerHTML='lightgreen';
+      cc[2].innerHTML='blue';
+    }
+    function klik4(){
+      var k4 = document.getElementById('ob');
+      if (i=true){
+        k4.src="brian.gif";
+        i=false;
+      }
+      else{
+        k4.src="banana.gif";
+        i=true;
+      }
+    }
     </script>
   </head>
     <body>
       <h1 style="visibility:visible">Nagłówek jeden</h1>
-      <h1 style="visibility:hidden">Nagłówek dwa</h2>
-      <p>Paragraf</p>
-      <p>Paragraf dwa</p>
-      <p>paragraf trzy</p>
-      <button onclick="klik()">Kliknij</button>
-      <button onclick="klik2()">Kliknij</button>
+      <h1 style="visibility:hidden">Nagłówek dwa</h1>
+      <img id='ob' src="banana.gif"></img>
+      <p class="cl">Paragraf</p>
+      <p class="cl">Paragraf dwa</p>
+      <p class="cl">paragraf trzy</p>
+      <button onclick="klik()" style="visibility:hidden">Kliknij</button>
+      <button onclick="klik2()" style="visibility:hidden">Kliknij</button>
+      <button onclick="klik3()" style="visibility:hidden">Kliknij</button>
+      <button onclick="klik4()">Zmien obrazek</button>
     </body>
 </html>
