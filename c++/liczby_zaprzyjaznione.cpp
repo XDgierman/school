@@ -14,12 +14,15 @@ int liczba(int x){
 }
 
 int main(){
-  int j,k;
+  int j,k,a;
 for (int i=2; i<10000; i++){
-  j=liczba(i);
+  a=i;
+  j=liczba(a);
   k=liczba(j);
-if (i==j){
-  cout<<j<<", "<<k<<endl;
+  if (a<j){
+if (k==a & a!=j){
+  cout<<a<<", "<<j<<endl;
+  }
 }
   }
 }
