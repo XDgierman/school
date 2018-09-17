@@ -1,0 +1,28 @@
+<html>
+<head>
+  <title>Metody DOM
+  </title>
+  <script>
+  function klik1(){
+    var pp = document.getElementById('p1');
+    pp.style.color="cyan";
+  }
+  function klik2(){
+    var pp2 = document.getElementById('p1');
+    pp2.style.color="black";
+  }
+  function klik3(){
+    var iii = document.getElementById('im')
+    var tt = document.getElementById('bt');
+    iii.src="brian.gif";
+    tt.onclick="klik4()";
+  }
+  </script>
+</head>
+<body>
+  <p id="p1"><span onmouseover="klik1()" onmouseout="klik2()">Paragraf</span></p>
+  <button onclick=klik1()>Kliknij</button>
+  <img id="im" src="banana.gif">
+  <button id="bt" onclick=klik3()>Kliknij</button>
+</body>
+</html>
