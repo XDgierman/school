@@ -1,0 +1,13 @@
+kaskadowośc arkuszy stylów polega na ścisłym określeniu priorytetów stylów i przestrzegania zasad formatowania zgodnie z priorytetami
+ważnośc stylów została ustalona w następujący sposób:
+1. styl lokalny
+2. rozciąganie stylów
+3. wydzielone bloki
+4. wewnętrzny arkusz stylów
+5. zewnętrzny arkusz stylów
+6. import stylów do zewnętrznego arkusza
+
+
+możemy jednak zmienic priorytet nadawania stylu elementowi przy pomocy słowa !important, powodującm że formatowanie przy którym to słowo występuje ma wyższy priorytet
+
+dziedziczenie - jeżel dla elementu nadrzędnego w arkuszach stylów zostały zdefiniowane właściwości, to w większości przypadków elementowi podrzędnemu zostaną przypisane te same właściwości
