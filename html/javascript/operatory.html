@@ -1,13 +1,47 @@
 <html>
 <head>
   <script type="text/javascript">
-var a;
-a=prompt("Wpisz liczbę całkowitą");
-alert("Wpisałeś - "+a);
+  function suma(){
+    var a = document.getElementById('a').value;
+    var b = document.getElementById('b').value;
+    var w = document.getElementById('w');
+    var aa = parseInt(a);
+    var bb = parseInt(b);
+    w.value = aa+bb;
+  }
+  function roznica(){
+    var a = document.getElementById('a').value;
+    var b = document.getElementById('b').value;
+    var w = document.getElementById('w');
+    var aa = parseInt(a);
+    var bb = parseInt(b);
+    w.value = aa-bb;
+  }
+  function mnozenie(){
+    var a = document.getElementById('a').value;
+    var b = document.getElementById('b').value;
+    var w = document.getElementById('w');
+    var aa = parseInt(a);
+    var bb = parseInt(b);
+    w.value = aa*bb;
+  }
+  function dzielenie(){
+    var a = document.getElementById('a').value;
+    var b = document.getElementById('b').value;
+    var w = document.getElementById('w');
+    var aa = parseInt(a);
+    var bb = parseInt(b);
+    w.value = aa/bb;
+  }
   </script>
 </head>
 <body>
-
+ a:<input type="text" id ="a" /> <br />
+ b:<input type="text" id ="b" /> <br />
+ w:<input type="text" id ="w" /> <br />
+ <button onclick="suma()">Dodaj</button>
+ <button onclick="roznica()">Odejm</button>
+ <button onclick="mnozenie()">Pomnóż</button>
+ <button onclick="dzielenie()">Podziel</button>
 </body>
 </html>
-<!-- atom://teletype/portal/0268fb68-f5f7-40c2-8179-ddc32dc9f2fc -->
