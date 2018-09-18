@@ -1,1 +1,13 @@
-atom://teletype/portal/159cce94-4711-43ea-b3a9-736bbefd713b
+1.deklaracja zmiennej
+
+var nazwa - w javascript w trakcie deklaracji nie podajemy zmiennej. zmienna jes tymu undefined.
+zmienna otrzymije typ po przypisaniu jej wartości
+w trakcie działania skryptu zmienna może zmienic typ
+
+2. typy w języku javascript:
+a) liczbowy
+b) łańcuchowy (string)
+c) logiczny (boolean)
+d) null
+e) obiektowy (object)
+f) tablicowy (array)

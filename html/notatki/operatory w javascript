@@ -1,0 +1,4 @@
+1. Arytmetyczne (+,-,/,*,%,++,--)
+2. Porównania (<,>,<=,>=,!=,==,===,!==)
+3. Logiczne (&&, ||, !)
+4. Przypisania (+=,-=, x*=2)
