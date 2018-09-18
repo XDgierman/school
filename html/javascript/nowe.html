@@ -15,14 +15,30 @@
     var iii = document.getElementById('im')
     var tt = document.getElementById('bt');
     iii.src="brian.gif";
-    tt.onclick="klik4()";
+    tt.onclick='klik4()';
+  }
+  function klik4(){
+    var iii = document.getElementById('im')
+    var tt = document.getElementById('bt');
+    iii.src="banana.gif";
+    tt.onclick="klik3()";
   }
   </script>
+  <style type="text/css">
+  p { color: red}
+  p b {color:lightgreen; font-size: 24px}
+  h1 ~ p { color: cyan }
+  * { font-family: sans-serif}
+  </style>
 </head>
 <body>
+  <b>Pogrubienie</b>
+  <p>Paragraf</p>
   <p id="p1"><span onmouseover="klik1()" onmouseout="klik2()">Paragraf</span></p>
   <button onclick=klik1()>Kliknij</button>
   <img id="im" src="banana.gif">
   <button id="bt" onclick=klik3()>Kliknij</button>
+  <p>Test <i><b>dwa</b></i></p>
+  <h1>Naglówek</h1><b> oraz </b><p>Paragraf</p><p>drugi  paragraf</p>
 </body>
 </html>
