@@ -1,0 +1,113 @@
+<html>
+<head>
+  <script type="text/javascript">
+      var w;
+      var znak;
+
+  function obj(opr){
+    znak=opr;
+    w = document.getElementById('a').value;
+    a.value='';
+  }
+  function cyfra(licz){
+    var a=document.getElementById("a");
+    switch (licz)
+          {
+            case 1:{
+                  a.value+= '' + 1;
+                  break;
+                }
+            case 2:{
+                  a.value+= '' + 2;
+                  break;
+                }
+            case 3:{
+                  a.value+= '' + 3;
+                  break;
+                }
+            case 4:{
+                  a.value+= '' + 4;
+                  break;
+                }
+            case 5:{
+                  a.value+= '' + 5;
+                  break;
+                }
+            case 6:{
+                  a.value+= '' + 6;
+                  break;
+                }
+            case 7:{
+                  a.value+= '' + 7;
+                  break;
+                }
+            case 8:{
+                  a.value+= '' + 8;
+                  break;
+                }
+            case 9:{
+                  a.value+= '' + 9;
+                  break;
+                }
+            case 0:{
+                  a.value+= '' + 0;
+                  break;
+                }
+            case 'c':{
+                  w=0;
+                  znak=0;
+                  a.value="";
+                  break;
+                }
+  }
+}
+  function klik(){
+    var a = document.getElementById('a');
+    var aa = parseInt(w);
+    var bb = parseInt(a.value);
+    switch (znak){
+      case "+":
+      a.value = aa+bb;
+      break;
+      case "-":
+      a.value = aa-bb;
+      break;
+      case "/":
+      if (bb==0){
+        alert("Nie dziel przez zero!");
+        break;
+      }
+      else a.value = aa/bb;
+      break;
+      case "*":
+      a.value = aa*bb;
+      break;
+    }
+  }
+  </script>
+  <style>
+      body{
+            text-align:center;
+          }
+   </style>
+</head>
+<body>
+ <input type="text" id ="a" /><br />
+ <button onclick="cyfra(7)">7</button>
+ <button onclick="cyfra(8)">8</button>
+ <button onclick="cyfra(9)">9</button>
+ <button onclick="obj('/')">/</button><br />
+ <button onclick="cyfra(4)">4</button>
+ <button onclick="cyfra(5)">5</button>
+ <button onclick="cyfra(6)">6</button>
+ <button onclick="obj('*')">*</button><br />
+ <button onclick="cyfra(1)">1</button>
+ <button onclick="cyfra(2)">2</button>
+ <button onclick="cyfra(3)">3</button>
+ <button onclick="obj('-')">-</button><br />
+ <button onclick="cyfra(0)">0</button>
+ <button onclick="cyfra('c')">C</button>
+ <button onclick="klik()">=</button>
+ <button onclick="obj('+')">+</button><br />
+</body>
+</html>
