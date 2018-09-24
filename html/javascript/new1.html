@@ -1,0 +1,25 @@
+<html>
+<head>
+  <script type="text/javascript">
+  var t,c,s;
+  function klik(){
+    var pp = document.getElementById('p1');
+    t=pp.innerHTML;
+    c=pp.style.color;
+    s=pp.style.fontSize;
+    pp.style.color='red';
+    pp.style.fontSize="24px";
+    pp.innerHTML="<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In expedita blanditiis porro maxime, odio obcaecati ipsum iusto nulla beatae saepe optio iste, corporis dolores qui. Odit quo consequuntur maxime aliquid.</div><div>Facere facilis eveniet, accusamus molestias ab officia. Doloribus in nam ea maxime nobis reprehenderit magni, illo, expedita totam corporis! Illum voluptate reprehenderit ad sequi, animi amet harum reiciendis. Cupiditate, sequi?</div>"
+  }
+  function klik(){
+    var pp = document.getElementById('p1');
+    pp.innerHTML=t;
+    pp.style.color=c;
+    pp.style.fontSize=s;
+  }
+  </script>
+</head>
+<body>
+<p><span id="p1" onmouseover="klik()" onmouseout="klik2()" title="Klik?">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis, libero quas eos maiores assumenda consectetur quibusdam, eius omnis ex saepe nihil quia doloribus! Libero amet perspiciatis aperiam optio cumque repellat.</span></p>
+</body>
+</html>
