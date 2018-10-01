@@ -1,0 +1,38 @@
+<html>
+<head>
+  <script type="text/javascript">
+  var aa, bb, cc;
+  function klik(){
+    aa=parseInt(document.getElementById('a').value);
+    bb=parseInt(document.getElementById('b').value);
+    cc=document.getElementById('c');
+    var s="";
+    for (var i=aa;i<=bb;++i){
+      if (i%2==0){
+        s= s+i+", ";
+      }
+    }
+    cc.innerHTML=cc.innerHTML+s;
+  }
+  function isPrime(num) {
+    if(num < 2) return false;
+    for (var i = 2; i < num; i++) {
+        if(num%i==0)
+            return false;
+    }
+    return true;
+}
+for(var i = 0; i < 100; i++){
+    if(isPrime(i)) console.log(i);
+}
+  </script>
+  <style>
+   </style>
+</head>
+<body>
+
+</body>
+<span>Liczby parzyste w zakresie od <input id="a" type="text"></input> do <input id="b" type="text"></input>.</span><br />
+<button onclick="klik()">Pokaż</button><br />
+<span id="c">Parzyste:</span>
+</html>
