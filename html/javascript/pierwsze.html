@@ -1,0 +1,33 @@
+<html>
+<head>
+  <script type="text/javascript">
+  var aa, bb, cc;
+  function ifPrime(num){
+    if(num < 2) return false;
+    for (var i = 2; i < num; i++) {
+        if(num%i==0)
+            return false;
+    }
+    return true;
+  }
+  function klik(){
+    aa=document.getElementById('a').value;
+    if (isNaN(aa)){
+      alert("Nie wprowadzileś liczby");
+    }
+    else {
+    bb=document.getElementById('b');
+    var s="";
+  if (ifPrime(aa)) s="Tak";
+  else s="Nie";
+  bb.innerHTML=bb.innerHTML+s;
+}}
+  </script>
+</head>
+<body>
+
+</body>
+<span><input id="a" type="text"></span><br />
+<button onclick="klik()">Sprawdź</button><br />
+<span id="b">Pierwsza: </span>
+</html>

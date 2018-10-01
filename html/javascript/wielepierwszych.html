@@ -1,0 +1,35 @@
+<html>
+<head>
+  <script type="text/javascript">
+  var aa, bb, cc;
+  function klik(){
+    aa=parseInt(document.getElementById('a').value);
+    bb=parseInt(document.getElementById('b').value);
+    if (isNaN(aa)){
+      alert("Nie wprowadzileś liczby");
+    }else if (isNaN(bb)){
+      alert("Nie wprowadzileś liczby");
+    } else
+    bcc=document.getElementById('c');
+    var s="";
+  if (ifPrime(aa)) s="Tak";
+  else s="Nie";
+  bb.innerHTML=bb.innerHTML+s;
+    cc=document.getElementById('c');
+    var s="";
+    for (var i=aa;i<=bb;++i){
+      if (i%2==0){
+        s= s+i+", ";
+      }
+    }
+    cc.innerHTML=cc.innerHTML+s;
+  }
+  </script>
+</head>
+<body>
+
+</body>
+<span>Liczby parzyste w zakresie od <input id="a" type="text"></input> do <input id="b" type="text"></input>.</span><br />
+<button onclick="klik()">Pokaż</button><br />
+<span id="c">Parzyste:</span>
+</html>
