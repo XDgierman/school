@@ -1,0 +1,35 @@
+<html>
+<head>
+  <script type="text/javascript">
+  function generuj(){
+    var x = document.getElementById('x').value;
+    var y = document.getElementById('y').value;
+    if (isNaN(x) || isNaN(y)){
+      alertalert("Nie wprowadzileś liczby");
+    }
+    else{ var xx = parseInt(x);
+    var yy = parseInt(y);
+    var wyn = document.getElementById("wynik");
+    var i,j;
+    var tab;
+    tab= "<table border='1'>";
+    for (i=1; i<xx; i++){
+      tab += "<tr>";
+      for (j=1; j<yy; j++){
+        tab += "<td>"+i*j+"</td>";
+      }
+      tab += "</tr>";
+    }
+    tab += "</table>";
+  wyn.innterHTML = tab;
+  }
+}
+  </script>
+</head>
+<body>
+ x:<input type="text" id ="x" /> <br />
+ y:<input type="text" id ="y" /> <br />
+ <button onclick="generuj()">Generuj</button> <br />
+ <p id="wynik"></p>
+</body>
+</html>
