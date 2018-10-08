@@ -1,0 +1,11 @@
+1.Kolory podstawowe zapisywane słownie
+np. red, blue itd.
+w CSS3 130 kolorów
+2. Wartości zapisywane za pomocą:
+#RRGGBB - wartości hexadecymalne
+#RGB - to co wyżej, lecz trzeba się ograniczyc do pojedynczych znakow
+rgb(R, G, B) - wartosci dziesietne w zakresie 0-255
+rgb(R%, G%, B%) - wartosci procentowe danych kolorów
+28 kolorow systemowych
+hsl(H, S%, L%) - alternatywny model opisu kolorów, bazujący na kole barw
+(0 czerwony, 120 zielony, 240 niebieski)
