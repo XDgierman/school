@@ -11,5 +11,5 @@ bool pierwsza(int x){
 }
 int main(){
 	int l=11;
-	pierwsza(l);
+	if (pierwsza(l)) cout<<true;
 }
