@@ -1,0 +1,28 @@
+<html>
+<head>
+  <script>
+  function showTable(cars,model){
+    var p = document.getElementById("pp");
+    var s = "";
+    s="<table border ='1'><tr><td>Marka</td><td>Model</td></tr>";
+    for(var i=0;i<cars.length;i++){
+      s+= "<tr><td>"+cars[i]+"</td><td>"+model[i]+"</td></tr>";
+    }
+    s+="</table>";
+    p.innerHTML = s;
+  }
+</script>
+</head>
+<body>
+  <p id="pp">Cokolwiek</p>
+  <script type="text/javascript">
+  var cars= ["BMW", "Mercedes", "Ford"];
+  var model = new Array("E46","class A","Fiesta");
+  cars[cars.length]="Fiat";
+  model[model.length]="Panda";
+  cars.push("Opel");
+  model.push("Astra");
+  showTable(cars,model)
+  </script>
+</body>
+</html>
