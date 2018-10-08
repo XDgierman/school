@@ -1,0 +1,17 @@
+1. liczby
+liczby zapisujemy jako całkowite lub rzeczywiste. w liczbach rzeczywistych częśc ułamkowa zapisywana jest po kropce
+2. procenty
+wartośc procentowa jest zawsze określana względem innej wartości
+jednostki długości
+mogą byc zapisywane jako wartości bezwzględne i względne
+a) wartości bezwzględne
+1 in - 2.54 cm
+cm
+mm
+pt - punkty (1in - 72pt)
+px - pixele (1in - 96px)
+pc - pika (1in - 6pc)
+b) wartości względne
+em - wysokośc aktualnej czcionki
+ex - wysokośc litery "x", czyli małej litery w aktualnej czcionce
+rem - formatowanie względem korzenia, którym jest znacznik (selektor) <html>
