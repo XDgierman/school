@@ -1,0 +1,16 @@
+styl bloków
+wszytkie elementy można uznawa jako osobne bloki posiadające marginesy, obramowania
+wypełnienie i zawartości
+
+margines ramki, zwany marginesem zewnętrznym, jest to pusty obszar wokół ramki który nie ma koloru tła,
+i jest przeźroczysty
+
+border - obramowanie wokół zawartości elementu ma styl i kolor
+
+padding- odstęp między obramowaniem a zawartością elementów, nazywany marginesem wewnętrznym,
+lub dopełnieniem
+
+content - zawartośc elementów,np tekst lub obrazy
+
+
+marginesy zewnętrzne
