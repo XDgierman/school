@@ -1,0 +1,28 @@
+<html>
+<head>
+
+</head>
+<body>
+  <p id="dane"></p>
+  <script type="text/javascript">
+  var person = {
+    firstName:"Filip",
+    lastName:"Freitag",
+    IDnumber:"00292201237",
+    street:"Nowy Świat",
+    homeID:"11",
+    postID:"43-190",
+    town:"Mikołów",
+    info: function(){
+      return "Imię i Nazwisko: " + this.firstName + " " + this.lastName + "<br />"
+        + "Pesel: " + this.IDnumber + "<br />"
+         + "Miejsce zamieszkania: " + this.street + " "
+          + this.homeID + ", "
+           + this.postID + " "
+            + this.town;
+    }
+  }
+  document.getElementById("dane").innerHTML=person.info();
+  </script>
+</body>
+</html>
