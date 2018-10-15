@@ -1,0 +1,6 @@
+CREATE TABLE StanyMagazynowe (
+  IDstanu AUTOINCREMENT PRIMARY KEY,
+  IDroweru INTEGER NOT NULL,
+  LiczbaSztuk INTEGER NOT NULL,
+  JestNaStanie BIT NOT NULL
+);
