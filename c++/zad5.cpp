@@ -56,10 +56,12 @@ int main(){
   for (int i=2;i<1000;i++){
     if (czy_pierwsza(i)){
       if (czy_pierwsza(cyfry(i))){
+		if (czy_pierwsza(cyfry(StrToInt(ToAnyInt(i,2))))){
         plik1<<i<<endl;
         uno++;
       }
     }
+	}
     }
   for (int i=100;i<10000;i++){
     if (czy_pierwsza(i)){
@@ -68,15 +70,17 @@ int main(){
         plik2<<i<<endl;
         dos++;}
       }
-    }
+  }
     }
   for (int i=1000;i<100000;i++){
     if (czy_pierwsza(i)){
       if (czy_pierwsza(cyfry(i))){
+		if (czy_pierwsza(cyfry(StrToInt(ToAnyInt(i,2))))){
         plik3<<i<<endl;
         tres++;
       }
     }
+	}
     }
     cout<<uno<<endl<<dos<<endl<<tres<<endl;
 }
