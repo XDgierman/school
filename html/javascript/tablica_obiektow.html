@@ -1,0 +1,60 @@
+<html>
+<head>
+
+</head>
+<body>
+  <p id="dane"></p>
+  <button onclick="klik()">Wyświetl</button><br>
+  <input id="imiev"></input>
+  <input id="nazwv"></input>
+  <input id="wiekv"></input><br>
+  <button onclick="wprowadz()">Wprowadź</button><br>
+  <script type="text/javascript">
+  var liczba=3;
+  var osoby = new Array();
+  osoby[0] = {
+    imie:"Jan",
+    nazwisko:"Kowalski",
+    wiek:18
+  };
+  osoby[1] = {
+    imie:"Wacek",
+    nazwisko:"Stolarz",
+    wiek:19
+  };
+  osoby[2] = {
+    imie:"Tomasz",
+    nazwisko:"Kot",
+    wiek:17
+  };
+
+  function klik(){
+    var wyn = document.getElementById("dane");
+    var tab;
+    tab= "<table border='1'><tr><td>Imię</td><td>Nazwisko</td><td>Wiek</tr>";
+    for (var i=0;i<liczba;i++){
+      tab+="<tr><td>"+osoby[i].imie
+      +"</td><td>"+osoby[i].nazwisko
+      +"</td><td>"+osoby[i].wiek+"</tr>";
+    }
+    tab+="</table>";
+    wyn.innerHTML=tab;
+  }
+  function wprowadz(){
+    var a = document.getElementById("imiev");
+    var b = document.getElementById("nazwv");
+    var c = document.getElementById("wiekv").value;
+    if (isNaN(c)){
+      alert("Nie wprowadzileś liczby");
+    }
+    else{
+      osoby[liczba].imie=a;
+      osoby[liczba].nazwisko=b;
+      osoby[liczba].wiek=c;
+      liczba++;
+      klik();
+    }
+  }
+  </script>
+</body>
+</html>
