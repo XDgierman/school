@@ -5,8 +5,8 @@
 <body>
   <p id="dane"></p>
   <button onclick="klik()">Wyświetl</button><br>
-  <input id="imiev"></input>
-  <input id="nazwv"></input>
+  <input id="imiev" type="text"></input>
+  <input id="nazwv" type="text"></input>
   <input id="wiekv"></input><br>
   <button onclick="wprowadz()">Wprowadź</button><br>
   <script type="text/javascript">
@@ -41,16 +41,21 @@
     wyn.innerHTML=tab;
   }
   function wprowadz(){
-    var a = document.getElementById("imiev");
-    var b = document.getElementById("nazwv");
+    var a = document.getElementById("imiev").value;
+    var b = document.getElementById("nazwv").value;
     var c = document.getElementById("wiekv").value;
     if (isNaN(c)){
       alert("Nie wprowadzileś liczby");
     }
+    else if (c != parseInt(c)){
+      alert("Nie wprowadziłeś liczby całkowitej")
+    }
     else{
-      osoby[liczba].imie=a;
-      osoby[liczba].nazwisko=b;
-      osoby[liczba].wiek=c;
+      osoby[liczba]={
+      imie:a,
+      nazwisko:b,
+      wiek:c
+    }
       liczba++;
       klik();
     }
