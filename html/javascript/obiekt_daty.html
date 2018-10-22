@@ -5,52 +5,59 @@
 <body>
   <p id="czas"></p>
   <p id="dni"></p>
+  <p id="pelne"></p>
   <script type="text/javascript">
-  var d = new Date();
-  var days = ["niedziela", "poniedziałek", "wtorek", "środa", "czwartek", "piątek", "sobota"];
-  var months = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
-  document.getElementById("czas").innerHTML=days[d.getDay()]+" "+d.getDate()+" "+months[d.getMonth()]+" "+d.getFullYear();
-  var k = new Date();
-  k.setFullYear(2019,0,1);
-  k.setHours(0);
-  k.setMinutes(0);
-  k.setSeconds(0);
-  k.setMilliseconds(0);
-  console.log(document.getElementById("dni").innerHTML=days[k.getDay()]+" "+k.getDate()+" "+months[k.getMonth()]+" "+k.getFullYear());
-  var dzis = d.getTime();
-  var end = k.getTime();
-  var mili = end-dzis;
-  var godz = mili%86400000;
-  var min = godz%3600000;
-  var sec = min%60000;
-  mili /= 86400000;
-  godz /= 3600000;
-  min /= 60000;
-  sec /= 1000;
-  var text="";
-  text+=parseInt(mili);
-  if (parseInt(mili)>1 || parseInt(mili)<1){
-    text+=" dni ";
-  } else text+=" dzień ";
-  text+=parseInt(godz);
-  if (parseInt(godz)>1 || parseInt(godz)<1){
-    text+=" godzin ";
-  } else text+=" godzina ";
-  text+=parseInt(min);
-  if (parseInt(min)>1 || parseInt(min)<1){
-    text+=" minut i ";
-  } else text+=" minuta i ";
-  text+=parseInt(sec);
-  if (parseInt(sec)>4 || parseInt(sec)<1){
-    text+=" sekund.";
-  } else if (parseInt(sec)<4 && parseInt(sec)>1) text+=" sekundy.";
-  else text+= " sekunda.";
-  document.getElementById("dni").innerHTML=parseInt(mili)
-  +" dni "+parseInt(godz)
-  +" godzin "+parseInt(min)
-  +" minut i "+parseInt(sec)
-  +" sekund.";
-  console.log(text);
+  window.setInterval("refreshDiv()", 1000);
+  function refreshDiv(){
+    var d = new Date();
+    var days = ["niedziela", "poniedziałek", "wtorek", "środa", "czwartek", "piątek", "sobota"];
+    var months = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
+    document.getElementById("czas").innerHTML=days[d.getDay()]+" "+d.getDate()+" "+months[d.getMonth()]+" "+d.getFullYear();
+    var k = new Date();
+    k.setFullYear(2019,0,1);
+    k.setHours(0);
+    k.setMinutes(0);
+    k.setSeconds(0);
+    k.setMilliseconds(0);
+    console.log(document.getElementById("dni").innerHTML=days[k.getDay()]+" "+k.getDate()+" "+months[k.getMonth()]+" "+k.getFullYear());
+    var dzis = d.getTime();
+    var end = k.getTime();
+    var mili = end-dzis;
+    var godz = mili%86400000;
+    var min = godz%3600000;
+    var sec = min%60000;
+    mili /= 86400000;
+    godz /= 3600000;
+    min /= 60000;
+    sec /= 1000;
+    var text="";
+    text+=parseInt(mili);
+    if (parseInt(mili)>1 || parseInt(mili)<1){
+      text+=" dni ";
+    } else text+=" dzień ";
+    text+=parseInt(godz);
+    if (parseInt(godz)>1 || parseInt(godz)<1){
+      text+=" godzin ";
+    } else if (parseInt(godz)<5 && parseInt(godz)>1) text+=" godziny ";
+    else text+=" godzina ";
+    text+=parseInt(min);
+    if (parseInt(min)>1 || parseInt(min)<1){
+      text+=" minut i ";
+    } else if (parseInt(min)<5 && parseInt(min)>1) text+=" minuty i ";
+    else text+=" minuta i ";
+    text+=parseInt(sec);
+    if (parseInt(sec)>5 || parseInt(sec)<1){
+      text+=" sekund.";
+    } else if (parseInt(sec)<5 && parseInt(sec)>1) text+=" sekundy.";
+    else text+= " sekunda.";
+    document.getElementById("dni").innerHTML=parseInt(mili)
+    +" dni "+parseInt(godz)
+    +" godzin "+parseInt(min)
+    +" minut i "+parseInt(sec)
+    +" sekund.";
+    document.getElementById("pelne").innerHTML=text;
+      console.log(text);
+            }
   </script>
 </body>
 </html>

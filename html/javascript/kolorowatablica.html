@@ -1,0 +1,26 @@
+<html>
+<head>
+  <script>
+  function showTable(par){
+    var p = document.getElementById(par);
+    var s = "";
+    s="<table border ='1'>";
+    for(var i=0;i<7;i++){
+      s+= "<tr>"
+      for(var j=0;j<7;j++){
+        s+= "<td id="+"i"+(i+j)+" onclick=klik('i'+i+j)">"+(i+j)+"</td>";
+      }
+      s+= "</tr>";
+    }
+    s+="</table>";
+    p.innerHTML = s;
+  }
+</script>
+</head>
+<body>
+  <p id="pp"></p>
+  <script type="text/javascript">
+  showTable("pp");
+  </script>
+</body>
+</html>
