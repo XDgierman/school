@@ -5,18 +5,18 @@ using namespace std;
 
 
 int main(){
-string t[26][26];
-for (int i=1;i<2;i++){
-  t[i]=0;
-}
 ifstream file;
+ifstream nowe;
 file.open("slowa.txt");
+nowe.open("nowe.txt")
 string a;
+string t1[25];
+string t2[25];
+for (int i=0;i<25;i++){
+  t[i]=;
+  t[i+1]=
+}
 for (int i=0;i<1000;i++){
 file>>a;
-t[a.length()]++;
-}
-for (int i=1;i<13;i++){
-  cout<<t[i]<<endl;
 }
 }
