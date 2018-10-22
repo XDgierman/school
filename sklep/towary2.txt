@@ -1,0 +1,12 @@
+woda 10 1.68
+herbata 20 16.5
+kawa 15 18.99
+kakao 21 14.59
+batoniki 64 2.49
+chleb 12 4.00
+dzem 10 5.50
+maslo 20 6.10
+olej 5 5.45
+lody 14 2.67
+lizaki 33 0.90
+maka 24 1.99
