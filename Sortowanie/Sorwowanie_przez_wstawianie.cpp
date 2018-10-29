@@ -1,51 +1,36 @@
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include <fstream>
 
 using namespace std;
 
-void wyswietl (int t[],int n){
-for (int i=0;i<n;i++){
-	
-	cout.width(4);
-	cout<<t[i];
-	
-}	
-cout<<endl;	
-}
-
-void sortowanie(int t[], int ile){
-	int l=0,m,i,min,tmp;
-	
-while (l<ile-1)
-{	
-	min=999999;
-	for (i=l;i<ile;i++){
-		if (t[i]<min){
-			min=t[i];
-			m=i;
-		}
+void sortowanie(int t[], int ile) 
+{ 
+   int i, x, j; 
+   for (i = 1; i < ile; i++) 
+   { 
+       x = t[i]; 
+       j = i-1; 
+       while (j >= 0 && t[j] > x) 
+       { 
+           t[j+1] = t[j]; 
+           j = j-1; 
+       } 
+       t[j+1] = x; 
+   } 
+} 
+int main(){
+	ifstream plik0;
+	ofstream plik1;
+	plik0.open("liczby50000.txt");
+	plik1.open("sortowanie50000.txt");
+	int ile=50000, t[50000];
+	for (int i=0;i<ile;i++){
+		int x;
+		plik0>>x;
+		t[i]=x;
 	}
-		tmp=t[l];
-		t[l]=t[m];
-		t[m]=tmp;
-	l++;
-	wyswietl(t,ile);
-	cin.get();
-}
-}
-
-int main()
-{
-srand(time(NULL));
-int ile=20;
-int t[ile];
-for (int i=0;i<ile;i++){
-	t[i]=rand()%100;
-
-}	
-cout<<endl;
 sortowanie(t,ile);
-wyswietl(t,ile);
-		
+for (int i=0;i<ile;i++){
+	plik1<<t[i]<<endl;
+}
 }
