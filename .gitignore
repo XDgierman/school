@@ -16,7 +16,7 @@
 *.dylib
 *.dll
 
-# Security auto-backup
+# Security auto-record locking information
 *.laccdb
 
 # Fortran module files
