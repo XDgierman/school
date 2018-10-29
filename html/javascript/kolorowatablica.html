@@ -7,13 +7,21 @@
     s="<table border ='1'>";
     for(var i=0;i<7;i++){
       s+= "<tr>"
+      it="";
+      it+=i;
       for(var j=0;j<7;j++){
-        s+= "<td id="+"i"+(i+j)+" onclick=klik('i'+i+j)">"+(i+j)+"</td>";
+        jt="";
+        jt+=j;
+        s+= "<td id="+"i"+(it+jt)+" onclick=klik(i"+it+jt+")>"+(it+jt)+"</td>";
       }
       s+= "</tr>";
     }
     s+="</table>";
     p.innerHTML = s;
+  }
+  function klik(id){
+    var pp = id;
+    pp.style.backgroundColor='yellow';
   }
 </script>
 </head>
