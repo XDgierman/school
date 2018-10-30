@@ -1,0 +1,13 @@
+ComboBox1->Items->Add("");
+
+int x= ComboBox1->ItemIndex; //która pozycja wybrana
+String A=ComboBox1->Items->Strings[ComboBox1->ItemIndex];
+
+String A=ComboBox1->Items->Strings[i];
+int x = ComboBox1->Items->IndexOf(".......");
+
+ComboBox1->Clear();
+
+ComboBox1->Items->Delete(i);
+ComboBox1->Items->Insert(i, "......");
+

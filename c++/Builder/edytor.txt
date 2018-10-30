@@ -1,0 +1,40 @@
+obs³uga schowka:
+RichEdit1->CopyToClipboard();
+RichEdit1->PasteFromClipboard();
+RichEdit1->CutToClipboard();
+
+RichEdit1->Clear();
+RichEdit1->SelectAll();
+
+zamkniêcie aplikacji:
+Application->Terminate();
+
+zmiana koloru:
+if(ColorDialog1->Execute())
+{
+RichEdit1->SelAttributes->Color = ColorDialog1->Color;
+}
+
+
+drukowanie:
+ if(PrintDialog1->Execute()){
+       RichEdit1->Print("");
+
+   }
+
+zmiana fontu:
+if(FontDialog1->Execute()){
+ RichEdit1->Font->Name=FontDialog1->Font->Name;
+ RichEdit1->Font->Size = FontDialog1->Font->Size;}
+
+odczyt pojedynczej linii:
+String linia=RichEdit1->Lines->Strings[x];
+
+    FindDialog1->FindText = RichEdit1->SelText;
+    FindDialog1->Execute();
+
+
+    ReplaceDialog1->FindText = RichEdit1->SelText;
+    ReplaceDialog1->Execute();
+
+

@@ -5,7 +5,7 @@ using namespace std;
 int StrToInt(string a){
 	int x=(int)a[0]-48;
 	for (int i=1; i<=a.length()-1;i++){
-		x=x*10+a[i]-48;
+		x=x*10+(int)a[i]-48;
 	}
 	return x;
 }

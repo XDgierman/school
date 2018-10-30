@@ -1,0 +1,18 @@
+zapis do pliku:
+Memo1->Lines->SaveToFile("plik.txt");
+lub
+RichEdit1->Lines->SaveToFile("plik.txt");
+lub
+ if( SaveDialog1->Execute() )
+ {
+  Memo1->Lines->SaveToFile( SaveDialog1->FileName );
+ }
+ 
+
+odczyt z pliku:
+ Memo1->Lines->LoadFromFile("plik.txt");
+lub
+if( OpenDialog1->Execute() )
+ {
+  Memo1->Lines->LoadFromFile( OpenDialog1->FileName );
+ }
