@@ -1,0 +1,27 @@
+<html>
+    <head>
+    </head>
+    <body>
+    <form name="form1">
+      a:<input type="number" name="a"><br>
+      b:<input type="number" name="b"><br>
+      <input type="button" value="Dodaj" 		onclick="dodaj()">
+    </form>
+    <p id="wynik"></p>
+    <script>
+      function dodaj(){
+        var a=document.forms['form1']['a'].value;
+        var b=document.forms['form1']['b'].value;
+        var w=document.getElementById("wynik");
+        var k;
+        if (a=="" || b==""){
+          w.innerHTML="Wypełnij pola liczbami!";
+        }
+        else{
+          k=parseFloat(a)+parseFloat(b);
+          w.innerHTML="Wynik dodawania: "+k;
+        }
+      }
+    </script>
+</body>
+</html>
