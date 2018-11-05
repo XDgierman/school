@@ -10,8 +10,8 @@ Znajdz pierwiastek równania x^3+2x^2-11x-12 w przedziale <0;100>
 #include <iostream>
 using namespace std;
 
-int Horner(int a[],int x, int n){
-	int b=a[0];
+float Horner(int a[],float x, int n){
+	float b=a[0];
 	for (int i=1;i<=n;i++){
 		b=b*x+a[i];
 	}
@@ -19,12 +19,34 @@ int Horner(int a[],int x, int n){
 }
 
 int main(){
-	int a[4]=[1,2,11,12];
-	int n=3, l=0, p=100, s;
-	do{
-		s=(l+p)/2;
-		if (Horner(a[],s,n)==0){
-			l=p+1;
+	int n;
+	cout<<"podaj stopien wielomianu: ";
+	cin>>n;
+	int a[n+1];
+	for (int i=0;i<=n;i++){
+		cout<<"podaj wspolczynnik nr. "<<i+1<<": ";
+		cin>>a[i];
+	}
+	cout<<"podaj poczatek: ";
+	float l;
+	cin>>l;
+	cout<<"podaj koniec: ";
+	float p;
+	cin>>p;
+	float s;
+	while(l<p){
+		s=(l+p)/2.0;
+		if ((int)Horner(a,s,n)==0){
+			break;
 		}
-	}while(l<p)
+		if (Horner(a,l,n)*Horner(a,s,n)<0){
+			p=s;
+		} else l=s;
+	};
+	if (l>=p && s!=0){
+		cout<<"Brak rozwiazania"<<endl;
+		return 0;
+	}
+	else cout<<"Rozwiazanie to: "<<s;
+	return 0;
 }
