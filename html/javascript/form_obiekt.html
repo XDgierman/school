@@ -1,0 +1,20 @@
+<html>
+    <head>
+    </head>
+    <body>
+    <form name="form1">
+      <i>Wpisz imie:</i><input type="text" name="im"><br>
+      <i>Wpisz nazwisko:</i><input type="text" name="nz"><br>
+      <input type="button" value="Wyślij" onclick="wyslij()">
+    </form>
+    <p id="p1"></p>
+    <script>
+      function wyslij(){
+        var im=document.form1.im.value;
+        var nz=document.form1.nz.value;
+        var p1=document.getElementById("p1");
+        p1.innerHTML="Imie: "+im+"<br>Nazwisko: "+nz;
+      }
+    </script>
+</body>
+</html>

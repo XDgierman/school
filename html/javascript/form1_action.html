@@ -1,0 +1,35 @@
+<html>
+    <head>
+    </head>
+    <body>
+    <form name="form1" action="dane.php" method="post" onsubmit="return check()">
+      <i>Wpisz imie:</i><input type="text" name="im"><br>
+      <i>Wpisz nazwisko:</i><input type="text" name="nz"><br>
+      <input type="submit" value="Wyślij">
+    </form>
+    <p id="p1"></p>
+    <script>
+      function wyslij(){
+        var im=document.forms['form1']['im'].value;
+        var nz=document.forms['form1']['nz'].value;
+        var p1=document.getElementById("p1");
+        p1.innerHTML="Imie: "+im+"<br>Nazwisko: "+nz;
+      }
+      function check(){
+        var im=document.forms['form1']['im'].value;
+        var nz=document.forms['form1']['nz'].value;
+        if (im==""){
+          alert("Wypełnij pole imie!");
+          document.forms['form1']['im'].focus();
+          return false;
+        }
+        if (nz==""){
+          alert("Wypełnij pole nazwisko!");
+          document.forms['form1']['nz'].focus();
+          return false;
+        }
+        return true;
+      }
+    </script>
+</body>
+</html>
