@@ -5,15 +5,74 @@
     <form name="form1">
       <i>Wpisz imie:</i><input type="text" name="im"><br>
       <i>Wpisz nazwisko:</i><input type="text" name="nz"><br>
-      <input type="button" value="Wyślij" onclick="wyslij()">
+      <i>Wpisz wiek:</i><input type="number" name="wi"><br>
+      <i>Wpisz kod pocztowy:</i><input type="text" name="kd"><br>
+      <i>Wpisz email:</i><input type="text" name="em"><br>
+      <i>Wpisz pesel:</i><input type="number" name="ps"><br>
+      <input type="button" value="Wyślij" onclick="test()">
     </form>
     <p id="p1"></p>
     <script>
+    function check(){
+      var im=document.forms['form1']['im'].value;
+      var nz=document.forms['form1']['nz'].value;
+      var wi=document.forms['form1']['wi'].value;
+      var kd=document.forms['form1']['kd'].value;
+      var em=document.forms['form1']['em'].value;
+      var ps=document.forms['form1']['ps'].value;
+      var w_kod = /^[0-9]{2}-[0-9]{3}$/;
+      var w_email = /^[a-z\d]+[\w\d.-]*@(?:[a-z\d]+[a-z\d-]+\.){1,5}[a-z]{2,6}$/;
+      var w_pesel = /^[0-9]{11}$/;
+      if(!w_kod.test(kd)){
+        alert("Wpisz kod według wzorca xx-xxx");
+        document.forms['form1']['kd'].focus();
+        return false;
+      }
+      if(!w_email.test(em)){
+        alert("Wpisz poprawny email");
+        document.forms['form1']['em'].focus();
+        return false;
+      }
+      if(!w_pesel.test(ps)){
+        alert("Wpisz 11 cyfer peselu");
+        document.forms['form1']['ps'].focus();
+        return false;
+      }
+      if (im==""){
+        alert("Wypełnij pole imie!");
+        document.forms['form1']['im'].focus();
+        return false;
+      }
+      if (nz==""){
+        alert("Wypełnij pole nazwisko!");
+        document.forms['form1']['nz'].focus();
+        return false;
+      }
+      if (wi==""){
+        alert("Wypełnij pole wiek!");
+        document.forms['form1']['wi'].focus();
+        return false;
+      }else if (isNaN(wi) || wi<=0){
+        alert("Nie wprowadzileś poprawnej liczby!");
+        document.forms['form1']['wi'].focus();
+        return false;
+      }
+      return true;
+    }
       function wyslij(){
         var im=document.forms['form1']['im'].value;
         var nz=document.forms['form1']['nz'].value;
+        var wi=document.forms['form1']['wi'].value;
+        var kd=document.forms['form1']['kd'].value;
+        var em=document.forms['form1']['em'].value;
+        var ps=document.forms['form1']['ps'].value;
         var p1=document.getElementById("p1");
-        p1.innerHTML="Imie: "+im+"<br>Nazwisko: "+nz;
+        p1.innerHTML="Imie: "+im+"<br>Nazwisko: "+nz+"<br> Wiek: "+wi+"<br>Kod pocztowy: "+kd+"<br>E-mail: "+em+"<br>Pesel: "+ps;
+      }
+      function test(){
+        if (check()){
+          wyslij();
+        }
       }
     </script>
 </body>
