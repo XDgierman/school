@@ -1,0 +1,24 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <p id="time"></p><br>
+    <button type="button" onclick="start()">Start</button>
+    <button type="button" onclick="stop()">Stop</button>
+    <script type="text/javascript">
+      var id;
+      function start(){
+         document.getElementById("time").innerHTML="-1";
+         licz();
+         id=setInterval(licz,1000);
+      }
+      function licz(){
+        var p1= document.getElementById("time");
+        p1.innerHTML = parseInt(p1.innerHTML)+1;
+      }
+      function stop(){
+        clearInterval(id);
+      }
+    </script>
+  </body>
+</html>
