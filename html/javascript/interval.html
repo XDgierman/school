@@ -10,7 +10,9 @@
       function start(){
          document.getElementById("time").innerHTML="-1";
          licz();
+         if (id=null){
          id=setInterval(licz,1000);
+       }
       }
       function licz(){
         var p1= document.getElementById("time");
@@ -18,6 +20,7 @@
       }
       function stop(){
         clearInterval(id);
+        id=null;
       }
     </script>
   </body>

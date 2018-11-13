@@ -9,7 +9,17 @@
         var g= d.getHours();
         var m= d.getMinutes();
         var s= d.getSeconds();
-        document.getElementById("time").innerHTML=g+":"+m+":"+s;
+        var t="";
+        if (parseInt(g)<10) {
+          t+="0"+g+":";
+        } else t+=g+":";
+        if (parseInt(m)<10) {
+          t+="0"+m+":";
+        } else t+=m+":";
+        if (parseInt(s)<10) {
+          t+="0"+s;
+        } else t+=s;
+        document.getElementById("time").innerHTML=t;
       }
       var id=setInterval(czas,1000)
     </script>
