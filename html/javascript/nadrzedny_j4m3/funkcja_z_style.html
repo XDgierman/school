@@ -1,0 +1,18 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <p id="p1">Kliknij na przycisk</p><br>
+    <button onclick="moja()">Kliknij</button>
+
+    <script>
+      function moja(){
+        var p1 = document.getElementById("p1");
+        p1.style.fontSize="16px";
+        p1.style.fontFamily="Helvetica, Roboto, sans-serif"
+        p1.style.color="red";
+        p1.innerHTML="Test pomyślnie ukończony";
+      }
+    </script>
+  </body>
+</html>

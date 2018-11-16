@@ -30,3 +30,13 @@ function displayDate(){
 element.addEventListener("mouseover", myFunction);
 element.addEventListener("click", mySecondFunction);
 element.addEventListener("mouseout", myThirdFunction);
+
+
+Dynamiczna zmiana zawartości
+Zmieniając zawartośc strony po zadziałaniu użytkownika na jakieś zdarzenie możemy przykładowo :
+-zmienic zawartośc elementu tekstowego modyfikując właściwośc "innerHTML"
+-podmienic fotografię w znaczniku image modyfikując właściwośc "src"
+-wygenerowac dowolne elementy strony, np. tabele tworząc ją wpierw w zmiennej typu "string", a następnie przypisując do paragrafu
+
+Dynamiczna modyfikacja wyglądu
+Możemy dokonac tego modyfikując w zawartości style odpowiedni właściwości elementu związane z CSS, np. obiect.style.color= "wartośc", obiect.style.fontSize="wartośc", obiect.style.border="wartośc"
