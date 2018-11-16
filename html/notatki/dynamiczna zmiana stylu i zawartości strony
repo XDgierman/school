@@ -1,0 +1,32 @@
+w javascript możemy w interakcji z użytkownikiem zmieniac styl i zawartośc strony HTML,
+działając na zdarzenie które wywoła użytkownik, i któremu jest przypisana funkcja
+
+przypisując funkcje do zdarzenia możemy zrobic to na trzy sposoby:
+a) w znaczniku
+<button onclick="funkcja()">Kliknij tu</button>
+
+b) Wpis do właściwości obiektu odpowiadającego zdarzeniu
+<button id="Bt1">Kliknij</button>
+
+<script>
+document.getElementById("Bt1").onclick = displayDate; //tylko nazwa funkcji!!!
+
+function displayDate(){
+  //kod funkcji
+}
+</script>
+
+c) Za pomocą EventListener
+<button id="Bt1">Kliknij</button>
+
+<script>
+document.getElementById("Bt1").addEventListener("click", displayDate)
+
+function displayDate(){
+  //kod funkcji
+}
+</script>
+
+element.addEventListener("mouseover", myFunction);
+element.addEventListener("click", mySecondFunction);
+element.addEventListener("mouseout", myThirdFunction);
