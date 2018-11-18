@@ -1,0 +1,24 @@
+<html>
+  <style>
+  #container {
+    width: 600px;
+    height: 400px;
+    position: relative;
+    background: yellow;
+  }
+
+  </style>
+  <body>
+    <div id ="container" onmousemove="myMove(event)">
+      <p id="text"></p>
+    </div>
+    <script>
+    function myMove(event) {
+      var pos1 = event.offsetX;
+      var pos2 = event.offsetY;
+      var sh = document.getElementById("text");
+      sh.innerHTML= "x: " + pos1 + ", y: " + pos2;
+    }
+    </script>
+  </body>
+</html>
