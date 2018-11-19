@@ -1,0 +1,10 @@
+pozycjonowanie pozwala zdefiniowac położenie elementów na stronie, nie tylko
+względem strony, ale również jej poszczególnych elementów
+służy do tego atrybut "position"
+
+selektor {position: rodzaj, parametry}
+rodzaje:
+-static - przywraca normalne pozycjonowanie elementu. Jest to przydatne np. w celu usunięcia ogólnej deklaracji pozycjonowania, umieszczonej w arkuszu stylów.
+-relative - pozwala przesunąc wybrazy element w dowolną stronę względem jego "położenia spoczynkowego", czyli gdy nie używamy żadnego pozycjonowania. jako parametry podajemy wartości położenia spoczynkowego od danego boku
+-absolute - pozwala przesunąc wybrany element w dowolną stronę względem wybranych brzegów strony lub ewentualnie ramki albo "obejmującego bloku". jako parametry podajemy wartości odległości od wybranej krawędzi bloku obejmującego
+-fixed - działa podobnie jak pozycjonowanie absolutne (absolute), z tą różnicą, że pozycja elementu jest zawsze obliczana względem krawędzi okna przeglądarki (obszaru w którym znajduje się strona). Dodatkowo element taki jest nieruchomy podczas przewijania strony, przez co jest on przez cały czas widoczny na ekranie, dokładnie w tym samym miejscu.

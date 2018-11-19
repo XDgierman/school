@@ -1,0 +1,10 @@
+Zdarzenia od myszki:
+mousedown - przycisk myszki został naciśnięty
+mouseup - przycisk myszki został puszczony
+click - przycisk myszki został naciśnięty i puszczony (czyli normalne kliknięcie)
+dblclick - podwójne kliknięcie
+mousemove - kursor porusza się po...
+mouseover - kursor znalazł się na elemencie
+mouseout - kursor opuścił dany element
+
+Stwórz dokument z div o rozmiarze 200x200px, i po kliknięciu na ten block zmienia on kolor tła na czerwony, natomiast po dwukrotnym kliknięciu zmienia na zielony. Te dwa zdarzenia przypisz na dwa różne sposoby

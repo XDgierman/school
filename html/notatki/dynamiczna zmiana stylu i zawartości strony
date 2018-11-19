@@ -1,0 +1,42 @@
+w javascript możemy w interakcji z użytkownikiem zmieniac styl i zawartośc strony HTML,
+działając na zdarzenie które wywoła użytkownik, i któremu jest przypisana funkcja
+
+przypisując funkcje do zdarzenia możemy zrobic to na trzy sposoby:
+a) w znaczniku
+<button onclick="funkcja()">Kliknij tu</button>
+
+b) Wpis do właściwości obiektu odpowiadającego zdarzeniu
+<button id="Bt1">Kliknij</button>
+
+<script>
+document.getElementById("Bt1").onclick = displayDate; //tylko nazwa funkcji!!!
+
+function displayDate(){
+  //kod funkcji
+}
+</script>
+
+c) Za pomocą EventListener
+<button id="Bt1">Kliknij</button>
+
+<script>
+document.getElementById("Bt1").addEventListener("click", displayDate)
+
+function displayDate(){
+  //kod funkcji
+}
+</script>
+
+element.addEventListener("mouseover", myFunction);
+element.addEventListener("click", mySecondFunction);
+element.addEventListener("mouseout", myThirdFunction);
+
+
+Dynamiczna zmiana zawartości
+Zmieniając zawartośc strony po zadziałaniu użytkownika na jakieś zdarzenie możemy przykładowo :
+-zmienic zawartośc elementu tekstowego modyfikując właściwośc "innerHTML"
+-podmienic fotografię w znaczniku image modyfikując właściwośc "src"
+-wygenerowac dowolne elementy strony, np. tabele tworząc ją wpierw w zmiennej typu "string", a następnie przypisując do paragrafu
+
+Dynamiczna modyfikacja wyglądu
+Możemy dokonac tego modyfikując w zawartości style odpowiedni właściwości elementu związane z CSS, np. obiect.style.color= "wartośc", obiect.style.fontSize="wartośc", obiect.style.border="wartośc"
