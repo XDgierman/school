@@ -12,14 +12,14 @@ int StrToInt(string a){
 int ToDec (string a, int p){
 	int c;
 	if (a[0]>='0' & a[0]<='9'){c=(int)a[0]-48;}
-		else if (a[0]>='a' & a[0]<='f') c=(int)a[0]-87;
-			else if (a[0]>='A' & a[0]<='F') c=(int)a[0]-55;
+		else if (a[0]>='a' & a[0]<='z') c=(int)a[0]-87;
+			else if (a[0]>='A' & a[0]<='Z') c=(int)a[0]-55;
 	else return -1;
 	for (int i=1;i<a.length();i++){
 		int d;
 		if (a[i]>='0' and a[i]<='9')d=(int)a[i]-48;
-			else if (a[i]>='a' and a[i]<='f') d=(int)a[i]-87;
-				else if (a[i]>='A' and a[i]<='F') d=(int)a[i]-55;
+			else if (a[i]>='a' and a[i]<='z') d=(int)a[i]-87;
+				else if (a[i]>='A' and a[i]<='Z') d=(int)a[i]-55;
 		else return -1;
 		c=c*p+d;
 	}
