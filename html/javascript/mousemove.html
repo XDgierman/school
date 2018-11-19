@@ -1,10 +1,10 @@
 <html>
   <style>
   #container {
-    width: 600px;
-    height: 400px;
-    position: relative;
+    width: 400px;
+    height: 200px;
     background: yellow;
+    border: solid 2px;
   }
 
   </style>
@@ -14,10 +14,10 @@
     </div>
     <script>
     function myMove(event) {
-      var pos1 = event.offsetX;
-      var pos2 = event.offsetY;
+      var pos1 = event.offsetX+2;
+      var pos2 = event.offsetY+2;
       var sh = document.getElementById("text");
-      sh.innerHTML= "x: " + pos1 + ", y: " + pos2;
+      sh.innerHTML= "X: " + pos1 + ", Y: " + pos2;
     }
     </script>
   </body>

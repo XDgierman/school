@@ -1,0 +1,20 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <p id="p1"></p>
+    <button id="bt">Kliknij</button>
+    <script>
+      var p1 = document.getElementById("p1");
+      var bt = document.getElementById("bt");
+      bt.onclick = function(){
+        p1.innerHTML = "Zmiana za pomocą zdarzenia onclick<br />";
+        p1.innerHTML += "Funkcja anonimowa przypisana do właściwości onclick";
+      };
+      bt.addEventListener("dblclick",function(){
+        p1.innerHTML = "Zmiana za pomocą zdarzenia dblclick<br />";
+        p1.innerHTML += "Funkcja anonimowa jako drugi argument metody addEvenetListener";
+      });
+    </script>
+  </body>
+</html>
