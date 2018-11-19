@@ -39,38 +39,7 @@ int ToDec (string a, int p){
 	}
 	return c;
 }
-string ToAny (string a, int p){
-	string w="",o="";
-	int r, le;
-	int l=StrToInt(a);
-	while (l!=0){
-		r=l%p;
-		if (r>=0 & r<=9) w+=(char)r+48;
-		else w+=(char)r+87;
-		l=l/p;
-}
-	le=w.length();
-	for (int i=le-1; i>=0;i--){
-		o+=w[i];
-	}
-	return o;
-}
 
-string ToAnyInt (int a, int p){
-	string w="",o="";
-	int r, le;
-	while (a!=0){
-		r=a%p;
-		if (r>=0 & r<=9) w+=(char)r+48;
-		else w+=(char)r+87;
-		a=a/p;
-}
-	le=w.length();
-	for (int i=le-1; i>=0;i--){
-		o+=w[i];
-	}
-	return o;
-}
 
 int main(){
   ifstream file;
