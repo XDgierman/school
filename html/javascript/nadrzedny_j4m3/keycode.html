@@ -1,0 +1,22 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <input type="text" id="t1" onkeypress="moja(event)"></input><br>
+    <p id="p1"></p>
+    <script>
+    var test=false
+      function moja(event){
+        var p1 = document.getElementById("p1");
+        var x = event.keyCode;
+          if(x>=48 && x<=57){
+            p1.innerHTML+= "Wcisnąłeś cyfrę, o kodzie : "+x+"<br>";
+          }
+          else if (x>=65 && x<=90 || x>=97 && x<=122) {
+            p1.innerHTML+= "Wcisnąłeś literę, o kodzie : "+x+"<br>";
+        }
+        else p1.innerHTML+= "Wcisnąłeś znak, o kodzie : "+x+"<br>";
+        }
+    </script>
+  </body>
+</html>
