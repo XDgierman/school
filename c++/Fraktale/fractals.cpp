@@ -8,9 +8,9 @@ int main(){
   file.open("output.txt");
   float x,y;
   int i,los,p=142;
-  x=1;
-  y=1;
-  for (i=0;i<5000;i++){
+  x=-1;
+  y=-1;
+  for (i=0;i<50101;i++){
     los=rand()%994;
     if (los>=0 && los<=p){
       x=(0.05)*x + (0.0)*y - 0.06;
