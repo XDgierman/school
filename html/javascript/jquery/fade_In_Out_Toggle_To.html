@@ -1,0 +1,39 @@
+<html>
+<head>
+<script src="jquery-3.3.1.js"></script>
+<script>
+$(document).ready(function(){
+  $("#in").click(function(){
+    $("div").fadeIn(1000);
+  });
+  $("#out").click(function(){
+    $("div").fadeOut(1000);
+  });
+  $("#toggle").click(function(){
+    $("div").fadeToggle(1000);
+  });
+  $("#to").click(function(){
+    $("div").fadeTo(1000,0.5);
+  });
+});
+</script>
+<style>
+div{
+  width: 200px;
+  height: 200px;
+  background-color: yellow;
+  color:green;
+}
+</style>
+</head>
+<body>
+<div>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+</div>
+<button type="button" id="in">In</button>
+<button type="button" id="out">Out</button>
+<button type="button" id="toggle">Toggle</button>
+<button type="button" id="to">To</button>
+</body>
+</html>

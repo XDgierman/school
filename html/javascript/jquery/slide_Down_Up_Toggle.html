@@ -1,0 +1,35 @@
+<html>
+<head>
+<script src="jquery-3.3.1.js"></script>
+<script>
+$(document).ready(function(){
+  $("#down").click(function(){
+    $("div").slideDown(1000);
+  });
+  $("#up").click(function(){
+    $("div").slideUp(1000);
+  });
+  $("#toggle").click(function(){
+    $("div").slideToggle(1000);
+  });
+});
+</script>
+<style>
+div{
+  width: 200px;
+  height: 200px;
+  background-color: yellow;
+  color:green;
+}
+</style>
+</head>
+<body>
+<div>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+</div>
+<button type="button" id="down">Down</button>
+<button type="button" id="up">Up</button>
+<button type="button" id="toggle">Toggle</button>
+</body>
+</html>
