@@ -1,0 +1,41 @@
+<html>
+<head>
+<script src="jquery-3.3.1.js"></script>
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $("div").animate({
+            left: '250px',
+            opacity: '1',
+        },2000);
+        $("div").animate({
+            left: '500px',
+            opacity: '0'
+        },2000);
+        $("div").animate({
+            left: '0px',
+        },1);
+    });
+});
+</script>
+<style>
+#animate {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  background: url("../../css/sonic.png") left center;
+  animation: play 1s steps(6) infinite;
+  opacity: 0;
+}
+@keyframes play {
+  100% {background-position:-240px }
+}
+</style>
+</head>
+<body>
+
+<button>Start Animation</button>
+<div id="animate""></div>
+
+</body>
+</html>

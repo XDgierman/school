@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <script src="jquery-3.3.1.js"></script>
+    <script>
+    $(document).ready(function() {
+         // Stuff to do as soon as the DOM is ready
+         $("button").click(function(){
+           $("#in2").val("Kopia tekstu: "+$("#in1").val());
+         })
+      });
+
+    </script>
+  </head>
+  <body>
+    Tekst:<input id="in1" type="text" value="Przykładowy tekst"><br>
+    Kopia: <input id="in2" type="text" name="" value=""><br>
+    <button>kopiuj</button>
+  </body>
+</html>
