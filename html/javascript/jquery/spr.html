@@ -1,0 +1,104 @@
+
+<html>
+  <head>
+    <script src="jquery-3.3.1.js"></script>
+    <script>
+    $(document).ready(function() {
+         $("div").mouseenter(function(){
+           $(this).css("background-color","blue");
+         });
+         $("div").mouseout(function(){
+           $(this).css("background-color","red");
+         });
+      });
+      function check(){
+        var im=document.forms['form1']['im'].value;
+        var nz=document.forms['form1']['nz'].value;
+        var ul=document.forms['form1']['ul'].value;
+        var nu=document.forms['form1']['nu'].value;
+        var ko=document.forms['form1']['ko'].value;
+        var mi=document.forms['form1']['mi'].value;
+        var w_ko=/^[0-9]{2}-[0-9]{3}$/
+        if (im==""){
+          alert("Wypełnij pole imie!");
+          document.forms['form1']['im'].focus();
+          return false;
+        }
+        if (nz==""){
+          alert("Wypełnij pole nazwisko!");
+          document.forms['form1']['nz'].focus();
+          return false;
+        }
+        if (ul==""){
+          alert("Wypełnij pole ulica!");
+          document.forms['form1']['ul'].focus();
+          return false;
+        }
+        if (nu==""){
+          alert("Wypełnij pole numer!");
+          document.forms['form1']['nu'].focus();
+          return false;
+        }
+        if (ko==""){
+          alert("Wypełnij pole kod!");
+          document.forms['form1']['ko'].focus();
+          return false;
+        }
+        if (!w_ko.test(ko)){
+          alert("wypełnij pole kod w postaci xx-xxx!")
+          document.forms['form1']['ko'].focus();
+          return false;
+        }
+        if (mi==""){
+          alert("Wypełnij pole miejscowośc!");
+          document.forms['form1']['mi'].focus();
+          return false;
+        }
+        return true;
+      }
+    </script>
+<style>
+  div{
+    width:200px;
+    height:200px;
+    background-color: red;
+  }
+</style>
+
+  </head>
+  <body>
+    <div id="id1">
+    </div>
+    <form name="form1" action="index.php" method="get" onsubmit="return check()">
+      <i>Imię: <input type="text" id="im"><br></i>
+      <i>Nazwisko: <input type="text" id="nz"><br></i>
+      <i>Ulica: <input type="text" id="ul"><br></i>
+      <i>Numer:<input type="text" id="nu"><br></i>
+      <i>Kod: <input type="text" id="ko"><br></i>
+      <i>Miejscowośc: <input type="text" id="mi"><br></i>
+      <input type="submit">
+    </form>
+    <p id="time"></p><br>
+    <button type="button" onclick="start()">Start</button>
+    <button type="button" onclick="stop()">Stop</button>
+    <button type="button" onclick="reset()">Reset</button>
+    <script>
+      var id;
+      function start(){
+         document.getElementById("time").innerHTML="-1";
+         licz();
+         if (id=null){
+         id=setInterval(licz,1000);
+       }
+      }
+      function licz(){
+        var p1= document.getElementById("time");
+        p1.innerHTML = parseInt(p1.innerHTML)+1;
+      }
+      function stop(){
+        clearInterval(id);
+        id=null;
+      }
+    </script>
+  </body>
+</html>
