@@ -45,12 +45,9 @@ bool palindrom (string a){
 	for (int i=a.length()-1;i>=0;i--){
 	w+=a[i];
 	}
-	for (int i=0; i<=a.length();i++){
-	if (a[i]!=w[i]){
-	return false;
-	 }
-	}
-	return true;
+	if (a==w){
+		return true;
+	} else return false;
 }
 
 bool anagram(string a, string b){
@@ -161,7 +158,7 @@ int main(){
 				getline(cin,s);
 				cout<<"Prosze wpisac poczatek"<<endl;
 				cin>>p;
-				if (p<s.length() || p>s.length()-1){
+				if (p<0 || p>s.length()-1){
 					cout<<"Wpisales wartosci z poza zakresu!"<<endl;
 					break;
 				}
