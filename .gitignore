@@ -18,6 +18,7 @@
 
 # Security auto-record locking information
 *.laccdb
+*.ldb
 
 # Fortran module files
 *.mod
