@@ -1,0 +1,33 @@
+.baner{
+  text-align: center;
+  background-color: rgb(255, 213, 162);
+  padding: 20px;
+}
+.menu{
+  display:inline;
+  float: left;
+  color: white;
+  background-color: rgb(191, 112, 17);
+  width: 25%;
+  font-size: 150%;
+  text-align: center;
+}
+.base{
+  height: 400px;
+}
+.footer{
+  text-align: right;
+  background-color: rgb(191, 112, 17);
+  font-size: 150%;
+  color: white;
+}
+a{
+  color: white;
+}
+a.visited{
+  color: white;
+}
+button{
+  background-color: brown;
+  border: 2px solid brown;
+}
