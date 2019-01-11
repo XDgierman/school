@@ -47,10 +47,11 @@
       };
       $(document).ready(function() {
        $(".smallimg").click(function(){
+         var tmp=$(this).attr("src");
            $(".imgte").fadeOut(function() {
-             $(".imgte").attr("src",$(this).attr("src"));
+             $(".imgte").attr("src",tmp);
+             $(".imgte").fadeIn();
            });
-           $(".imgte").fadeIn();
         });
         $(".smol").mouseenter(function(){
           $(this).css({
