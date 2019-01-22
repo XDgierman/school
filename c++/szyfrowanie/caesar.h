@@ -39,6 +39,9 @@ string decaesar (string a, string n){
 		while (k<=0){
 			k+=26;
 		}
+		if (k+65>=91){
+			k-=26;
+		}
 		w+=(char)(k+65);
 	}
 	return w;
