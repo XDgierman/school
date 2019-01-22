@@ -1,125 +1,125 @@
 <html>
-  <style>
-  #container {
-    width: 600px;
-    height: 400px;
-    position: relative;
-    background: yellow;
-  }
-  #animate {
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    background: url("sonic.png") left center;
-    animation: play 1s steps(6) infinite;
-  }
-  @keyframes play {
-    100% {background-position:-240px }
-  }
-  .flip_org{
-        -moz-transform: scaleX(1);
-        -o-transform: scaleX(1);
-        -webkit-transform: scaleX(1);
-        transform: scaleX(1);
-        filter: FlipO;
-        -ms-filter: "FlipO";
+	<style>
+	#container {
+		width: 600px;
+		height: 400px;
+		position: relative;
+		background: yellow;
+	}
+	#animate {
+		width: 40px;
+		height: 40px;
+		position: absolute;
+		background: url("sonic.png") left center;
+		animation: play 1s steps(6) infinite;
+	}
+	@keyframes play {
+		100% {background-position:-240px }
+	}
+	.flip_org{
+				-moz-transform: scaleX(1);
+				-o-transform: scaleX(1);
+				-webkit-transform: scaleX(1);
+				transform: scaleX(1);
+				filter: FlipO;
+				-ms-filter: "FlipO";
 }
 .flip_hor{
-  -moz-transform: scaleX(-1);
-  -o-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-  filter: FlipH;
-  -ms-filter: "FlipH";
+	-moz-transform: scaleX(-1);
+	-o-transform: scaleX(-1);
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+	filter: FlipH;
+	-ms-filter: "FlipH";
 }
-  </style>
-  <body>
-    <p>
-      <button onclick="myMove()">Kliknij mnie</button>
-    </p>
-    <div id ="container">
-      <div id ="animate" class="flip_org"></div>
-    </div>
-    <p id="show"></p>
-    <script>
-    function myMove() {
-      var test1=true;
-      var test2=true;
-      var elem = document.getElementById("animate");
-      var pos1 = 0;
-      var pos2 = 0;
-      var id = setInterval(frame, 5);
-      var sh = document.getElementById("show");
-      function frame() {
-        if (test1){
-          if (test2){
-            pos1++;
-            pos2++;
-            elem.style.top = pos1 + 'px';
-            elem.style.left = pos2 + 'px';
-            elem.className="flip_org";
-            sh.innerHTML="x="+pos2+"px, y="+pos1+'px';
-            if (pos1==360){
-              test1=false;
-              console.log("x="+pos2+"px, y="+pos1+'px');
-            }
-            if (pos2==560){
-              test2=false;
-              console.log("x="+pos2+"px, y="+pos1+'px');
-            }
-          }
-          else {
-            pos1++;
-            pos2--;
-            elem.style.top = pos1 + 'px';
-            elem.style.left = pos2 + 'px';
-            elem.className="flip_hor";
-            sh.innerHTML="x="+pos2+"px, y="+pos1+'px';
-              if (pos1==360){
-                test1=false;
-                console.log("x="+pos2+"px, y="+pos1+'px');
-              }
-              if (pos2==0){
-                test2=true;
-                console.log("x="+pos2+"px, y="+pos1+'px');
-              }
-            }
-          }
-          else {
-            if (test2){
-              pos1--;
-              pos2++;
-              elem.style.top = pos1 + 'px';
-              elem.style.left = pos2 + 'px';
-              elem.className="flip_org";
-              sh.innerHTML="x="+pos2+"px, y="+pos1+'px';
-              if (pos1==0){
-                test1=true;
-                console.log("x="+pos2+"px, y="+pos1+'px');
-              }
-              if (pos2==560){
-                test2=false;
-                console.log("x="+pos2+"px, y="+pos1+'px');
-              }
-            }else {
-              pos1--;
-              pos2--;
-              elem.style.top = pos1 + 'px';
-              elem.style.left = pos2 + 'px';
-              elem.className="flip_hor";
-              sh.innerHTML="x="+pos2+"px, y="+pos1+'px';
-              if (pos1==0){
-                test1=true;
-                console.log("x="+pos2+"px, y="+pos1+'px');
-              }
-              if (pos2==0){
-                test2=true;
-                console.log("x="+pos2+"px, y="+pos1+'px');
-              }
-            }
-          }
-        }
-      }
-    </script>
-  </body>
+	</style>
+	<body>
+		<p>
+			<button onclick="myMove()">Kliknij mnie</button>
+		</p>
+		<div id ="container">
+			<div id ="animate" class="flip_org"></div>
+		</div>
+		<p id="show"></p>
+		<script>
+		function myMove() {
+			var test1=true;
+			var test2=true;
+			var elem = document.getElementById("animate");
+			var pos1 = 0;
+			var pos2 = 0;
+			var id = setInterval(frame, 5);
+			var sh = document.getElementById("show");
+			function frame() {
+				if (test1){
+					if (test2){
+						pos1++;
+						pos2++;
+						elem.style.top = pos1 + 'px';
+						elem.style.left = pos2 + 'px';
+						elem.className="flip_org";
+						sh.innerHTML="x="+pos2+"px, y="+pos1+'px';
+						if (pos1==360){
+							test1=false;
+							console.log("x="+pos2+"px, y="+pos1+'px');
+						}
+						if (pos2==560){
+							test2=false;
+							console.log("x="+pos2+"px, y="+pos1+'px');
+						}
+					}
+					else {
+						pos1++;
+						pos2--;
+						elem.style.top = pos1 + 'px';
+						elem.style.left = pos2 + 'px';
+						elem.className="flip_hor";
+						sh.innerHTML="x="+pos2+"px, y="+pos1+'px';
+							if (pos1==360){
+								test1=false;
+								console.log("x="+pos2+"px, y="+pos1+'px');
+							}
+							if (pos2==0){
+								test2=true;
+								console.log("x="+pos2+"px, y="+pos1+'px');
+							}
+						}
+					}
+					else {
+						if (test2){
+							pos1--;
+							pos2++;
+							elem.style.top = pos1 + 'px';
+							elem.style.left = pos2 + 'px';
+							elem.className="flip_org";
+							sh.innerHTML="x="+pos2+"px, y="+pos1+'px';
+							if (pos1==0){
+								test1=true;
+								console.log("x="+pos2+"px, y="+pos1+'px');
+							}
+							if (pos2==560){
+								test2=false;
+								console.log("x="+pos2+"px, y="+pos1+'px');
+							}
+						}else {
+							pos1--;
+							pos2--;
+							elem.style.top = pos1 + 'px';
+							elem.style.left = pos2 + 'px';
+							elem.className="flip_hor";
+							sh.innerHTML="x="+pos2+"px, y="+pos1+'px';
+							if (pos1==0){
+								test1=true;
+								console.log("x="+pos2+"px, y="+pos1+'px');
+							}
+							if (pos2==0){
+								test2=true;
+								console.log("x="+pos2+"px, y="+pos1+'px');
+							}
+						}
+					}
+				}
+			}
+		</script>
+	</body>
 </html>
