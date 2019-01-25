@@ -8,12 +8,12 @@
 	<body>
 		<?php
 			$a = 10;
-      function wyswietl(&$x){
+			function wyswietl(&$x){
 				$x++;
-        echo "<br>Zmienna x = ".$x;
-      }
+				echo "<br>Zmienna x = ".$x;
+			}
 			echo "<br>1. a = ".$a;
-      wyswietl($a);
+			wyswietl($a);
 			echo "<br>2. a = ".$a;
 
 		?>

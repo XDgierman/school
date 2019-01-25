@@ -1,42 +1,42 @@
 <html>
 <head>
-  <script>
-  function showTable(par){
-    var p = document.getElementById(par);
-    var s = "";
-    s="<table border ='1'>";
-    for(var i=1;i<5;i++){
-      s+= "<tr id=i"+i+">"
-      it="";
-      it+=i;
-      for(var j=1;j<7;j++){
-        jt="";
-        jt+=j;
-        s+= "<td id="+"i"+(it+"_"+jt)+" onclick=klik(i"+it+"_"+jt+")>"+(it+jt)+"</td>";
-      }
-      s+= "</tr>";
-    }
-    s+="</table>";
-    p.innerHTML = s;
-  }
-  function klik(id){
-    var pp = id;
-    pp.style.backgroundColor='yellow';
-  }
-  function test(id){
-    var t=document.getElementById(id);
-    var g=parseInt
-    t.innerHTML="text";
-    g.style.tablelauout= fixed;
+	<script>
+	function showTable(par){
+		var p = document.getElementById(par);
+		var s = "";
+		s="<table border ='1'>";
+		for(var i=1;i<5;i++){
+			s+= "<tr id=i"+i+">"
+			it="";
+			it+=i;
+			for(var j=1;j<7;j++){
+				jt="";
+				jt+=j;
+				s+= "<td id="+"i"+(it+"_"+jt)+" onclick=klik(i"+it+"_"+jt+")>"+(it+jt)+"</td>";
+			}
+			s+= "</tr>";
+		}
+		s+="</table>";
+		p.innerHTML = s;
+	}
+	function klik(id){
+		var pp = id;
+		pp.style.backgroundColor='yellow';
+	}
+	function test(id){
+		var t=document.getElementById(id);
+		var g=parseInt
+		t.innerHTML="text";
+		g.style.tablelauout= fixed;
 
-  }
+	}
 </script>
 </head>
 <body>
-  <p id="pp"></p>
-  <script type="text/javascript">
-  showTable("pp");
-  test("i4_2");
-  </script>
+	<p id="pp"></p>
+	<script type="text/javascript">
+	showTable("pp");
+	test("i4_2");
+	</script>
 </body>
 </html>

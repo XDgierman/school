@@ -8,10 +8,10 @@
 	<body>
 		<?php
 			$a = 10;
-      function wyswietl(){
-        echo "<br>Zmienna globalna a=".$GLOBALS['a'];
-      }
-      wyswietl();
+			function wyswietl(){
+				echo "<br>Zmienna globalna a=".$GLOBALS['a'];
+			}
+			wyswietl();
 		?>
 
 	</body>
