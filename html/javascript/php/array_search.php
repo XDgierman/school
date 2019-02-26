@@ -12,6 +12,8 @@
 			echo array_search("Kowalski",$osoba);
 			echo "<br>";
 			echo array_search("Audi",$cars1);
+			unset($osoba["Pesel"]); //usunięcie wartości
+			unset($cars1); //usunięcie tablicy
 		?>
 
 	</body>
