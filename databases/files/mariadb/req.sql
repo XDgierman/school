@@ -116,3 +116,40 @@ select group_concat(klienci.NazwiskoKlienta," ",klienci.ImieKlienta) as "Klient"
 count(sprzedaze.IDklienta) as "Ile razy kupował"
 from klienci inner join sprzedaze using (IDklienta)
 group by klienci.IDklienta;
+
+select kategorierowerow.NazwaKategorii as "Nazwa Kategorii",
+avg(rowery.CenaJednostkowa) as "Średnia cena"
+from kategorierowerow inner join rowery using(IDkategorii)
+group by kategorierowerow.IDkategorii;
+
+select rowery.NazwaRoweru, count(szczegolysprzedazy.IDroweru)
+as "Ile razy kupiono"
+from rowery inner join szczegolysprzedazy using(IDroweru)
+group by rowery.NazwaRoweru
+order by count(szczegolysprzedazy.IDroweru);
+
+select rowery.NazwaRoweru, count(szczegolysprzedazy.IDroweru)
+as Ile_razy_kupiono
+from rowery inner join szczegolysprzedazy using(IDroweru)
+group by rowery.NazwaRoweru
+order by Ile_razy_kupiono;
+
+select group_concat(distinct(pracownicy.ImiePracownika)," ",pracownicy.NazwiskoPracownika)
+as "Pracownik",
+sum(szczegolysprzedazy.CenaJednostkowa*szczegolysprzedazy.Ilosc) as Zarobek
+from pracownicy inner join sprzedaze using(IDpracownika)
+inner join szczegolysprzedazy using(IDsprzedazy)
+group by pracownicy.IDpracownika
+order by Zarobek;
+
+select MiastoKlienta, count(MiastoKlienta) as "Liczba klientów"
+from klienci
+where MiastoKlienta like 'K%'
+group by MiastoKlienta;
+
+/*
+select MiastoKlienta, count(MiastoKlienta) as "Liczba klientów"
+from klienci
+where count(MiastoKlienta) > 1
+group by MiastoKlienta;
+*/
