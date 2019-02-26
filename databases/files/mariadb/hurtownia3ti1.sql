@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Baza danych: `hurtownia3ti1`
 --
+CREATE DATABASE IF NOT EXISTS `hurtownia3ti1` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `hurtownia3ti1`;
 
 -- --------------------------------------------------------
 
@@ -203,7 +205,7 @@ INSERT INTO `sprzedaze` (`IDsprzedazy`, `DataSprzedazy`, `IDpracownika`, `IDklie
 
 CREATE TABLE `szczegolysprzedazy` (
   `IDsprzedazy` int(11) NOT NULL,
-  `idroweru` int(11) NOT NULL,
+  `IDroweru` int(11) NOT NULL,
   `Ilosc` int(11) NOT NULL,
   `CenaJednostkowa` decimal(8,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 PACK_KEYS=0 ROW_FORMAT=COMPACT;
@@ -212,7 +214,7 @@ CREATE TABLE `szczegolysprzedazy` (
 -- Zrzut danych tabeli `szczegolysprzedazy`
 --
 
-INSERT INTO `szczegolysprzedazy` (`IDsprzedazy`, `idroweru`, `Ilosc`, `CenaJednostkowa`) VALUES
+INSERT INTO `szczegolysprzedazy` (`IDsprzedazy`, `IDroweru`, `Ilosc`, `CenaJednostkowa`) VALUES
 (1, 1, 2, '360.00'),
 (1, 3, 2, '980.00'),
 (2, 2, 1, '600.00'),
@@ -302,7 +304,7 @@ ALTER TABLE `sprzedaze`
 -- Indexes for table `szczegolysprzedazy`
 --
 ALTER TABLE `szczegolysprzedazy`
-  ADD PRIMARY KEY (`IDsprzedazy`,`idroweru`);
+  ADD PRIMARY KEY (`IDsprzedazy`,`IDroweru`);
 
 --
 -- Indexes for table `wojewodztwa`

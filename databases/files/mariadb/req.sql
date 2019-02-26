@@ -147,9 +147,45 @@ from klienci
 where MiastoKlienta like 'K%'
 group by MiastoKlienta;
 
-/*
 select MiastoKlienta, count(MiastoKlienta) as "Liczba klientów"
 from klienci
-where count(MiastoKlienta) > 1
-group by MiastoKlienta;
-*/
+group by MiastoKlienta
+having count(MiastoKlienta) > 1;
+
+select rowery.NazwaRoweru, count(szczegolysprzedazy.IDroweru)
+as "Ile razy kupowano"
+from rowery inner join szczegolysprzedazy using(IDroweru)
+group by rowery.NazwaRoweru
+having count(szczegolysprzedazy.IDroweru)>1;
+
+select MiastoKlienta, count(MiastoKlienta) as "Liczba klientów"
+from klienci
+group by MiastoKlienta
+having MiastoKlienta like 'K%';
+
+select klienci.NazwiskoKlienta,
+sum(szczegolysprzedazy.Ilosc*szczegolysprzedazy.CenaJednostkowa)
+as "Wartość zakupów"
+from (klienci inner join sprzedaze using(IDklienta))
+inner join szczegolysprzedazy using(IDsprzedazy)
+group by klienci.NazwiskoKlienta
+having sum(szczegolysprzedazy.Ilosc*szczegolysprzedazy.CenaJednostkowa)>2000;
+
+select klienci.NazwiskoKlienta,
+sum(szczegolysprzedazy.Ilosc*szczegolysprzedazy.CenaJednostkowa)
+as WartoscZ
+from (klienci inner join sprzedaze using(IDklienta))
+inner join szczegolysprzedazy using(IDsprzedazy)
+group by klienci.NazwiskoKlienta
+having WartoscZ>2000;
+
+select MiastoKlienta, count(MiastoKlienta) as "Liczba klientów"
+from klienci
+group by MiastoKlienta
+having MiastoKlienta like 'K%' and count(MiastoKlienta)>1;
+
+select kategorierowerow.NazwaKategorii as "Kateoria",
+avg(rowery.CenaJednostkowa) as "Średnia"
+from kategorierowerow inner join rowery using(IDkategorii)
+group by kategorierowerow.IDkategorii
+having avg(rowery.CenaJednostkowa)<2000;
