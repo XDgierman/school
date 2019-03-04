@@ -189,3 +189,39 @@ avg(rowery.CenaJednostkowa) as "Średnia"
 from kategorierowerow inner join rowery using(IDkategorii)
 group by kategorierowerow.IDkategorii
 having avg(rowery.CenaJednostkowa)<2000;
+
+select NazwiskoPracownika, ImiePracownika, PlacaPracownika
+from pracownicy
+where PlacaPracownika = (select min(PlacaPracownika) from pracownicy);
+
+select *
+from (select NazwiskoPracownika, ImiePracownika, PlacaPracownika
+from pracownicy
+where DataZatrudnieniaPracownika between '2013-01-01' and '2013-12-31')
+as wynik
+where NazwiskoPracownika = 'Kowalska';
+
+select NazwaRoweru, CenaJednostkowa,
+(select avg(CenaJednostkowa) from rowery) as "Średnia cena"
+from rowery;
+
+select NazwaRoweru, CenaJednostkowa,
+CenaJednostkowa - (select avg(CenaJednostkowa) from rowery) as "Różnica"
+from rowery;
+
+select NazwiskoKlienta, ImieKlienta
+from klienci
+where IDklienta not in (select IDklienta from sprzedaze);
+
+select klienci.NazwiskoKlienta, klienci.ImieKlienta
+from klienci left join sprzedaze on klienci.IDklienta = sprzedaze.IDklienta
+where sprzedaze.DataSprzedazy is NULL;
+
+select NazwaRoweru
+from rowery
+where IDroweru in (select IDroweru
+from szczegolysprzedazy where CenaJednostkowa < 500);
+
+select distinct rowery.NazwaRoweru
+from rowery inner join szczegolysprzedazy using (IDroweru)
+where szczegolysprzedazy.CenaJednostkowa < 500;
