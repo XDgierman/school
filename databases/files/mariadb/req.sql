@@ -225,3 +225,32 @@ from szczegolysprzedazy where CenaJednostkowa < 500);
 select distinct rowery.NazwaRoweru
 from rowery inner join szczegolysprzedazy using (IDroweru)
 where szczegolysprzedazy.CenaJednostkowa < 500;
+
+select NazwaRoweru from rowery
+where CenaJednostkowa < (select avg(CenaJednostkowa)-100 from szczegolysprzedazy);
+
+select ImiePracownika, NazwiskoPracownika from pracownicy
+where DataZatrudnieniaPracownika =
+(select min(DataZatrudnieniaPracownika) from pracownicy);
+
+select * from rowery
+where CenaJednostkowa = (select max(CenaJednostkowa) from rowery);
+
+select *
+from sprzedaze
+where IDklienta in
+(select IDklienta from klienci where NazwiskoKlienta ='Nowak');
+
+select NazwiskoKlienta, ImieKlienta
+from klienci
+where IDklienta not in (select IDklienta from sprzedaze);
+
+select *
+from klienci
+where exists
+(select * from sprzedaze where klienci.IDklienta = sprzedaze.IDklienta);
+
+select *
+from klienci
+where not exists
+(select * from sprzedaze where klienci.IDklienta = sprzedaze.IDklienta);
