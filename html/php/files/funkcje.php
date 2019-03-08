@@ -8,16 +8,17 @@
 	}
 	function create($n){
 		if (file_exists($n)){
-			echo "<br> Plik istnieje."
-		}else {touch($n);
+			echo "<br> Plik istnieje.";
+		}
+		else {touch($n);
 		echo "<br> Wykonano polecenie.";
 	}
 	}
 	function delete($n){
 		if (unlink($n)){
-			echo "<br> Operacja wykonana pomyślnie."
+			echo "<br> Operacja wykonana pomyślnie.";
 		} else {
-			echo "<br> Operacja nieudana. Sprawdź poprawnośc nazwy."
+			echo "<br> Operacja nieudana. Sprawdź poprawnośc nazwy.";
 		}
 	}
 ?>
