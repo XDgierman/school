@@ -254,3 +254,45 @@ select *
 from klienci
 where not exists
 (select * from sprzedaze where klienci.IDklienta = sprzedaze.IDklienta);
+
+select NazwiskoPracownika, ImiePracownika
+from pracownicy
+where PlacaPracownika > any(select PlacaPracownika
+from pracownicy
+where MiastoPracownika = "Warszawa");
+
+select NazwiskoPracownika, ImiePracownika
+from pracownicy as p
+where PlacaPracownika > any(select PlacaPracownika
+from pracownicy
+where MiastoPracownika = p.MiastoPracownika);
+
+select NazwaRoweru
+from rowery as r
+where r.CenaJednostkowa > any(select CenaJednostkowa
+from rowery);
+
+select NazwiskoPracownika, ImiePracownika
+from pracownicy
+where PlacaPracownika > all(select PlacaPracownika
+from pracownicy
+where MiastoPracownika = "Warszawa");
+
+select NazwiskoPracownika, ImiePracownika,
+if(PlacaPracownika>2000,'Zarabia dobrze','Zarabia źle') as "Płaca"
+from pracownicy;
+
+select NazwiskoPracownika, ImiePracownika,
+if(PlacaPracownika>2000,PlacaPracownika*1.2,PlacaPracownika)
+as "Płaca po podwyżce"
+from pracownicy;
+
+select NazwaProducenta,
+ifnull(TelefonProducenta, 'Numer nieznany') as Telefon
+from producenci;
+
+select NazwiskoKlienta, nullif(MiastoKlienta,'Katowice') as "Miasta Klientów"
+from klienci;
+
+update pracownicy
+	set PlacaPracownika = if(PlacaPracownika < 2000,PlacaPracownika*1.2,PlacaPracownika);
