@@ -20,6 +20,14 @@
 					echo silnia(4) . "<br>";
 				} else echo "brak pliku <br>";
 				var_dump(is_file('style.css'));
+				echo "<br>";
+				$f= fopen("samochody.txt","r");
+				echo "<table border =1>";
+				while (!feof($f)) {
+					echo "<tr><td>". str_replace(';','</td><td>',fgets($f)) . "</td></tr>";
+				}
+				echo '</table>';
+				fclose($f);
 				?>
 			</div>
 			<div class="footer">

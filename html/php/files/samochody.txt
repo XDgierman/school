@@ -1,0 +1,5 @@
+Audi1;A82;Czerwony3;2010;45000
+Audi2;A82;Czerwony2;2011;46000
+Audi3;A83;Czerwony3;2012;47000
+Audi4;A84;Czerwony4;2013;48000
+Audi5;A85;Czerwony5;2014;49000

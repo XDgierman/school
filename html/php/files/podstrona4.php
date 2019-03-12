@@ -15,12 +15,10 @@
 			</div>
 			<div class="content">
 				<?php
-				if (file_exists("funkcje.php")){
-					include 'funkcje.php';
-					echo silnia(1) . "<br>";
-
-				} else echo "brak pliku <br>";
-				var_dump(is_file('style.css'));
+				$f = fopen("text.txt",'w') or die("Nie można otworzyc pliku!");
+				$txt = "\nPrzykładowy tekst 4";
+				fwrite($f,$txt);
+				fclose($f);
 				?>
 			</div>
 			<div class="footer">
