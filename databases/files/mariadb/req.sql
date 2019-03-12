@@ -296,3 +296,49 @@ from klienci;
 
 update pracownicy
 	set PlacaPracownika = if(PlacaPracownika < 2000,PlacaPracownika*1.2,PlacaPracownika);
+
+select NazwiskoPracownika, ImiePracownika, DataZatrudnieniaPracownika,
+case
+	when DataZatrudnieniaPracownika <'2013-01-01' then 'Starszy asystent'
+	when DataZatrudnieniaPracownika <'2014-01-01' then 'Asystent'
+	else 'Kontraktowy'
+end as "Status pracownika"
+from pracownicy;
+
+update pracownicy
+set PlacaPracownika =
+case
+	when PlacaPracownika < 2000 then PlacaPracownika*1.3
+	when PlacaPracownika > 2000 then PlacaPracownika*1.1
+end;
+
+select concat(klienci.ImieKlienta,' ',klienci.NazwiskoKlienta) as Klient,
+sprzedaze.DataSprzedazy
+from klienci inner join sprzedaze using (IDklienta);
+
+select concat_ws('~',producenci.NazwaProducenta,rowery.NazwaRoweru) as Rowery
+from producenci inner join rowery using (IDproducenta);
+
+select upper(NazwiskoKlienta), lower(ImieKlienta)
+from klienci;
+
+select concat(left(ImiePracownika,1),left(NazwiskoPracownika,1))
+as "Inicjały pracowników", ImiePracownika, NazwiskoPracownika
+from pracownicy;
+
+select ImieKlienta, NazwiskoKlienta
+from klienci
+where right(IDklienta,1)=1;
+
+select replace(NazwaProducenta,'BMX','Romet')
+as "nowe nazwy", MiastoProducenta, UlicaProducenta, NrDomuProducenta
+from producenci;
+
+select substring(NazwaWojewodztwa,1,3) as "Skróty nazw województw"
+from wojewodztwa;
+
+select concat(ImieKlienta, space(5), NazwiskoKlienta) as Klient
+from klienci;
+
+update user set password=password('haslo')
+where user = 'root';
