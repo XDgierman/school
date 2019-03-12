@@ -1,0 +1,11 @@
+dane są dwa punkty należące do prostej.
+sprawdź czy trzeci punkt nalerzy do tej prostej
+
+wczytaj dane z pliku punkty10000.txt
+oblicz ile punktów jest w każdej ćwiartce
+
+w pliku boki1000.txt znajdują się po trzy liczby określające boki trójkąta
+sprawdź warunek trójkąta i z ilu trójek można utworzyć trójkąt i trójkąt prostokątny
+
+w pliku wsp1000.txt znajduje się 1000 par punktów wynzaczających proste
+oblicz ile prostych parami się przecina
