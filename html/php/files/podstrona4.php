@@ -15,8 +15,8 @@
 			</div>
 			<div class="content">
 				<?php
-				$f = fopen("text.txt",'w') or die("Nie można otworzyc pliku!");
-				$txt = "\nPrzykładowy tekst 4";
+				$f = fopen("text.txt",'a') or die("Nie można otworzyc pliku!");
+				$txt = "\nPrzykładowy tekst 6";
 				fwrite($f,$txt);
 				fclose($f);
 				?>
