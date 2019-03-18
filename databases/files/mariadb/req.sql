@@ -342,3 +342,44 @@ from klienci;
 
 update user set password=password('haslo')
 where user = 'root';
+
+select NazwaRoweru
+from rowery
+where length(NazwaRoweru)<=5;
+
+select NazwiskoKlienta, instr(NazwiskoKlienta,'ski') as Wynik
+from klienci;
+
+select NazwiskoKlienta, strcmp(NazwiskoKlienta,'Nowak') as Wynik
+from klienci;
+
+select NazwaRoweru, CenaJednostkowa as "Stara cena",
+ceiling(CenaJednostkowa/3) as "Nowa cena"
+from rowery;
+
+select degrees(asin(0.5));
+
+select *
+from klienci
+where IDklienta=truncate(rand()*10,0);
+
+select curdate(), curtime();
+
+select now() as "Dzisiejsza data",
+date_add(curdate(),interval 4 month) as "Data wyliczona";
+
+select rowery.NazwaRoweru,
+concat(klienci.ImieKlienta," ",klienci.NazwiskoKlienta) as Kupujący,
+sprzedaze.DataSprzedazy as "Data sprzedaży",
+date_add(sprzedaze.DataSprzedazy,interval 12 month) as "Data końca gwarancji"
+from klienci inner join sprzedaze using (IDklienta) inner join
+szczegolysprzedazy using(IDsprzedazy) inner join rowery using(IDroweru);
+
+select datediff('2020-05-05',now());
+
+select DataSprzedazy as "Data sprzedaży",
+curdate() as "Dzisiejsza data",
+datediff(curdate(), DataSprzedazy) as "Do dziś upłyneło dni"
+from sprzedaze;
+
+select date_format(now(),'%W %e %M %Y');
