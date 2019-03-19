@@ -27,7 +27,7 @@
 					$i=0;
 				}
 				fclose($f);
-				print_r($tab);
+				//print_r($tab);
 				echo "<br><table border =1>";
 				foreach ($tab as $uno) {
 					echo "<tr>";
