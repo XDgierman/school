@@ -383,3 +383,21 @@ datediff(curdate(), DataSprzedazy) as "Do dziś upłyneło dni"
 from sprzedaze;
 
 select date_format(now(),'%W %e %M %Y');
+
+select ascii(ImieKlienta) as "Imię", ascii(NazwiskoKlienta) as "Nazwisko"
+from klienci;
+
+select chr(IDklienta) as "Indentyfikator", NazwiskoKlienta
+from klienci; /* tylko mariaDB 10.3.1+ */
+
+select char(IDklienta+64) as "Indentyfikator", NazwiskoKlienta
+from klienci;
+
+select bin(IDklienta) as "ID binarny", NazwiskoKlienta
+from klienci;
+
+select cast(DataSprzedazy as date)
+from sprzedaze;
+
+select encode(UlicaKlienta,'1234')
+from klienci;
