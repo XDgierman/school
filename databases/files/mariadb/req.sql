@@ -432,3 +432,17 @@ create table wojewodztwa(
 	PRIMARY KEY(IDwojewodztwa)
 )
 engine=InnoDB charset utf8 collate utf8_polish_ci;
+
+create table klienci(
+	IDklienta integer(6) not null auto_increment,
+	ImieKlienta varchar(30) not null,
+	NazwiskoKlienta varchar(30) not null,
+	IDwojewodztwa int(2),
+	KodPocztowyKlienta varchar(6),
+	MiastoKlienta varchar(30) not null,
+	UlicaKlienta varchar(30) not null,
+	NrDomuKlienta varchar(6) not null,
+	primary key(IDklienta),
+	foreign key(IDwojewodztwa) references wojewodztwa(IDwojewodztwa)
+)
+engine=InnoDB charset utf8 collate utf8_polish_ci;
