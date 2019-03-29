@@ -9,6 +9,7 @@
 			background-color: yellow;
 			border: inset 4px blue;
 			text-align: center;
+			position:relative;
 		}
 		.smol{
 			margin: 8 auto;
@@ -19,13 +20,27 @@
 			opacity:0.3;
 			float:left;
 			text-align: center;
+			position: relative;
 		}
 		.imgte{
-			height: 300px;
-			margin: auto;
+			max-height:300px;
+			max-width:300px
+			margin: 0;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			-ms-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
 		}
 		.smallimg{
-			height:50px;
+			max-height:50px;
+			max-width:50px;
+			margin: 0;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			-ms-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
 		}
 		button{
 			margin: auto;
@@ -67,6 +82,8 @@
 				$(document).ready(function() {
 					$(".smallimg").click(function(){
 						$(".imgte").attr("src",$(this).attr("src"));
+						$(".imgte").css("max-height","300px");
+						$(".imgte").css("max-width","300px");
 					});
 					$(".smol").mouseenter(function(){
 						$(this).css({
@@ -74,7 +91,8 @@
 							height : "100px",
 							width : "100px"
 						})
-							$(this).find(".smallimg").css("height","100px");
+							$(this).find(".smallimg").css("max-height","100px");
+							$(this).find(".smallimg").css("max-width","100px");
 					});
 					$(".smol").mouseleave(function(){
 							$(this).css({
@@ -82,7 +100,8 @@
 								height :"50px",
 								width :"50px"
 							})
-							$(this).find(".smallimg").css("height","50px");
+							$(this).find(".smallimg").css("max-height","50px");
+							$(this).find(".smallimg").css("max-width","50px");
 					});
 				});
 			</script>
