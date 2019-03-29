@@ -43,9 +43,6 @@
 				?>
 			</div>
 			<div class="content">
-				<div id="main">
-					<img class="imgte" src="gallery/z1.jpg">
-				</div>
 				<?php
 					$p = "gallery";
 					$index = 1;
@@ -53,9 +50,9 @@
 						while (($f = readdir($k))!==false) {
 							$pi=pathinfo($f);
 							if($pi['extension']=="jpg" || $pi['extension']=="png" || $pi['extension']=="bmp"){
-								//if($index == 1){
-								//	echo
-								//}
+								if($index == 1){
+									echo "<div id='main'><img class='imgte' src=".$p."/".$f."></div>";
+								}
 								echo "<div class='smol' id='z".$index."'><img id='z".$index."' class='smallimg' src=".$p."/".$f."></div>";
 								//echo $f;
 								$index++;
