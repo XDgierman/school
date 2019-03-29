@@ -1,82 +1,82 @@
 <html>
-  <head>
-    <style>
-    #main{
-      width: 300px;
-      height: 300px;
-      background-color: yellow;
-      border: inset 4px blue;
-      text-align: center;
-    }
-    .smol{
-      margin: 8 auto;
-      width: 50px;
-      height: 50px;
-      background-color: yellow;
-      border: solid 4px white;
-      opacity:0.3;
-      float:left;
-      text-align: center;
-    }
-    .imgte{
-      height: 300px;
-      margin: auto;
-    }
-    .smallimg{
-      height:50px;
-    }
-    button{
-      margin: auto;
-    }
-    </style>
-  </head>
-  <body>
-    <script src="../jquery-3.3.1.js"></script>
-    <script>
-      var index=0;
-      var gallery = new Array();
-      gallery[0] = {
-        source:"abyss.jpg"
-      };
-      gallery[1] = {
-        source:"cario.jpg"
-      };
-      gallery[2] = {
-        source:"lycan.jpg"
-      };
-      $(document).ready(function() {
-       $(".smallimg").click(function(){
-           $(".imgte").attr("src",$(this).attr("src"));
-        });
-        $(".smol").mouseenter(function(){
-          $(this).css({
-            opacity : 1 ,
-            height : "100px",
-            width : "100px"
-          })
-            $(this).find(".smallimg").css("height","100px");
-        });
-        $(".smol").mouseleave(function(){
-            $(this).css({
-              opacity : 0.3,
-              height :"50px",
-              width :"50px"
-            })
-            $(this).find(".smallimg").css("height","50px");
-        });
-      });
-    </script>
-    <div id="main">
-      <img class="imgte" src="abyss.jpg">
-    </div>
-    <div class="smol" id="abyss">
-      <img id="abyss"src="abyss.jpg" class="smallimg">
-    </div>
-    <div class="smol" id="cario">
-      <img id="cario" src="cario.jpg" class="smallimg">
-    </div>
-    <div class="smol" id="lycan">
-      <img id="lycan"src="lycan.jpg" class="smallimg">
-    </div>
-  </body>
+	<head>
+		<style>
+		#main{
+			width: 300px;
+			height: 300px;
+			background-color: yellow;
+			border: inset 4px blue;
+			text-align: center;
+		}
+		.smol{
+			margin: 8 auto;
+			width: 50px;
+			height: 50px;
+			background-color: yellow;
+			border: solid 4px white;
+			opacity:0.3;
+			float:left;
+			text-align: center;
+		}
+		.imgte{
+			height: 300px;
+			margin: auto;
+		}
+		.smallimg{
+			height:50px;
+		}
+		button{
+			margin: auto;
+		}
+		</style>
+	</head>
+	<body>
+		<script src="../jquery-3.3.1.js"></script>
+		<script>
+			var index=0;
+			var gallery = new Array();
+			gallery[0] = {
+				source:"abyss.jpg"
+			};
+			gallery[1] = {
+				source:"cario.jpg"
+			};
+			gallery[2] = {
+				source:"lycan.jpg"
+			};
+			$(document).ready(function() {
+				$(".smallimg").click(function(){
+					$(".imgte").attr("src",$(this).attr("src"));
+				});
+				$(".smol").mouseenter(function(){
+					$(this).css({
+						opacity : 1 ,
+						height : "100px",
+						width : "100px"
+					})
+						$(this).find(".smallimg").css("height","100px");
+				});
+				$(".smol").mouseleave(function(){
+						$(this).css({
+							opacity : 0.3,
+							height :"50px",
+							width :"50px"
+						})
+						$(this).find(".smallimg").css("height","50px");
+				});
+			});
+		</script>
+		<div id="main">
+			<img class="imgte" src="abyss.jpg">
+		</div>
+		<div class="smol" id="abyss">
+			<img id="abyss"src="abyss.jpg" class="smallimg">
+		</div>
+		<div class="smol" id="cario">
+			<img id="cario" src="cario.jpg" class="smallimg">
+		</div>
+		<div class="smol" id="lycan">
+			<img id="lycan"src="lycan.jpg" class="smallimg">
+		</div>
+	</body>
 </html>

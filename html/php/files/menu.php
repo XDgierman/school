@@ -7,4 +7,5 @@
 	echo "<a href='podstrona5.php'>Podstrona 5</a>";
 	echo "<a href='podstrona6.php'>Podstrona 6</a>";
 	echo "<a href='podstrona7.php'>Podstrona 7</a>";
+	echo "<a href='podstrona8.php'>Podstrona 8</a>";
 ?>
