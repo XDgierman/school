@@ -446,3 +446,25 @@ create table klienci(
 	foreign key(IDwojewodztwa) references wojewodztwa(IDwojewodztwa)
 )
 engine=InnoDB charset utf8 collate utf8_polish_ci;
+
+create table szczegolysprzedazy(
+	IDsprzedazy integer(11) not null,
+	IDroweru integer(11) not null,
+	Ilosc integer(11) not null,
+	CenaJednostkowa decimal(19,4) not null,
+	primary key (IDsprzedazy,IDroweru),
+	constraint klucz_O1 foreign key(IDsprzedazy)
+	references sprzedaze(IDsprzedazy) on delete cascade on update no action,
+	constraint klucz_O2 foreign key(IDroweru)
+	references rowery(IDroweru)
+)
+engine=InnoDB charset utf8 collate utf8_polish_ci;
+
+create table przedstawiciele (
+	IDprzedstawiciela integer(2) not null auto_increment,
+	NazwiskoPrzedstawiciela varchar(50) not null,
+	ImiePrzedstawiciela varchar(50) not null,
+	WyksztalceniePrzedstawiciela varchar(10) default 'wyższe',
+	primary key(IDprzedstawiciela)
+)
+engine=InnoDB charset utf8 collate utf8_polish_ci;
