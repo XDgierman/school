@@ -383,3 +383,66 @@ datediff(curdate(), DataSprzedazy) as "Do dziś upłyneło dni"
 from sprzedaze;
 
 select date_format(now(),'%W %e %M %Y');
+
+select ascii(ImieKlienta) as "Imię", ascii(NazwiskoKlienta) as "Nazwisko"
+from klienci;
+
+select chr(IDklienta) as "Indentyfikator", NazwiskoKlienta
+from klienci; /* tylko mariaDB 10.3.1+ */
+
+select char(IDklienta+64) as "Indentyfikator", NazwiskoKlienta
+from klienci;
+
+select bin(IDklienta) as "ID binarny", NazwiskoKlienta
+from klienci;
+
+select cast(DataSprzedazy as date)
+from sprzedaze;
+
+select encode(UlicaKlienta,'1234')
+from klienci;
+
+create view vDaneKlienta as
+	select klienci.IDklienta, Klienci.ImieKlienta, klienci.NazwiskoKLienta,
+	wojewodztwa.NazwaWojewodztwa, klienci.MiastoKlienta
+	from klienci inner join wojewodztwa using(IDwojewodztwa);
+
+select *
+from vDaneKlienta
+limit 4;
+
+create view vliczbaklientówwgmiast as
+	select MiastoKlienta, count(IDklienta)
+	from vdaneklienta
+	group by MiastoKlienta;
+
+select *
+from vliczbaklientówwgmiast;
+
+drop view if exists vliczbaklientówwgmiast;
+
+create database if not exists szkola
+character set utf8 collate utf8_general_ci /*lub utf8_unicode_ci lub utf8_polish_ci*/;
+
+drop database if exists szkola;
+
+create table wojewodztwa(
+	IDwojewodztwa integer(2) not null auto_increment,
+	NazwaWojewodztwa varchar(30) not null,
+	PRIMARY KEY(IDwojewodztwa)
+)
+engine=InnoDB charset utf8 collate utf8_polish_ci;
+
+create table klienci(
+	IDklienta integer(6) not null auto_increment,
+	ImieKlienta varchar(30) not null,
+	NazwiskoKlienta varchar(30) not null,
+	IDwojewodztwa int(2),
+	KodPocztowyKlienta varchar(6),
+	MiastoKlienta varchar(30) not null,
+	UlicaKlienta varchar(30) not null,
+	NrDomuKlienta varchar(6) not null,
+	primary key(IDklienta),
+	foreign key(IDwojewodztwa) references wojewodztwa(IDwojewodztwa)
+)
+engine=InnoDB charset utf8 collate utf8_polish_ci;
