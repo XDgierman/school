@@ -468,3 +468,31 @@ create table przedstawiciele (
 	primary key(IDprzedstawiciela)
 )
 engine=InnoDB charset utf8 collate utf8_polish_ci;
+
+create table przedstawiciele (
+	IDprzedstawiciela integer(2) not null auto_increment,
+	NazwiskoPrzedstawiciela varchar(50) not null,
+	ImiePrzedstawiciela varchar(50) not null,
+	PlecPrzedstawiciela enum ('M','K'),
+	PrawoJazdyPrzedstawiciela set ('A','B','C','D') default 'B',
+	primary key(IDprzedstawiciela)
+)
+engine=InnoDB charset utf8 collate utf8_polish_ci;
+
+create table producenciTelefony
+	as select IDproducenta, NazwaProducenta, TelefonProducenta
+from producenci;
+
+create table pracownicyPlace
+	as select IDpracownika, ImiePracownika, NazwiskoPracownika, PlacaPracownika
+from pracownicy;
+
+create table roweryPracownikow
+	as select producenci.NazwaProducenta, rowery.NazwaRoweru, rowery.CenaJednostkowa
+from producenci inner join rowery on producenci.IDproducenta = rowery.IDproducenta;
+
+create index nazwisko on klienci(NazwiskoKlienta);
+
+create unique index wojewodztwo on wojewodztwa(NazwaWojewodztwa);
+
+create index daneKlienta on klienci(NazwiskoKlienta, MiastoKlienta);
