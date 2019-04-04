@@ -496,3 +496,29 @@ create index nazwisko on klienci(NazwiskoKlienta);
 create unique index wojewodztwo on wojewodztwa(NazwaWojewodztwa);
 
 create index daneKlienta on klienci(NazwiskoKlienta, MiastoKlienta);
+
+show index from klienci;
+
+drop index daneKlienta on klienci;
+
+alter table klienci add AdresEmail varchar(30) after NazwiskoKlienta;
+
+alter table rowery add index(NazwaRoweru);
+
+alter table wojewodztwa add unique(NazwaWojewodztwa);
+
+alter table rowery add index rowerInx(NazwaRoweru);
+
+alter table klienci change AdresEmail EmailKlienta varchar(30);
+
+alter table klienci modify EmailKlienta varchar(40);
+
+alter table pracownicy change PlacaPracownika PensjaPracownika decimal(6,2);
+
+alter table rowery add primary key (IDroweru);
+
+alter table rowery change IDroweru IDroweru int(3) not null auto_increment;
+
+alter table rowery change IDroweru IDroweru int(3) not null;
+
+alter table rowery drop primary key;
