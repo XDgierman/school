@@ -23,22 +23,22 @@ bool test(string a, string b){
 bool bcdtest(string a){
 	//cout<<a<<endl;
 	int test=0;
-	if (a[0]=='1'){
-		test+=8;
+	for (int i=0;i<4;i++){
+	if (a[i]=='1'){
+		if(i=0){
+			test+=8;
+			//cout<<test<<endl;
+		} else if(i=1){
+			test+=4;
+			//cout<<test<<endl;
+		} else if(i=2){
+			test+=2;
+			//cout<<test<<endl;
+		} else {
+			test+=1;
+			//cout<<test<<endl;
+		}
 	}
-	//cout<<test<<endl;
-	if (a[1]=='1'){
-		test+=4;
-	}
-	//cout<<test<<endl;
-	if (a[2]=='1'){
-		test+=2;
-	}
-	//cout<<test<<endl;
-	if (a[3]=='1'){
-		test+=1;
-	}
-	//cout<<test<<endl;
 	if (test>=10){
 		return false;
 	} else return true;
