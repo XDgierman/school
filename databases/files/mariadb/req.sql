@@ -522,3 +522,62 @@ alter table rowery change IDroweru IDroweru int(3) not null auto_increment;
 alter table rowery change IDroweru IDroweru int(3) not null;
 
 alter table rowery drop primary key;
+
+alter table klienci drop EmailKlienta;
+
+alter table rowery drop index produkt_inx;
+
+alter table rowery disable keys; --lub enable keys
+
+alter table szczegolysprzedazy alter Ilosc set default 1;
+
+alter table szczegolysprzedazy alter Ilosc drop default;
+
+alter table rowery rename /*to lub as*/ produkty;
+
+truncate table sprzedaze;
+
+create procedure nazwaProcedury (/*IN argument1 TYP*/)
+	begin
+		--kod procedury
+	end
+
+delimiter //
+create procedure klienci()
+	begin
+		select * from klienci;
+	end
+//
+delimiter ;
+
+delimiter //
+create procedure klienciMiasto (in miasto varchar(50))
+	begin
+		select * from klienci where MiastoKlienta=miasto;
+	end
+//
+delimiter ;
+
+delimiter //
+create procedure duzeNazwisko (in nazwisko varchar(50))
+	begin
+		select upper(NazwiskoKlienta) from klienci where NazwiskoKlienta=nazwisko;
+	end
+//
+delimiter ;
+
+delimiter //
+create procedure podniesienieCeny (in procent int)
+	begin
+		declare wspolczynnik decimal(2,2);
+		set wspolczynnik = procent / 100;
+		select NazwaRoweru, CenaJednostkowa as "Stara Cena",
+		round(CenaJednostkowa + CenaJednostkowa * wspolczynnik,2)
+		as "Nowa Cena" from rowery;
+	end
+//
+delimiter ;
+
+call podniesienieCeny(10);
+
+call klienciMiasto('Katowice');
