@@ -581,3 +581,15 @@ delimiter ;
 call podniesienieCeny(10);
 
 call klienciMiasto('Katowice');
+
+delimiter //
+create procedure dodajKlienta(in Imie varchar(50), in Nazwisko varchar(50),
+in IDwojewodztwa int(2),in KodPocztowy varchar(6),in Miasto varchar(50),
+in Ulica varchar(50),in NrDomu int(10))
+	begin
+		insert into klienci(ImieKlienta, NazwiskoKlienta, IDwojewodztwa,
+		KodPocztowyKlienta, MiastoKlienta, UlicaKlienta, NrDomuKlienta) values
+		(Imie, Nazwisko, IDwojewodztwa, KodPocztowy, Miasto, Ulica, NrDomu);
+	end
+//
+delimiter ;
