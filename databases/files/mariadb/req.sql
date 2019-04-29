@@ -593,3 +593,16 @@ in Ulica varchar(50),in NrDomu int(10))
 	end
 //
 delimiter ;
+
+call dodajKlienta('Jane','Doe','12','45-123','Podlesie','Krakowska','32');
+
+delimiter //
+create procedure liczbaKlientow(out wynik int(5))
+	begin
+	select count(IDklienta) into wynik from klienci;
+	end
+//
+delimiter ;
+
+call liczbaKlientow(@wynik);
+select @wynik as 'Liczba klientów';
