@@ -606,3 +606,27 @@ delimiter ;
 
 call liczbaKlientow(@wynik);
 select @wynik as 'Liczba klientów';
+
+delimiter //
+create procedure najtanszyRower(out nazwa varchar(20))
+	begin
+		select NazwaRoweru into nazwa from rowery where CenaJednostkowa=
+		(select min(CenaJednostkowa) from rowery);
+	end
+//
+delimiter ;
+
+call najtanszyRower(@nazwa);
+select @nazwa as 'Nazwa najtańszego roweru';
+
+
+delimiter //
+create procedure tworzTabele()
+	begin
+		create table producenciTelefony
+			as select IDproducenta, NazwaProducenta, TelefonProducenta from producenci;
+	end
+//
+delimiter;
+
+drop procedure /*if exists*/ duzeNazwisko;
