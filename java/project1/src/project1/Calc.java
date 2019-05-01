@@ -5,7 +5,7 @@ public class Calc{
 	int y;
 	String c;
 	public
-	int w;
+	float w;
 	public String getC() {
 		return c;
 	}
@@ -26,7 +26,7 @@ public class Calc{
 	}
 	public Calc() {
 	}
-	public void Calculate() {
+	public float Calculate() {
 		switch (this.c) {
 		case "+":
 			w=this.x+this.y;
@@ -41,15 +41,17 @@ public class Calc{
 			break;
 			
 		case "/":
-			try{float fx=this.x/this.y;}
+			try{w=this.x/this.y;}
 			catch(Exception t) {
 				System.out.println("Nie dziel przez zero.");
+				break;
 			}
 			break;
 			
 		default:
-			
+			System.out.println("Brak dzia³ania.");
 			break;
 		}
+		return w;
 	}
 }

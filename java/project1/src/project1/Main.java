@@ -26,6 +26,7 @@ public class Main {
 			c=Integer.parseInt(C);
 		}
 		object.setY(c);
+		System.out.println(object.Calculate());
 	}
 
 }
