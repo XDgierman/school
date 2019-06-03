@@ -627,6 +627,31 @@ create procedure tworzTabele()
 			as select IDproducenta, NazwaProducenta, TelefonProducenta from producenci;
 	end
 //
-delimiter;
+delimiter ;
 
 drop procedure /*if exists*/ duzeNazwisko;
+
+delimiter //
+create function formatCeny(pole char(10)) returns char(15) reads sql data
+	begin
+		return concat(cast(pole as char(10)), 'zł');
+	end
+//
+delimiter ;
+
+delimiter //
+create function koniecGwarancji (data date, liczbaMiesiecy int(2))
+	returns date reads sql data
+	begin
+	return date_add(data, interval liczbaMiesiecy month);
+	end
+	//
+delimiter ;
+
+select NazwaRoweru, formatCeny(CenaJednostkowa) as "Cena Jednostkowa"
+from rowery;
+
+select rowery.NazwaRoweru, sprzedaze.DataSprzedazy,
+koniecGwarancji(sprzedaze.DataSprzedazy, 24)
+from sprzedaze inner join szczegolysprzedazy using (IDsprzedazy)
+inner join rowery using(IDroweru);
