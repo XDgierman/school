@@ -734,3 +734,16 @@ end repeat;
 end
 //
 delimiter ;
+
+delimiter //
+create function ilerazykupil(indentyfikator int(11))
+	returns int(11) reads sql data
+	begin
+	return (select count(*) from klienci inner join sprzedaze using(IDklienta)
+where sprzedaze.IDklienta = indentyfikator);
+end
+//
+delimiter ;
+
+select NazwiskoKlienta, ilerazykupil(IDklienta)
+from klienci;
