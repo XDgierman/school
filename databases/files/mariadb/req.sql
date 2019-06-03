@@ -655,3 +655,28 @@ select rowery.NazwaRoweru, sprzedaze.DataSprzedazy,
 koniecGwarancji(sprzedaze.DataSprzedazy, 24)
 from sprzedaze inner join szczegolysprzedazy using (IDsprzedazy)
 inner join rowery using(IDroweru);
+
+delimiter //
+create function wartoscSprzedazy(ilosc int(3), cena decimal(6,2))
+	returns char(15) reads sql data
+	begin
+	declare wynik decimal(10,2);
+	set wynik = ilosc * cena;
+	return concat(wynik, 'zł');
+	end
+	//
+delimiter ;
+
+select rowery.NazwaRoweru, szczegolysprzedazy.Ilosc,
+szczegolysprzedazy.CenaJednostkowa,
+wartoscSprzedazy(szczegolysprzedazy.ilosc,szczegolysprzedazy.CenaJednostkowa)
+as 'Wartość sprzedaży'
+from rowery inner join szczegolysprzedazy using(IDroweru);
+
+set @zmienna = wartoscSprzedazy(2,360);
+select @zmienna;
+
+set @nazwisko = (select NazwiskoKlienta from klienci where MiastoKlienta='Tychy');
+select @nazwisko;
+
+ 
