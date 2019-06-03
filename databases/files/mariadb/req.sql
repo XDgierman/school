@@ -720,3 +720,17 @@ begin
 end
 //
 delimiter ;
+
+delimiter //
+create procedure pokazNazwiskaREPEAT()
+begin
+declare i int(2);
+set i=1;
+repeat
+	select NazwiskoKlienta from klienci where IDklienta = i;
+	set i = i+1;
+until i > 4
+end repeat;
+end
+//
+delimiter ;
