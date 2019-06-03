@@ -679,4 +679,44 @@ select @zmienna;
 set @nazwisko = (select NazwiskoKlienta from klienci where MiastoKlienta='Tychy');
 select @nazwisko;
 
- 
+delimiter //
+create procedure licznikKlientow (in miasto varchar(30))
+begin
+	declare licznik int(3);
+	set licznik = (select count(IDklienta) from klienci where MiastoKlienta = miasto);
+	if licznik = 0 then
+		select 'Nie ma klientów z tego miasta';
+	else
+		select licznik;
+	end if;
+end
+//
+delimiter ;
+
+delimiter //
+create procedure licznikKlientowCASE (in miasto varchar(30))
+begin
+	declare licznik int(3);
+	set licznik = (select count(IDklienta) from klienci where MiastoKlienta = miasto);
+	case
+		when licznik = 0 then
+		select "Nie ma klientów z tego miasta";
+	else
+		select licznik;
+	end case;
+end
+//
+delimiter ;
+
+delimiter //
+create procedure pokazNazwiska()
+begin
+	declare i int(2);
+	set i=1;
+	while i <=3 do
+		select NazwiskoKlienta from klienci where IDklienta = i;
+		set i = i+1;
+	end while;
+end
+//
+delimiter ;
