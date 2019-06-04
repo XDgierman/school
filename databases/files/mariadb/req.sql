@@ -747,3 +747,27 @@ delimiter ;
 
 select NazwiskoKlienta, ilerazykupil(IDklienta)
 from klienci;
+
+delimiter //
+create trigger zliczajRowery after insert on rowery
+	for each row begin
+		update liczbaRowerow set ileRowerow = (select count(*) from rowery);
+end
+//
+delimiter ;
+
+delimiter //
+create trigger aktualizujRowery after delete on rowery
+for each row begin
+	update liczbaRowerow set ileRowerow = (select count(*) from rowery);
+end
+//
+delimiter ;
+
+delimiter //
+create trigger usunRoweryWgKategorii after delete on kategorierowerow
+for each row begin
+delete from rowery where IDkategorii = old.IDkategorii;
+end
+//
+delimiter ;
