@@ -771,3 +771,15 @@ delete from rowery where IDkategorii = old.IDkategorii;
 end
 //
 delimiter ;
+
+delimiter //
+create trigger dataDodaniaRekordu
+before insert on rowery
+for each row begin
+	set new.DataDodania = now();
+end
+//
+delimiter ;
+
+insert into rowery (NazwaRoweru, OpisRoweru, IDkategorii, IDproducenta, CenaJednostkowa)
+	values ('Tornado','Rower wyścigowy 30 biegowy',2,1,1270);
