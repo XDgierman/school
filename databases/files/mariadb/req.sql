@@ -783,3 +783,19 @@ delimiter ;
 
 insert into rowery (NazwaRoweru, OpisRoweru, IDkategorii, IDproducenta, CenaJednostkowa)
 	values ('Tornado','Rower wyścigowy 30 biegowy',2,1,1270);
+
+create temporary table pracownicyLiderzy(
+	IDlidera integer(2) not null,
+	ImiePracownika varchar(30) not null,
+	NazwiskoPracownika varchar(30) not null,
+	primary key(IDlidera)
+);
+
+insert into pracownicyLiderzy values (1,'Alicja','Nowak');
+
+select * from pracownicyLiderzy;
+
+create temporary table drogieRowery as
+	select NazwaRoweru, CenaJednostkowa
+	from rowery
+	where CenaJednostkowa > 1500;
