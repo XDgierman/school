@@ -836,3 +836,6 @@ producencitelefony fields terminated by '\,' lines terminated by '\r\n';
 update rowery
 set OpisRoweru = 'Rower polski ze stali molibdenowej', CenaJednostkowa = 1200
 where NazwaRoweru = 'Junak';
+
+delete from rowery
+where NazwaRoweru = 'Sigma';
