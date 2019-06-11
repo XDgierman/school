@@ -839,3 +839,20 @@ where NazwaRoweru = 'Junak';
 
 delete from rowery
 where NazwaRoweru = 'Sigma';
+
+select nazwisko,PESEL
+from uczen;
+
+select imie, nazwisko
+from uczen
+where id=1;
+
+select ocena.ocena
+from ocena
+where uczen_id = 1 and przedmiot_id = 4
+order by ocena.ocena desc
+limit 1;
+
+select count(ocena.ocena)
+from ocena
+where uczen_id = 1 and przedmiot_id = 4;
