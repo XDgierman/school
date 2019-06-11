@@ -856,3 +856,11 @@ limit 1;
 select count(ocena.ocena)
 from ocena
 where uczen_id = 1 and przedmiot_id = 4;
+
+select ocena.ocena
+from ocena
+where uczen_id = 2 and przedmiot_id = 1;
+
+select avg(ocena.ocena)
+from ocena
+where uczen_id = 2 and przedmiot_id = 1;
