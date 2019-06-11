@@ -799,3 +799,68 @@ create temporary table drogieRowery as
 	select NazwaRoweru, CenaJednostkowa
 	from rowery
 	where CenaJednostkowa > 1500;
+
+insert into rowery values
+	(11,'Sigma','Rower niemiecki ze stali chromowej',3,2,700,NULL);
+
+insert into rowery (NazwaRoweru, OpisRoweru,IDkategorii,IDproducenta,CenaJednostkowa)
+	values ('Sigma','Rower niemiecki ze stali chromowej',3,2,700);
+
+insert into rowery (NazwaRoweru, OpisRoweru,IDkategorii,IDproducenta,CenaJednostkowa)
+	values ('Delta','Rower niemiecki ze stali chromowej',2,2,800),
+	('Theta','Rower niemiecki ze stali chromowej',4,2,900);
+
+insert into rowery set
+NazwaRoweru = 'Berta',
+OpisRoweru = 'Rower niemiecki ze stali chromowej',
+IDkategorii = 4,
+IDproducenta = 2,
+CenaJednostkowa = 450;
+
+insert into producencitelefony values
+(1,'Wigry',222-55-88),
+(2,'BMW',666-44-87),
+(3,'CrossAction',579-15-76),
+(4,'BMX',NULL),
+(5,'Geant',252-76-66);
+
+replace into rowery values
+(9,'Pi','Rower niemiecki ze stali chromowej',3,2,700,NULL);
+
+load data local infile 'C:\Users\\***\\Downloads\\producenciTelefony.txt' into table
+producencitelefony;
+
+load data local infile 'C:\\Users\\***\\Downloads\\producenciTelefony.txt' into table
+producencitelefony fields terminated by '\,' lines terminated by '\r\n';
+
+update rowery
+set OpisRoweru = 'Rower polski ze stali molibdenowej', CenaJednostkowa = 1200
+where NazwaRoweru = 'Junak';
+
+delete from rowery
+where NazwaRoweru = 'Sigma';
+
+select nazwisko,PESEL
+from uczen;
+
+select imie, nazwisko
+from uczen
+where id=1;
+
+select ocena.ocena
+from ocena
+where uczen_id = 1 and przedmiot_id = 4
+order by ocena.ocena desc
+limit 1;
+
+select count(ocena.ocena)
+from ocena
+where uczen_id = 1 and przedmiot_id = 4;
+
+select ocena.ocena
+from ocena
+where uczen_id = 2 and przedmiot_id = 1;
+
+select avg(ocena.ocena)
+from ocena
+where uczen_id = 2 and przedmiot_id = 1;
