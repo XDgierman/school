@@ -864,3 +864,22 @@ where uczen_id = 2 and przedmiot_id = 1;
 select avg(ocena.ocena)
 from ocena
 where uczen_id = 2 and przedmiot_id = 1;
+
+/*creating users and granting root access*/
+
+CREATE USER 'nazwauzytkownika'@'host' INDENTIFIED BY 'haslo'; /*must be all caps*/
+
+show grants for 'nazwauzytkownika'@'host';
+
+grant all on *.* to 'nazwauzytkownika'@'host';
+
+CREATE USER 'nazwauzytkownika'@'%' INDENTIFIED BY 'haslo'; /*connection from any host*/
+
+/*setting up root password*/
+--command line
+mysqladmin --user = root password haslo;
+--sql editor
+set password = PASSWORD(nowehaslo);
+
+/*changing root password*/
+mysqladmin --user = root password starehaslo password nowehaslo;
