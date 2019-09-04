@@ -1,23 +1,16 @@
 #include <iostream>
 #include <fstream>
+#include <cmath>
 using namespace std;
-
-int pot(int a, int b){
-	int tmp=a;
-	for (int i=0; i<b-1; i++){
-		tmp=tmp*a;
-	}
-	return tmp;
-}
 
 bool power(int x){
     bool test=false, ispower=false;
     int tpower = 0;
     while (test==false){
-        if (tpower > 10){
+        if (tpower >= 11){
             test=true;
         }
-        else if (x == pot(3,tpower)){
+        else if (x == (int)pow((float)3,(float)tpower)){
             test=true;
             ispower=true;
         }
