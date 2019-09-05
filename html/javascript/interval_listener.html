@@ -1,0 +1,33 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <p id="seconds">0</p><br>
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+
+        <script type="text/javascript">
+            var i=null;
+            var time = document.getElementById("seconds");
+            function start(){
+                time.innerHTML="-1";
+                count();
+                if (i==null){
+                    i=setInterval(count,1000);
+                }
+                console.log(i);
+            }
+            function count(){
+                time.innerHTML = parseInt(time.innerHTML)+1;
+            }
+            function stop(){
+                clearInterval(i);
+                i=null;
+            }
+            document.getElementById("start").addEventListener("click",start);
+            document.getElementById("stop").addEventListener("click",stop);
+        </script>
+        
+    </body>
+</html>

@@ -6,11 +6,11 @@
     <button type="button" onclick="start()">Start</button>
     <button type="button" onclick="stop()">Stop</button>
     <script type="text/javascript">
-      var id;
+      var id = null;
       function start(){
          document.getElementById("time").innerHTML="-1";
          licz();
-         if (id=null){
+         if (id==null){
          id=setInterval(licz,1000);
        }
       }
