@@ -8,4 +8,5 @@
 	echo "<a href='podstrona6.php'>Podstrona 6</a>";
 	echo "<a href='podstrona7.php'>Podstrona 7</a>";
 	echo "<a href='podstrona8.php'>Podstrona 8</a>";
+	echo "<a href='inout.html'>inout</a>";
 ?>

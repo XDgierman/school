@@ -1,0 +1,19 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <img id="mario" src="sprite_m_1.png">
+        <script>
+            var mario = document.getElementById("mario");
+            function victorypose(){
+                mario.src = "sprite_m_2.png";
+            }
+            function idlepose(){
+                mario.src = "sprite_m_1.png"
+            }
+            document.getElementById("mario").addEventListener("mouseover",victorypose);
+            document.getElementById("mario").addEventListener("mouseout",idlepose);
+        </script>
+    </body>
+</html>
