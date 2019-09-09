@@ -14,14 +14,15 @@ int silnia(int x)
 int main(){
     ifstream file;
     file.open("liczby.txt");
-    int x;
-    string tx;
+    int x,tmp,wsilni,tmpx;
     for(int i=0;i<500;i++){
         file>>x;
-        tx = to_string(x);
-        int wsilni = 0;
-        for (int j=1;j<=tx.length();j++){
-            wsilni += silnia((int)tx[j]);
+        tmp = x;
+        wsilni = 0;
+        while (tmp>0){
+            tmpx = tmp%10;
+            wsilni += silnia(tmpx);
+            tmp/=10;
         }
         if (x == wsilni){
             cout<<x<<endl;
