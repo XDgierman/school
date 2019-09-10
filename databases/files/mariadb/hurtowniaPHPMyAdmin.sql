@@ -18,8 +18,8 @@ SET time_zone = "+00:00";
 --
 -- Baza danych: `hurtownia`
 --
-CREATE DATABASE IF NOT EXISTS `hurtownia3ti1` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `hurtownia3ti1`;
+CREATE DATABASE IF NOT EXISTS `hurtownia4ti1` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `hurtownia4ti1`;
 
 -- --------------------------------------------------------
 

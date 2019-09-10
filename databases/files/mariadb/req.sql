@@ -883,3 +883,23 @@ set password = PASSWORD(nowehaslo);
 
 /*changing root password*/
 mysqladmin --user = root password starehaslo password nowehaslo;
+
+/* setting privledges */
+grant select
+on database.table to 'user'@'host';
+
+grant select(ImieKlienta, NazwiskoKlienta, MiastoKlienta)
+on hurtownia4ti1.klienci to 'pracownik4ti1'@'%';
+
+grant select, update on hurtownia4ti1.rowery to 'pracownik4ti1'@'%';
+
+grant all on kurtownia4ti1.* to 'kierownik4ti1'@'%';
+
+--checking privledges
+show grants for 'pracownik4ti1'@'%';
+
+--making user able to grant privledges
+
+grant select, insert
+on hurtownia4ti1.pracownicy to 'pracownik4ti1'@'%'
+with grant option;
