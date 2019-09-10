@@ -20,7 +20,8 @@ int main(){
         file>>x;
         tab[i]=x;
     }
-    val=gre=tab[0];
+    val=tab[0];
+    gre=tab[0];
     len=1;
     for (int j = 1; j < 500; j++)
     {
@@ -28,11 +29,16 @@ int main(){
         {
             if(len>elen){
                 eval=val;
-                elen=len+1;
+                elen=len;
                 egre=gre;
+                //cout<<eval<<endl;
             }
-            val=gre=tab[j];
-            len=1;
+            
+            val=tab[j-1];
+            //cout<<val<<endl;
+            gre=nwd(tab[j-1],tab[j]);
+            len=2;
+            //p++;
         } else
         {
             gre=nwd(gre,tab[j]);
@@ -41,7 +47,7 @@ int main(){
     }
     if(len>elen){
                 eval=val;
-                elen=len+1;
+                elen=len;
                 egre=gre;
     }
     cout<<eval<<", "<<elen<<", "<<egre<<endl;
