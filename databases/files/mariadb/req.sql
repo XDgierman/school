@@ -895,11 +895,51 @@ grant select, update on hurtownia4ti1.rowery to 'pracownik4ti1'@'%';
 
 grant all on kurtownia4ti1.* to 'kierownik4ti1'@'%';
 
---checking privledges
+--checking privileges
 show grants for 'pracownik4ti1'@'%';
 
---making user able to grant privledges
+--making user able to grant privileges
 
 grant select, insert
 on hurtownia4ti1.pracownicy to 'pracownik4ti1'@'%'
 with grant option;
+
+--revoking privileges / grant options / all privileges
+revoke priveleges[columns]
+on obiect from 'user'@'host';
+
+revoke grant option
+on obiect from 'user'@'host';
+
+revoke all privileges, grant option
+from 'user'@'host';
+
+flush privileges; --alvays after revoking
+
+--making roles
+create role if not exists 'rolename';
+
+--showing roles
+select * from mysql.roles_mapping;
+
+--granting privileges to role
+grant privilege on obiect to rolename;
+
+--adding users to roles
+grant rolename to 'user'@'host';
+
+--making user use role privileges / activating user role
+set role rolename;
+
+--revoking privileges from role
+
+revoke privilege[columns],[GRANT OPTIONS]
+from rolename;
+
+--removing user from role
+
+revoke rolename from 'user'@'host';
+
+--droping role from server
+
+drop role rolename;
