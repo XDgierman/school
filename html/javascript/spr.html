@@ -1,0 +1,57 @@
+<html>
+    <head>
+    </head>
+    <body>
+    <form name="form1">
+      <i>Wpisz imie:</i><input type="text" name="im"><br>
+      <i>Wpisz nazwisko:</i><input type="text" name="nz"><br>
+      <i>Wpisz klasa:</i><input type="text" name="kl"><br>
+      <i>Wpisz email:</i><input type="text" name="em"><br>
+      <input type="button" value="Wyślij" onclick="test()">
+    </form>
+    <p id="p1"></p>
+    <script>
+    function check(){
+      var im=document.forms['form1']['im'].value;
+      var nz=document.forms['form1']['nz'].value;
+      var kl=document.forms['form1']['kl'].value;
+      var em=document.forms['form1']['em'].value;
+      var w_email = /^[a-z\d]+[\w\d.-]*@(?:[a-z\d]+[a-z\d-]+\.){1,5}[a-z]{2,6}$/;
+      if(!w_email.test(em)){
+        alert("Wpisz poprawny email");
+        document.forms['form1']['em'].focus();
+        return false;
+      }
+      if (im==""){
+        alert("Wypełnij pole imie!");
+        document.forms['form1']['im'].focus();
+        return false;
+      }
+      if (nz==""){
+        alert("Wypełnij pole nazwisko!");
+        document.forms['form1']['nz'].focus();
+        return false;
+      }
+      if (kl==""){
+        alert("Wypełnij pole klasa!");
+        document.forms['form1']['kl'].focus();
+        return false;
+      }
+      return true;
+    }
+      function wyslij(){
+        var im=document.forms['form1']['im'].value;
+        var nz=document.forms['form1']['nz'].value;
+        var wi=document.forms['form1']['kl'].value;
+        var em=document.forms['form1']['em'].value;
+        var p1=document.getElementById("p1");
+        p1.innerHTML="Imie: "+im+"<br>Nazwisko: "+nz+"<br> Klasa: "+wi+"<br>E-mail: "+em;
+      }
+      function test(){
+        if (check()){
+          wyslij();
+        }
+      }
+    </script>
+</body>
+</html>
