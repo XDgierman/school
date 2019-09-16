@@ -943,3 +943,78 @@ revoke rolename from 'user'@'host';
 --droping role from server
 
 drop role rolename;
+
+--mysqladmin usage
+--creating database
+mysqladmin -u root -p create BaseName
+
+--removing database
+mysqladmin -u root -p drop BaseName
+
+--refreshing privileges, reloading grants
+mysqladmin -u root -p refresh
+mysqladmin -u root -p reload
+
+--checking server version
+mysqladmin -u root -p version
+
+--checking current server status
+mysqladmin -u root -p status
+
+--showing all active processes
+mysqladmin -u root -p processlist
+
+--killing server processes
+mysqladmin -u root -p kill id1, id2 ...
+
+--checking if server is active
+mysqladmin -u root ping -p
+
+--safe shutdown
+mysqladmin -u root -p shutdown
+
+--connecting to remote server
+mysqladmin -h hostadress -u root -p
+
+--changing password of user that uses mysqladmin
+mysqladmin -u root password newPassword -p
+
+--flushing:
+--temporary memory of hosts
+mysqladmin -u root -p flush-hosts
+--temporary memory of tables
+mysqladmin -u root -p flush-tables
+--temporary memory of threads/processes
+mysqladmin -u root -p flush-threads
+
+--help
+mysqladmin --help
+
+--mysqlshow usage
+--showing available databases
+mysqlshow -u root -p
+
+--showing available tables in database
+mysqlshow -u root -p databaseName
+
+--showing table project in chosen database
+mysqlshow -u root -p databaseName tableName
+
+--showing column project in chosen table
+mysqlshow -u root -p databaseName tableName columnName
+
+--administrating from sql
+--checking active processes
+show processlist;
+
+--killing active processes
+kill processID;
+
+--server status data
+show status;
+
+ --checking server version
+ show variables like "%version%"
+
+ --checking server variables
+ show variables;
