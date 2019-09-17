@@ -1055,5 +1055,9 @@ mysqldump -u userName -p --add-drop-database -databases databaseName > file.sql
 
 --recovering database from dump
 mysql -u userName -p databaseName < file.sql
---if database exists, overwrite
-mysqldump -u userName -p --add-drop-database databaseName < file.sql
+
+--creating dump of chosen table
+mysqldump -u userName -p databaseName tableName > file.sql
+
+--restoring table from dump
+mysql -u userName -p databaseName < tablefile.sql
