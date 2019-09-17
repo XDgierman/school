@@ -1013,8 +1013,47 @@ kill processID;
 --server status data
 show status;
 
- --checking server version
- show variables like "%version%"
+--checking server version
+show variables like "%version%"
 
- --checking server variables
- show variables;
+--checking server variables
+show variables;
+
+--checking database tables
+--analyze
+ANALYZE TABLE tableName;
+--check works too
+CHECK TABLE tableName;
+
+--repairing table
+REPAIR TABLE tableName;
+
+--for InnoDB tables we can use optimize command
+OPTIMIZE TABLE tableName;
+
+--we can optimize all databases through mysqlcheck through command line
+mysqlcheck -u root -p databaseName
+--forcing automatic optimalization
+mysqlcheck -u root -p databaseName --auto-repair
+
+--locking tables
+LOCK TABLES tableName [READ/WRITE];
+--unlocking tables
+UNLOCK TABLES;
+
+--performing full database dump/backup
+mysqldump -u userName -p databaseName > file.sql
+
+--dumping multiple databases to one file
+mysqldump -u userName -p --databases databaseName1 databaseNameN > file.sql
+
+--dumping all databases
+mysqldump -u userName -p --all-databases > file.sql
+
+--dumping database with CREATE database
+mysqldump -u userName -p --add-drop-database -databases databaseName > file.sql
+
+--recovering database from dump
+mysql -u userName -p databaseName < file.sql
+--if database exists, overwrite
+mysqldump -u userName -p --add-drop-database databaseName < file.sql
