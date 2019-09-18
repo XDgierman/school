@@ -1061,3 +1061,29 @@ mysqldump -u userName -p databaseName tableName > file.sql
 
 --restoring table from dump
 mysql -u userName -p databaseName < tablefile.sql
+
+--creating database structure dump
+mysqldump -u userName - p databaseName --no-data > file.sql
+
+--exporting data from sql side
+SELECT field1, field2... fieldN
+FROM tableName
+INTO OUTFILE 'fileLocation'
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\r\n'
+[WHERE condition];
+
+--checking if server has active binary log
+show variables like 'log_bin';
+
+--checking binary logs through sql
+SHOW binlog events in 'mysql-bin.000001';
+
+--checking binary logs through command line
+mysqlbinlog mysql-bin.000001
+
+mysqlbinlog mysql-bin.000001 --short-form
+
+--recovering database content basing on binary log
+
+mysqlbinlog logFile | mysql -u userName -p
