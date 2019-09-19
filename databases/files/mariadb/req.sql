@@ -1087,3 +1087,24 @@ mysqlbinlog mysql-bin.000001 --short-form
 --recovering database content basing on binary log
 
 mysqlbinlog logFile | mysql -u userName -p
+
+--excercise
+
+SELECT filmy.Tytul
+FROM filmy
+WHERE (filmy.Gatunek = "SF");
+
+select filmy.*, rezyserzy.Nazwisko
+from filmy, rezyserzy
+where filmy.RezyserID = rezyserzy.IDRezyser
+
+SELECT filmy.Tytul
+from filmy,recenzje
+where filmy.RecenzjaID = recenzje.IDRecenzja
+and recenzje.Ocena >= '4';
+
+INSERT INTO `rezyserzy` (`IDRezyser`, `Imie`, `Nazwisko`) VALUES ('4', 'Andrzej', 'Wajda');
+
+SELECT Model, Typ
+FROM artykuly
+ORDER BY Cena ASC;
