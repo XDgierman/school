@@ -1,0 +1,45 @@
+html{
+    font-family: Georgia;
+}
+#baner, #stopka{
+    background-color: #824555;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+#panelG1, #panelG2{
+    background-color: #a26475;
+    color: white;
+    width: 30%;
+    height: 300px;
+}
+#panelG3{
+    background-color: #a26475;
+    color: white;
+    width: 40%;
+    height: 300px;
+    text-align: right;
+}
+#panelG{
+    background-color: #f0eae2;
+    padding: 50px;
+}
+#tabela, #komorka, #komorkaN{
+    border: 2px;
+    border-style: solid;
+    background-color: #69293a;
+    padding: 7px;
+    border-collapse: collapse;
+}
+#selektor{
+    list-style: square;
+}
+#przycisk1{
+    background-color: red;
+}
+#przycisk2{
+    background-color: green;
+}
+#przycisk3{
+    background-color: blue;
+}
