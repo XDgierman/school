@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Formatowanie</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+   <div id="baner">
+       <h1>Formatowanie dokumentów HTML</h1>
+   </div> 
+   <div id="panelG1" style="float: left">
+       <h2>Przykład listy - hobby</h2><br>
+       <ul style="list-style-type: square">
+           <li>muzyka</li>
+           <li>turystyka</li>
+           <ol style="list-style-type: decimal">
+            <li>góry</li>
+            <li>jeziora</li>
+            <li>jazda na rowerze</li>
+        </ol>
+            <li>książki</li>
+       </ul>
+   </div>
+   <div id="panelG2" style="float: left"><h2>Przykład tabeli - rozkład dnia</h2>
+    <table id="tabela">
+        <tr">
+            <td id="komorkaN">Pora dnia</td>
+            <td id="komorkaN">Obowiązki</td>
+        </tr>
+        <tr>
+                <td id="komorka">Rano</td>
+                <td id="komorka">nauka</td>
+        </tr>
+        <tr>
+                <td id="komorka">Południe</td>
+                <td id="komorka">zajęcia dodatkowe</td>
+        </tr>
+        <tr>
+                <td id="komorka">Popłudnie</td>
+                <td id="komorka">Hobby</td>
+        </tr>
+        <tr>
+                <td id="komorka">Wieczór</td>
+        </tr>
+    </table>
+</div>
+   <div id="panelG3" style="float: left"><img src="ilustracja.png" alt="Ilustracja"></div>
+   <div id="panelG">
+       <p>Podaj rozmiar tekstu w procentach: <input type="number" id="procent">%</p>
+       <p>Styl tekstu <select id="styl">
+           <option value="n">prosty</option>
+           <option value="i">kursywa</option>
+        </select></p>
+       <p>Jakim kolorem sformatować tekst? Wybierz przycisk</p>
+       <button id="przycisk1" onclick="klik('red')"></button><button id="przycisk2" onclick="klik('green')"></button><button id="przycisk3" onclick="klik('blu')"></button>
+       <p id="przyklad">To jest przykład paragrafu, który może być formatowany przez JavaScript</p>
+   </div>
+   <div id="stopka">
+       <p>Formatowaniem tekstu zajmował się: <i>Jan Kowalski</i></p>
+       <a href="formatowanie.pl" target="_blank">Odwiedź także</a>
+</div>
+<script>
+function klik(x){
+    p=document.getElementById("przyklad");
+    procent=document.getElementById("procent");
+    if (x == "red"){
+        p.style.color='red';
+    }
+    if (procent = "" || isNaN(procent)){
+        p.style.fontSize="100%";
+    }
+}
+</script>
+</body>
+</html>
