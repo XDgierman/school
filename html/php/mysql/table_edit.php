@@ -12,37 +12,13 @@
 		die("Połącznie nieudane: " . mysqli_connect_error());
 	}
 	echo "Pomyślnie połączono!";
-	$sql="select IDucznia, Imie, Nazwisko, Pesel, Klasa, Srednia, DataUr from uczen;";
+	$sql="select * from uczen;";
 	$res=mysqli_query($conn, $sql);
 	if ($res){
 		echo "<br>Tabela została otworzona";
 		if (mysqli_num_rows($res) > 0) {
-			echo "<table border=2px style='border-collapse:collapse'>
-				<tr>
-					<th>IDucznia</th>
-					<th>Imie</th>
-					<th>Nazwisko</th>
-					<th>Pesel</th>
-					<th>Klasa</th>
-					<th>Średnia</th>
-					<th>Data urodzenia</th>
-				</tr>";
 			while($columna = mysqli_fetch_assoc($res)) {
-				echo "<tr><td>" 
-				. $columna["IDucznia"]
-				. "</td><td>"
-				. $columna["Imie"]
-				. "</td><td>" 
-				. $columna["Nazwisko"]
-				. "</td><td>" 
-				. $columna["Pesel"]
-				. "</td><td>" 
-				. $columna["Klasa"]
-				. "</td><td>" 
-				. $columna["Srednia"]
-				. "</td><td>" 
-				. $columna["DataUr"]
-				. "</td></tr>";
+				
 			}
 		} else {
 			echo "Brak rezultatów";
