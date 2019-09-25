@@ -1160,3 +1160,34 @@ set session transaction isolation level read uncommitted;
 ╚═════════════════════════════════════════════════════╩══════════════════════════════════════════════════════════╝
 
 set session transaction isolation level repeatable read;
+set session transaction isolation level serializable;
+
+╔═════════════════════════════════════════════════════╦═══════════════════════════════════════════════════════╗
+║                                                     ║ set session transaction isolation level serializable; ║
+╠═════════════════════════════════════════════════════╬═══════════════════════════════════════════════════════╣
+║ USE databaseName;                                   ║ USE databaseName;                                     ║
+╠═════════════════════════════════════════════════════╬═══════════════════════════════════════════════════════╣
+║                                                     ║ START TRANSACTION;                                    ║
+╠═════════════════════════════════════════════════════╬═══════════════════════════════════════════════════════╣
+║ START TRANSACTION;                                  ║ update table set datavalue = 3000 where IDcollumn=5;  ║
+╠═════════════════════════════════════════════════════╬═══════════════════════════════════════════════════════╣
+║ select * from table;                                ║                                                       ║
+╠═════════════════════════════════════════════════════╬═══════════════════════════════════════════════════════╣
+║ update table set datavalue = 700 where IDcollumn=2; ║ select * from table;                                  ║
+╠═════════════════════════════════════════════════════╬═══════════════════════════════════════════════════════╣
+║ commit;                                             ║                                                       ║
+╠═════════════════════════════════════════════════════╬═══════════════════════════════════════════════════════╣
+║                                                     ║ commit;                                               ║
+╚═════════════════════════════════════════════════════╩═══════════════════════════════════════════════════════╝
+
+SAVEPOINT pointName;
+ROLLBACK TO SAVEPOINT pointName;
+
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+DROP TABLE IF EXISTS sprzedaze;
+SAVEPOINT punkt1;
+UPDATE rowery SET CenaJednostkowa = 700
+WHERE IDroweru = 2;
+SAVEPOINT punkt2;
+ROLLBACK TO SAVEPOINT punkt1;
