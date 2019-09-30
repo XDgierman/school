@@ -1,0 +1,96 @@
+1) PostgreSQL
+<?php
+// Connecting, selecting database
+$dbconn = pg_connect("host=localhost dbname=publishing user=www password=foo")
+    or die('Could not connect: ' . pg_last_error());
+
+// Performing SQL query
+$query = 'SELECT * FROM authors';
+$result = pg_query($query) or die('Query failed: ' . pg_last_error());
+
+// Printing results in HTML
+echo "<table>\n";
+while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+    echo "\t<tr>\n";
+    foreach ($line as $col_value) {
+        echo "\t\t<td>$col_value</td>\n";
+    }
+    echo "\t</tr>\n";
+}
+echo "</table>\n";
+
+// Free resultset
+pg_free_result($result);
+
+// Closing connection
+pg_close($dbconn);
+?>
+
+2) MSSQL
+<?php
+$serverName = "serverName\sqlexpress";
+$connectionInfo = array( "Database"=>"dbName", "UID"=>"username", "PWD"=>"password" );
+$conn = sqlsrv_connect( $serverName, $connectionInfo);
+if( $conn === false ) {
+     die( print_r( sqlsrv_errors(), true));
+}
+
+$sql = "INSERT INTO Table_1 (id, data) VALUES (?, ?)";
+$params = array(1, "some data");
+
+$stmt = sqlsrv_query( $conn, $sql, $params);
+if( $stmt === false ) {
+     die( print_r( sqlsrv_errors(), true));
+}
+?>
+
+3)Oracle
+<?php
+
+$conn = oci_connect('hr', 'welcome', 'localhost/XE');
+if (!$conn) {
+    $e = oci_error();
+    trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+}
+
+// Prepare the statement
+$stid = oci_parse($conn, 'SELECT * FROM departments');
+if (!$stid) {
+    $e = oci_error($conn);
+    trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+}
+
+// Perform the logic of the query
+$r = oci_execute($stid);
+if (!$r) {
+    $e = oci_error($stid);
+    trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+}
+
+// Fetch the results of the query
+print "<table border='1'>\n";
+while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+    print "<tr>\n";
+    foreach ($row as $item) {
+        print "    <td>" . ($item !== null ? htmlentities($item, ENT_QUOTES) : "&nbsp;") . "</td>\n";
+    }
+    print "</tr>\n";
+}
+print "</table>\n";
+
+oci_free_statement($stid);
+oci_close($conn);
+
+?>
+
+4)SRLight
+<?php
+if ($db = sqlite_open('mysqlitedb', 0666, $sqliteerror)) { 
+    sqlite_query($db, 'CREATE TABLE foo (bar varchar(10))');
+    sqlite_query($db, "INSERT INTO foo VALUES ('fnord')");
+    $result = sqlite_query($db, 'select bar from foo');
+    var_dump(sqlite_fetch_array($result)); 
+} else {
+    die($sqliteerror);
+}
+?
