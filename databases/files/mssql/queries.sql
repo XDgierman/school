@@ -44,3 +44,40 @@ SELECT SCHEMA_NAME() AS DEFAULTSCHEMA;
 
 --defining default schema for user
 DEFAULT_SCHEMA CREATE userName;
+
+--changing default schema for user
+ALTER USER userName WITH DEFAULT_SCHEMA = schemaName;
+
+--showing table project
+[exec] SP_HELP tableName;
+[exec] SP_COLUMNS tableName;
+
+--altering table structure
+ALTER TABLE tableName ADD columnName atribute;
+ALTER TABLE tableName DROP COLUMN columnName;
+
+--batch seperator GO
+USE databaseName;
+GO
+ALTER TABLE tableName ADD columnName atribute;
+ALTER TABLE tableName DROP COLUMN columnName;
+
+--column attributes
+--PRIMARY KEY
+CREATE TABLE tableName(
+    columnName columnType NOT NULL PRIMARY KEY
+)
+ALTER TABLE tableName ADD PRIMARY KEY(columnName);
+
+--IDENTITY
+CREATE TABLE tableName(
+    columnName columnType IDENTITY NOT NULL PRIMARY KEY
+)
+CREATE TABLE tableName(
+    columnName columnType IDENTITY (X,Y) NOT NULL PRIMARY KEY
+)
+--X means first value added to column, and Y is amount of increment to another value.
+--default values are (1,1)
+--identity can be turned on, or off
+SET INDENTITY_INSERT tableName ON;
+SET INDENTITY_INSERT tableName OFF;
