@@ -66,18 +66,57 @@ ALTER TABLE tableName DROP COLUMN columnName;
 --PRIMARY KEY
 CREATE TABLE tableName(
     columnName columnType NOT NULL PRIMARY KEY
-)
+);
 ALTER TABLE tableName ADD PRIMARY KEY(columnName);
 
 --IDENTITY
 CREATE TABLE tableName(
     columnName columnType IDENTITY NOT NULL PRIMARY KEY
-)
+);
 CREATE TABLE tableName(
     columnName columnType IDENTITY (X,Y) NOT NULL PRIMARY KEY
-)
+);
 --X means first value added to column, and Y is amount of increment to another value.
 --default values are (1,1)
 --identity can be turned on, or off
+--while off, the value has to be inserted manually
 SET INDENTITY_INSERT tableName ON;
 SET INDENTITY_INSERT tableName OFF;
+
+--DEFAULT
+CREATE TABLE tableName(
+    columnName columnType NOT NULL DEFAULT 'defaultValue',
+);
+--UNIQUE
+CREATE TABLE tableName(
+    columnName columnType UNIQUE NOT NULL,
+);
+--logic statement CHECK
+CREATE TABLE tableName(
+    columnName columnType CHECK(logicStatement),
+);
+
+--DML language
+--INSERT
+INSERT INTO tableName
+VALUES (listOfValues);
+--if we want to skip collumns we use this command
+INSERT INTO tableName (columnList)
+VALUES (listOfValues);
+--BULK INSERT
+--bulk insert grabs data from files with CSV and TXT extension
+BULK INSERT tableName
+FROM ('fileLocation\file.fileExtension')
+with(
+    FIELDTERMINATOR='fieldTerminator',
+    ROWTERMINATOR='rowTerminator'
+);
+--UPDATE
+UPDATE tableName
+SET columnName = value
+[WHERE statement];
+--DELETE
+DELETE FROM tableName
+WHERE statement;
+--TRUNCATE
+TRUNCATE tableName;
