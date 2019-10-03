@@ -1,8 +1,6 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-</head>
-<body>
     <?php
     class Prostokat
     {
@@ -11,22 +9,29 @@
         public function __construct($x,$y) {
             $this->a = $x;
             $this->b = $y;
-            echo "<br>Pole: " . $this->pole() . "<br>Obwód: " . $this->obwod();
         }
         public function pole()
         {
-            return $a*$b;
+            return $this->a*$this->b;
         }
         public function obwod()
         {
-            return (2*$a)+(2*$b);
+            return (2*$this->a)+(2*$this->b);
         }
     }
     ?>
-    <form action="$v= new Prostokat($numer1,$numer2);">
+</head>
+<body>
+    <form action="prostokat.php" method="POST">
     A: <input type="number" name="numer1"><br>
     B: <input type="number" name="numer2"><br>
-    <input type="submit" value="">
+    <input type="submit" name="Oblicz" value="Oblicz">
     </form>
+    <?php
+    if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["Oblicz"])){
+        $o1= new Prostokat($_POST["numer1"],$_POST["numer2"]);       
+    echo "<br>Pole: " . $o1->pole() . "<br>Obwód: " . $o1->obwod();
+}
+    ?>
 </body>
 </html>
