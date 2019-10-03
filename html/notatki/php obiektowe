@@ -1,0 +1,29 @@
+tworzenie klas w php - tworzymy za pomocą znacznika class w następujący sposób:
+class Nazwa{
+	zmienne składowe - właściwości;
+	funkcje składowe - metody;
+
+}
+
+przykład
+class Osoba{
+	$imie;
+	$nazwisko;
+	function setImie($im){
+		$this->imie=$im;
+	}
+}
+
+w obiektowym php istnieje proces hermetyzacji, ktory pozwala na określenie zakresu widoczności składowych klas.
+do tego celu służą kwalifikatory zakresu PRIVATE, PROTECTED i PUBLIC
+składowe z zakresu PRIVATE(prywatne) są widoczne jedynie wewnątrz definicji klas
+składowe PROTECTED(zabezpieczone) są widoczne wewnątrz definicji klasy oraz w klasach dziedziczących z tej klasy
+składowe PUBLIC(publiczne) są widoczne wszędzie poza klasą
+
+mehanizm hermetyzacji wykorzystuje się po to aby nie dopóścić bezpośredniego dostępu do składowych tworząc je jako prywatne, a dostęp do nich umożliwiamy poprzez odpowiednie metody, które są metodami publicznymi
+
+tworzenie pustego obiektu:
+$o1=new Osoba();
+
+odwoływanie się do funkcji obiektu:
+$o1 -> setImie("Jan");
