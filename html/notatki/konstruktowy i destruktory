@@ -1,0 +1,7 @@
+1. konstruktor - jest to specjalna metoda wywoływana niejawnie w momencie tworzenia obiektu
+jej zadaniem jest zarezerwowanie pamięci dla obiektu i wykonanie zadań inicjalizacyjnych.
+twórca klasy może zdefiniować konstruktor dla klasy definiując funkcję o nazwie __Construct()
+funkcja ta wywoływana jest w trakcie tworzenia obiektu, i możemy w niej np: wpisać wartości składowym klasy, otworzyć połączenia z bazą, otworzyć plik itp.
+
+2. destruktor - jest to specjalna metoda wywoływana niejawnie w momencie usuwania obiektu, czyli w momencie zakończenia skryptu lub użycia funkci unset, niszczącej obiekt.
+destrukto służy do posprzątania po obiekcie. jeśli definiujemy go jawnie, to przy pomocy funkcji __Destruct(), to wewnątrz umieszczamy takie zadania jak: zamknięcie połączenia z bazą, zamkjnięcie pliku itp.
