@@ -1,0 +1,55 @@
+Temat(1): Strona WWW i witryna WWW
+
+1.Wprowadzenie
+Pierwsze strony internetowe pisane w jêzyku HTML by³y bardzo ograniczone i zawiera³y teksty oraz dawa³y mo¿liwoœæ u¿ytkowania odnoœników (linków).
+Rozwój jêzyka HTML pozwoli³ na dodawanie ró¿nego rodzajów obiektów.
+PóŸniej wprowadzono kaskadowe arkusze stylów (CSS), co pozwoli³o na odzielenie treœci strony od warstwy prezentacyjnej.
+Obecnie standardem s¹ strony zawieraj¹ce grafikê.
+
+2. Budowa strony internetowej
+Ka¿da strona internetowa jest zwyk³ym dokumentem tekstowym, który mo¿na stworzyæ przy u¿yciu dowolnego edytora tekstów.
+Teksty wyœwietlane na stronie internetowej otoczone s¹ zancznikami (tabami),
+czyli elementami jêzyka HTML za pomoc¹ którego tworzy siê strony WWW.
+
+3. Obs³uga dokumentów HTML
+Dokumenty HTML to pliki tekstowe zawieraj¹ce polecenia dotycz¹ce sk³adu tekstu,
+a tak¿e dynamiczne odnoœniki do innych dokumentów.
+Dokumenty te s¹ przesy³ane w sieci w postaci Ÿród³owej. 
+Dopiero przegl¹darka internetowa na komputerze u¿ytkownika interpretuje kod strony.
+
+4. Edytory HTML
+Mo¿na je podzieliæ na dwie grupy:
+-Tekstowe - Umo¿liwiaj¹ bezpoœredni¹ pracê z kodem HTML. Czêsto s¹ wyposa¿one w dodatkowe funkcje.
+-Graficzne - umo¿liwiaj¹ pracê w trybie WYSWIG (What You See Is What You Get).
+	     Pozwalaj¹ na tworzenie stron bez wpisywania kodu Ÿród³owego.
+
+5. Pojêcia
+Strona internetowa - dokument utworzony w jêzyku HTML lub XHTML,
+zapisany w pliku i umieszczony na serwerze, odczytywany na komputerze u¿ytkownika za pomoc¹ przegl¹darki internetowej.
+
+Witryna internetowa - zbiór stron internetowych powi¹zanych tematycznie
+i umieszczonych na jednym serwerze, stanowi¹c¹ rodzaj serwisu informacyjnego.
+
+Portal internetowy - serwis informacyjny zawieraj¹cy informacje na ró¿ne tematy,
+zwykle wyposa¿ony w dodatkowe funkcje tj. poczta elektroniczna, wyszukiwarka, czat, pobieranie plików
+
+wortal internetowy - portal wertykalny, czyli portal wyspecjalizowany zapewniaj¹cy informacje z jednej dziedziny,
+tematycznie z esob¹ powi¹zanych. Nazwa wortal nie przyjê³a siê.
+
+serwer internetowy - komputer pod³¹czony dl internetu i œwiadcz¹cy ró¿ne us³ugi internetowe w odniesieniu do oprogramowania uruchamianego na tym komputerze
+
+statyczna strona internetowa - jej zawartoœæ i wygl¹d nie zmienia  siê przy ka¿dym odwo³aniu do niej. Aby dokonaæ zmian na stronie, programista musi zmieniæ jej kod.
+
+dynamiczna strona internetowa - generowana na bie¿¹co przez serwer HTTP na podstawie zmiennych parametrów przekazanych przez przegl¹darke.
+Takie strony zmieniaj¹ zawartoœæ i wygl¹d w zale¿noœci od interakcjio z u¿ytkownikiem.
+
+ZMIANY ZAWARTOŒCI DYNAMICAZNYCH STRON WWW MOG¥ ODBYWAÆ SIÊ W DWOJAKI SPOSÓB:
+	- Po stronie u¿ytkiownika, na jego komputerze przy u¿yciu jêzyków skryptowych np. JavaScrtipt
+	- Po stronie serwera przy u¿yciu jêzyków programowania tj. PHP, ASP, Java, Python
+
+Zadanie
+https://www.onet.pl/
+http://www.zst.edu.pl/pl/
+http://store.steampowered.com/
+http://www.corn.net.pl/#!/splash
+https://pl-pl.facebook.com/
