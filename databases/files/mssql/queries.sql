@@ -221,3 +221,37 @@ FROM tableName1 CROSS JOIN tableName2;
 SELECT alias1.columnName1, alias1.columnName2
 FROM tableName1 AS alias1 CROSS JOIN tableName1 AS alias2
 WHERE alias1.columnName3 = alias2.columnName3;
+
+--MS SQL and database integrity
+--Defining foreign key
+--basic query:
+CONSTRAINT keyName FOREIGN KEY(foreignKey)
+REFERENCES tableName(primaryKey);
+--if CONSTRAINT is absent, foreign key will get name given by DBMS (database management system)
+--example
+CREATE TABLE tableName(
+    primaryKey INT IDENTITY (1,1) NOT NULL PRIMARY KEY,
+    columnName DATE NOT NULL,
+    foreignKey1 INT,
+    FOREIGN KEY(foreignKey1) REFERENCES tableName1(primaryKey1),
+    foreignKey2 INT,
+    FOREIGN KEY(foreignKey2) REFERENCES tableName2(primaryKey2)
+)
+--if table exists, but doesn't have foreign keys, we can add them using ALTER TABLE
+ALTER TABLE tableName ADD foreignKey1 INT
+REFERENCES tableName1(primaryKey1);
+--naming foreign key for created table
+ALTER TABLE tableName ADD CONSTRAINT foreignKeyName
+FOREIGN KEY(foreignKey1) REFERENCES tableName1(primaryKey1),
+--deleting existing foreign key from table
+ALTER TABLE tabela DROP CONSTRAINT foreignKeyName;
+
+--cascade update and deletion of data
+--cascade updating and deleting is defined in ON UPDATE/ON DELETE with values:
+--* NO ACTION - data will be not modified in joined tables
+--* CASCADE - data will be modified in all joined tables
+--* SET NULL - modified values of primary key may be changed with NULL value in joined colums of foreign key
+--* SET DEFAULT - modified values of primary key may be changed with default values in joined column of foreign key default value
+--example:
+ALTER TABLE tableName1 ADD FOREIGN KEY(foreignKey2)
+REFERENCES tableName2(primaryKey2) ON DELETE CASCADE;
