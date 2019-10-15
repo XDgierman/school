@@ -302,3 +302,32 @@ WHERE columnName2 < value);
 SELECT columnName
 FROM tableName
 WHERE columnName1 = (SELECT MAX(columnName1) FROM tableName);
+
+--SUBQUERIES in FROM
+--result of the subquery can be an amount of table data, rom that it can be a source of data for other query
+--example:
+SELECT *
+FROM (SELECT columnName
+FROM tableName
+WHERE columnName1 > 1000) AS result;
+
+--operators in subqueries
+--IN - checks if at least one value from list is true to condition
+--EXISTS - returns true, when subquery returns data, if not - returns false
+--ANY - checks values of any data returned from subquery
+--SOME - acts the same as ANY
+--ALL - checks values of all values returned by subquerry
+
+--EXISTS
+SELECT *
+FROM tableName1
+WHERE [NOT] EXISTS
+(SELECT * FROM tableName2 WHERE tableName1.primaryKey1 = tableName2.foreignKey1);
+
+--ANY and SOME
+--operator is true, if at least one condition is true for the value
+SELECT columnName1, columnName2
+FROM tableName
+WHERE columnName3 > ANY
+(SELECT PlacaPracownika FROM tableName
+WHERE columnNameN = 'value');
