@@ -255,3 +255,50 @@ ALTER TABLE tabela DROP CONSTRAINT foreignKeyName;
 --example:
 ALTER TABLE tableName1 ADD FOREIGN KEY(foreignKey2)
 REFERENCES tableName2(primaryKey2) ON DELETE CASCADE;
+
+--UNION
+--this instruction makes available to join two or more SELECT
+--with condition that the result has the same amount of columns and types of columns
+
+SELECT ...
+FROM ...
+UNION
+SELECT ...
+FROM ...;
+--instruction forces removal of all duplicated data
+--to show all data we use instruction UNION ALL
+--union can be used as exchange for IN or OR in queries:
+SELECT columnName
+FROM tableName
+WHERE columnName1 = 'value1' OR columnName1 = 'value2';
+
+--EXCEPT
+--this instruction shows data that are in first SELECT, but doesn't appear in second SELECT
+SELECT ...
+FROM ...
+EXCEPT
+SELECT ...
+FROM ...;
+--mirror instruction for EXCEPT is INTERSECT, that shows data that are in both SELECT, but not distinct ones
+SELECT ...
+FROM ...
+INTERSECT
+SELECT ...
+FROM ...;
+
+--SUBQUERIES
+--subqueries are queries that are inserted into other queries
+--SUBQUERIES in WHERE
+--ex.1:
+SELECT columnName
+FROM tableName
+WHERE columnName1 > (SELECT AVG(columnName1) FROM tableName);
+--ex.2:
+SELECT columnName
+FROM tableName
+WHERE columnName1 IN (SELECT columnName1 FROM tableName1
+WHERE columnName2 < value);
+--ex.3:
+SELECT columnName
+FROM tableName
+WHERE columnName1 = (SELECT MAX(columnName1) FROM tableName);
