@@ -331,3 +331,15 @@ FROM tableName
 WHERE columnName3 > ANY
 (SELECT PlacaPracownika FROM tableName
 WHERE columnNameN = 'value');
+
+--ALL
+--operator is true, when all conditions are true for the value
+
+--connected subqueries (corelled)
+--these specific subqueries the query is questioning to the result of foreign query
+--in that case subquery is perofred for each value returned by foreign query and its checked
+--ex:
+SELECT columnName1, columnName2, columnName3
+FROM tableName1
+WHERE columnName2 > (SELECT AVG(columnName2) FROM tableName1
+WHERE columnName2 = tableName1.columnName2);
