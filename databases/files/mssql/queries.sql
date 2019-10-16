@@ -343,3 +343,23 @@ SELECT columnName1, columnName2, columnName3
 FROM tableName1
 WHERE columnName2 > (SELECT AVG(columnName2) FROM tableName1
 WHERE columnName2 = tableName1.columnName2);
+
+--Views
+--Views (perspectives) in T-SQL are created using:
+CREATE VIEW vName AS
+    SELECT ...;
+--ex:
+CREATE VIEW vName AS
+    SELECT columnName1, columnName2
+    FROM tableName;
+--created view can be used as normal table
+SELECT *
+FROM vName;
+--in views you cannot use ORDER BY, unless while creation of view TOP was used
+
+--removing views:
+DROP VIEV vName;
+
+--altering views:
+ALTER VIEW vName AS
+    SELECT ...;
