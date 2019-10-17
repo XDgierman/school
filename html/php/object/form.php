@@ -5,7 +5,13 @@
     <?php
     class Formularz
     {
-        private $imie, $nazwisko, $pesel, $ulica, $kod, $miasto, $zawod;
+        private $imie;
+        private $nazwisko;
+        private $pesel;
+        private $ulica;
+        private $kod;
+        private $miasto;
+        private $zawod;
         private $conn;
         public function __construct($im,$nz,$ps,$ul,$kd,$ms,$zw) {
             $this->imie = $im;
@@ -20,7 +26,7 @@
         {
             $conn = new mysqli("localhost","root","","fabryka");
             if($conn){
-                $conn->query("insert into pracownicy(Imie,Nazwisko,Pesel,Ulica,KodPocztowy,Miasto,Zawod) values ('".$imie."','".$nazwisko."','".$pesel."','".$ulica."','".$kod."','".$miasto."')','".$zawod.";");
+                $conn->query("insert into pracownicy(Imie,Nazwisko,Pesel,Ulica,KodPocztowy,Miasto,Zawod) values ('".$this->imie."','".$this->nazwisko."','".$this->pesel."','".$this->ulica."','".$this->kod."','".$this->miasto."')','".$this->zawod.";");
             } else die("<br>Połącznie nieudane: " . mysqli_connect_error());
             $conn->close();
         }
@@ -47,13 +53,17 @@
         $kd = $_POST['kod'];
         $ms = $_POST['miasto'];
         $zw = $_POST['zawod'];
-        if((is_null($im) || $im = "") || (is_null($nz) || $nz = "") || (is_null($ps) || $ps = "") || (is_null($ul) || $ul = "") || (is_null($kd) || $kd = "") || (is_null($ms) || $ms = "") || (is_null($zw) || $zw = "")){
+        echo "Test : ". $ps . " " . $kd ."<br>";
+        if((is_null($im) || $im == "") || (is_null($nz) || $nz == "") || (is_null($ps) || $ps == "") || (is_null($ul) || $ul == "") || (is_null($kd) || $kd == "") || (is_null($ms) || $ms == "") || (is_null($zw) || $zw == "")){
             echo "Nie wprowadzono poprawnych danych<br>";
-        }else if(preg_match('/^[0-9]{11}$/',$ps) & preg_match('/^[0-9]{2}\-[0-9]{3}$/',$kd)){
-            $o = new Formularz($im,$nz,$ps,$ul,$kd,$ms,$zw);
-            $o->database_insert();
-            echo "Dane zostały wprowadzone<br>";
-        } else echo "Kod pocztowy lub pesel nie są zgodne<br>";
+        }else {
+            echo "Test : ". $ps . " " . $kd ."<br>";
+            if(preg_match('/^[0-9]{11}$/',$ps) && preg_match('/^[0-9]{2}\-[0-9]{3}$/',$kd)){
+                $o = new Formularz($im,$nz,$ps,$ul,$kd,$ms,$zw);
+                $o->database_insert();
+                echo "Dane zostały wprowadzone<br>";
+            } else echo "Kod pocztowy lub pesel nie są zgodne<br>";
+        }
     }
     ?>
 </body>
