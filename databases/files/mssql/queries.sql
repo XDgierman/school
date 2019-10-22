@@ -363,3 +363,58 @@ DROP VIEV vName;
 --altering views:
 ALTER VIEW vName AS
     SELECT ...;
+
+--index
+--while creating the table
+CREATE TABLE tableName(
+    columnName dataType,
+    columnName dataType,
+    ...
+    columnName dataType INDEX indexName
+);
+--in case of unique
+CREATE TABLE tableName(
+    columnName dataType,
+    columnName dataType,
+    ...
+    columnName dataType,
+    CONSTRAINT indexName UNIQUE(columnName)
+);
+--for existing table
+CREATE INDEX indexName ON tableName (columnName);
+--in case of unique
+CREATE UNIQUE INDEX indexName ON tableName (columnName);
+--index removal is made using DROP INDEX
+DROP INDEX tableName.indexName;
+
+--server variables
+
+--user variables
+--user variables(local) are starting with @ sign, and global are set using @@
+--user variables are declared using DECLARE statement
+DECLARE @variableName dataType;
+--setting values to variables
+SELECT @variableName = "value";
+SET @variableName = "value";
+--the diffrence between SET and SELECT, is that SET only applies values to only one variable, while SELECT applies to many divided by ','
+--showing variable value
+SELECT @variableName AS alias;
+--in variables we can set up queries to be agregating
+DECLARE @howManyLines INT;
+SELECT @howManyLines = COUNT(*) from tableName;
+SELECT @howManyLines AS 'Number of lines in tableName';
+
+--system variables
+--system variables, aka global, are set by @@ chars
+--system variable examples
+--@@ERROR - returns number of last error (0=no errors)
+--@@FETCH_STATUS - returns if cursor loaded the line (returns 0, if true)
+--@@IDENTITY - returns last generated IDENTITY value( usefil, when we want to use the ID inserted by INSERT to line in table)
+--@@ROWCOUNT - returns number of lines, on which SQL query worked
+--@@TRANCOUNT - returns number of open transactions
+--@@VERSION - returns version of SQL Server
+--@@TOTAL_ERRORS - variable defining number of all errors, that happned since beggining of current connection to database
+--@@TOTAL_READ - variable containing number of disc operations performed since beggining of current connection to database
+SELECT * FROM tableName
+SELECT @@ROWCOUNT AS 'Row count';
+SELECT @@VERSION AS 'Server version';
