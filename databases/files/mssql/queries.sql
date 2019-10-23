@@ -418,3 +418,61 @@ SELECT @howManyLines AS 'Number of lines in tableName';
 SELECT * FROM tableName
 SELECT @@ROWCOUNT AS 'Row count';
 SELECT @@VERSION AS 'Server version';
+
+--catching errors
+--function RAISERROR
+--this function allows user to report errors
+RAISERROR('text',weight,status);
+--weight argument states error type and can take integer values from 1 to 25
+--1 to 10 are information cominicates
+--11 to 16 are errors that user can fix
+--17 to 18 are severe errors
+--19 to 25 are severe errors, which fixing is available only for admins, while errors with weight 20-25 are critical errors, which drop connection and save the comunicate within binary log
+--whilst status argument can take integer value from 1 to 255. values negative or bigger than 255 will generate the error.
+--example:
+DECLARE @variable1 FLOAT, @variable2 FLOAT;
+SET @variable1 = 100;
+SET @variable2 = 10;
+IF @variable2 = 0
+    RAISERROR('Divitation by 0!',14,1)
+ELSE
+    SELECT @variable1 / @variable2 AS "Divitation result";
+--this also works with @@ERROR
+DECLARE @variable1 FLOAT, @variable2 FLOAT, @variable3 FLOAT;
+SET @variable1 = 100;
+SET @variable2 = 10;
+SELECT @variable3 = @variable1 / @variable2;
+IF @@ERROR <> 0
+    RAISERROR('Divitation by 0!',14,1)
+ELSE
+    SELECT @variable3 AS "Divitation result";
+--TRY/CATCH
+--in TRY block we can perfrom querry that ganenerate an error
+--CATCH block is the response for TRY error
+--the faulty code wont be stopped, for that whe have to use a transaction
+BEGIN TRY
+    ...
+END TRY
+BEGIN CATCH
+    ...
+END cATCH;
+--example:
+DECLARE @variable INT;
+BEGIN TRY
+    SET @variable = 1000
+    PRINT 'This number is in INT type'
+END TRY
+BEGIN CATCH
+    PRINT 'This number is NOT in INT type'
+END cATCH;
+--example 2:
+DECLARE @variable1 FLOAT, @variable2 FLOAT, @variable3 FLOAT;
+SET @variable1 = 100;
+SET @variable2 = 0;
+BEGIN TRY
+    SELECT @variable3 = @variable1 / @variable2
+    SELECT @variable3 AS "Divitation result"
+END TRY
+BEGIN CATCH
+  PRINT 'Error! Divitation by 0!'
+END cATCH;
