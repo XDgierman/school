@@ -329,7 +329,7 @@ WHERE [NOT] EXISTS
 SELECT columnName1, columnName2
 FROM tableName
 WHERE columnName3 > ANY
-(SELECT PlacaPracownika FROM tableName
+(SELECT columnName3 FROM tableName
 WHERE columnNameN = 'value');
 
 --ALL
@@ -476,3 +476,30 @@ END TRY
 BEGIN CATCH
   PRINT 'Error! Divitation by 0!'
 END cATCH;
+
+--logical
+--IF / ELSE
+--just like in other coding languages
+IF logicStatement query;
+IF logicStatement
+    query1;
+ELSE
+    query2;
+--example
+DECLARE @variable INT;
+SELECT @variable = COUNT(*) FROM tableName;
+IF @variable>10
+    SELECT TOP 6 * FROM tableName;
+ELSE
+    SELECT TOP 6 * FROM tableName;
+--to perform more queries, they need to begin and end on BEGIN/END
+IF logicStatement
+    BEGIN
+        query1;
+        query2;
+    END
+ELSE
+    BEGIN
+        query3;
+        query4;
+    END
