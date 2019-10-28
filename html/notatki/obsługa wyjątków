@@ -1,0 +1,8 @@
+z sytuacjami wyjątkowymi mamy do czynienia wtedy gdy program zachowa się tak jak nie przewidzieliśmy lub zaprogramowaliśmy
+przykładowo - chcemy otworzyć plik, który nie istnieje lub połączyć się z bazą mając złe parametry logowania
+w wersji php5 pojawiła się obsługa wyjątków znana wcześniej jak java, c++ lub c#
+jeżeli nasza biblioteka którą używamy obsługuje wyjątki, tzw. przewiduje sytuacje wyjątkowe i w takim przypadku "rzuca" wyjątkami, używając instrukcji [throw],
+której argumentem jest obiekt klasy [Exception], to my wykorzystując taką bibliotekę piszemy kod instrukcji [try], po której następuje instrukcja [catch],
+która jest wykonywana w przypadku sytuacji wyjątkowej.
+wtedy w instrukcji [catch] możemy wypisać informacje o tej sytuacji wyjątkowej wykorzystując obiekt klasy [Exception],
+który jest parametrem instrukcj [catch] i wywołać na rzecz tego obiektu [getMessage]
