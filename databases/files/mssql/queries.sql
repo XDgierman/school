@@ -1,4 +1,4 @@
---creatubg database
+--creating database
 CREATE DATABASE databaseName;
 --using database
 USE databaseName;
@@ -76,10 +76,14 @@ CREATE TABLE tableName(
 CREATE TABLE tableName(
     columnName columnType IDENTITY (X,Y) NOT NULL PRIMARY KEY
 );
---X means first value added to column, and Y is amount of increment to another value.
---default values are (1,1)
---identity can be turned on, or off
---while off, the value has to be inserted manually
+--
+
+/*
+X means first value added to column, and Y is amount of increment to another value.
+default values are (1,1)
+identity can be turned on, or off
+while off, the value has to be inserted manually
+*/
 SET INDENTITY_INSERT tableName ON;
 SET INDENTITY_INSERT tableName OFF;
 
@@ -138,9 +142,11 @@ FROM tableName [JOIN][joinedTableName][ON][joiningWarrants]
 SELECT columnName
 FROM tableName
 ORDER BY columnName;
---it can be influenced by DESC and ASC to sort descending or ascending
---TOP limits shown records to the limit set by value and the top records
---TOP [value] WITH TIES shows the TOP record and other records with the same value as the top record when using ORDER BY
+/*
+it can be influenced by DESC and ASC to sort descending or ascending
+TOP limits shown records to the limit set by value and the top records
+TOP [value] WITH TIES shows the TOP record and other records with the same value as the top record when using ORDER BY
+*/
 SELECT TOP 5 columnName
 FROM tableName;
 
@@ -194,11 +200,12 @@ FROM tableName1 INNER JOIN tableName2 ON tableName1.primaryKey = tableName2.fore
 SELECT tableName1.columnName1, tableName2.columnName2, tableName3.columnName3
 FROM(tableName1 INNER JOIN tableName2 ON tableName1.primaryKey = tableName2.foreignKey)
 INNER JOIN tableName3 ON tableName2.primaryKey = tableName3.foreignKey;
-
---outer connections deliver all collumn data depending on side
---LEFT OUTER JOIN collects all data from first collumn, RIGHT OUTER JOIN collects data from second collumn
---FULL OUTER JOIN collects all data from both collumns, even the unnecessary data
---examples:
+/*
+outer connections deliver all collumn data depending on side
+LEFT OUTER JOIN collects all data from first collumn, RIGHT OUTER JOIN collects data from second collumn
+FULL OUTER JOIN collects all data from both collumns, even the unnecessary data
+examples:
+*/
 SELECT tableName1.columnName1, tableName2.columnName2
 FROM tableName1 LEFT OUTER JOIN tableName2 ON tableName1.primaryKey = tableName2.foreignKey;
 
@@ -212,12 +219,13 @@ FROM tableName1 FULL OUTER JOIN tableName2 ON tableName1.primaryKey = tableName2
 --the amount of data is equal to muliplication of data in both of tables
 SELECT tableName1.columnName1, tableName2.columnName2
 FROM tableName1 CROSS JOIN tableName2;
-
---joining table with itself
---operation of autojoining results in Cartesian table of the table itself basing on multiplication of itself
---we use it on two possibilities:
---* there is a need to make diffrent aliases for joined table and in querry consequently writing alias name than tableName
---* each record, in which values of joining atribute are equal, will be added to the result of joinng, which ends with duplicates of records
+/*
+joining table with itself
+operation of autojoining results in Cartesian table of the table itself basing on multiplication of itself
+we use it on two possibilities:
+* there is a need to make diffrent aliases for joined table and in querry consequently writing alias name than tableName
+* each record, in which values of joining atribute are equal, will be added to the result of joinng, which ends with duplicates of records
+*/
 SELECT alias1.columnName1, alias1.columnName2
 FROM tableName1 AS alias1 CROSS JOIN tableName1 AS alias2
 WHERE alias1.columnName3 = alias2.columnName3;
@@ -246,13 +254,15 @@ FOREIGN KEY(foreignKey1) REFERENCES tableName1(primaryKey1),
 --deleting existing foreign key from table
 ALTER TABLE tabela DROP CONSTRAINT foreignKeyName;
 
---cascade update and deletion of data
---cascade updating and deleting is defined in ON UPDATE/ON DELETE with values:
---* NO ACTION - data will be not modified in joined tables
---* CASCADE - data will be modified in all joined tables
---* SET NULL - modified values of primary key may be changed with NULL value in joined colums of foreign key
---* SET DEFAULT - modified values of primary key may be changed with default values in joined column of foreign key default value
---example:
+/*
+cascade update and deletion of data
+cascade updating and deleting is defined in ON UPDATE/ON DELETE with values:
+* NO ACTION - data will be not modified in joined tables
+* CASCADE - data will be modified in all joined tables
+* SET NULL - modified values of primary key may be changed with NULL value in joined colums of foreign key
+* SET DEFAULT - modified values of primary key may be changed with default values in joined column of foreign key default value
+example:
+*/
 ALTER TABLE tableName1 ADD FOREIGN KEY(foreignKey2)
 REFERENCES tableName2(primaryKey2) ON DELETE CASCADE;
 
@@ -310,14 +320,14 @@ SELECT *
 FROM (SELECT columnName
 FROM tableName
 WHERE columnName1 > 1000) AS result;
-
---operators in subqueries
---IN - checks if at least one value from list is true to condition
---EXISTS - returns true, when subquery returns data, if not - returns false
---ANY - checks values of any data returned from subquery
---SOME - acts the same as ANY
---ALL - checks values of all values returned by subquerry
-
+/*
+operators in subqueries
+IN - checks if at least one value from list is true to condition
+EXISTS - returns true, when subquery returns data, if not - returns false
+ANY - checks values of any data returned from subquery
+SOME - acts the same as ANY
+ALL - checks values of all values returned by subquerry
+*/
 --EXISTS
 SELECT *
 FROM tableName1
@@ -334,11 +344,12 @@ WHERE columnNameN = 'value');
 
 --ALL
 --operator is true, when all conditions are true for the value
-
---connected subqueries (corelled)
---these specific subqueries the query is questioning to the result of foreign query
---in that case subquery is perofred for each value returned by foreign query and its checked
---ex:
+/*
+connected subqueries (corelled)
+these specific subqueries the query is questioning to the result of foreign query
+in that case subquery is perofred for each value returned by foreign query and its checked
+ex:
+*/
 SELECT columnName1, columnName2, columnName3
 FROM tableName1
 WHERE columnName2 > (SELECT AVG(columnName2) FROM tableName1
@@ -503,3 +514,129 @@ ELSE
         query3;
         query4;
     END
+
+--CASE
+--case adapts the variable or expression to given values, and then performs given instructions
+--it also can check logical expression and perform instructions
+CASE
+    WHEN statement1
+    THEN query1
+    WHEN statement2
+    THEN query2
+    ...
+    [ELSE query3]
+END;
+--example
+SELECT columnName1, columnName2,
+    CASE
+        WHEN columnName3 < 1000 THEN 'Low'
+        WHEN columnName3 BETWEEN 1000 AND 2000 THEN 'Medium'
+    ELSE
+        'High'
+    END
+    AS 'Value'
+FROM tableName1;
+
+--WHILE
+--WHILE performs an fragment of code till until reaching the declared value
+--ex.
+DECLARE @i INTEGER
+SET @i = 0
+WHILE @i < 10
+    BEGIN
+        SET @i += 1
+        PRINT 'Repeat nr: ' + CAST(@i AS CHAR)
+    END
+--ex. reading table
+DECLARE @i INT, @j INT, @name NVARCHAR(30)
+SET @i = 0
+SELECT @j = COUNT(*) FROM tableName
+WHILE @i < @j
+    BEGIN
+        SET @i += 1
+        SELECT @name = columnName FROM tableName WHERE columnID = @i;
+        PRINT @name
+    END
+--ex. returning records
+DECLARE @i INT, @j INT
+SET @i = 0
+SELECT @j = COUNT(*) FROM tableName
+WHILE @i < @j
+    BEGIN
+        SET @i += 1
+        SELECT * FROM tableName WHERE columnID = @i;
+    END
+--WHILE can be controlled using CONTINUE and BREAK. First one will skip further part of code code, while the second will stop it
+--ex.
+DECLARE @i INT, @j INT
+SET @i = 0
+SELECT @j = COUNT(*) FROM tableName
+WHILE @i < @j
+    BEGIN
+        SET @i += 1
+            IF @i % 2 = 0 CONTINUE
+        SELECT * FROM tableName WHERE columnID = @i;
+    END
+
+DECLARE @variable1 INT, @variable2 INT, @i INT;
+SELECT @variable2 = COUNT(*) FROM tableName;
+SET @i = 1;
+WHILE @i <= @variable2
+BEGIN
+    SELECT @variable1 = columnName FROM tableName WHERE columnID = @i;
+    IF @variable1 < 1500
+        BEGIN
+            UPDATE tableName SET columnname = columnname + 200 WHERE columnID = @i
+            PRINT 'In current record the value was rised by 200'
+        END
+    ELSE
+        BEGIN
+            UPDATE tableName SET columnname = columnname + 10 WHERE columnID = @i
+            PRINT 'In current record the value was rised by 10'
+        END
+    SET @i = @i+1
+END
+--CTE (common table expression)
+--cte allows declaring temporary tables to use
+WITH tableName[(columnName1,columnName2,...,columnNameN)]
+AS
+(query code)
+--ex.
+WITH CTE_TableName AS
+(SELECT columnID, columnName1, columnName2, columnName3 FROM tableName);
+SELECT * FROM CTE_TableName
+WHERE columnName3 > '1990-01-01';
+
+--CTE can be used as definition of a View, as a part of SELECT query
+
+WITH CTE_TableName (columnName1, columnID1, columnName2) AS
+(SELECT columnID2, columnName1, columnName2
+FROM tableName2 INNER JOIN tableName1
+ON tableName2.columnID1=tableName1.columnID1)
+SELECT columnName2, COUNT(columnID1) AS 'Number of values'
+FROM CTE_TableName
+GROUP BY columnName2
+ORDER BY COUNT(columnID1);
+
+--temporary tables
+--temprorary tables allows to gather data for one query
+--the table exists until the end of connection session
+CREATE TABLE #tableName(
+    table structure definition
+);
+--using SELECT
+SELECT columnName1, columnName2, ... , columnNameN
+INTO #tableName
+FROM sourceTable (sourceColumn);
+
+--ex.
+SELECT temporaryColumn1, COUNT(sourceTable1.sourceColumnID) AS temporaryColumn2
+INTO #temporaryTable
+FROM sourceTable1 INNER JOIN sourceTable2
+ON sourceTable1.sourceColumnID = sourceTable2.sourceColumnID
+GROUP BY sourceTable2.sourceColumn
+ORDER BY COUNT(sourceTable1.sourceColumnID);
+--showing data from temporary table
+SELECT *
+FROM #temporaryTable
+WHERE temporaryColumn2 > 1;
