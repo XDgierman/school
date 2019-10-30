@@ -676,3 +676,53 @@ END;
 
 --executing procetures
 EXEC procedureName [arg1Value, arg2Value ...];
+
+--modyfing and removing procedures
+ALTER PROCEDURE procedureName [(@arg1 TYPE, @arg2 TYPE ...)] AS
+BEGIN
+    ... procedure code ...;
+END;
+
+DROP PROCEDURE procedureName;
+
+--Function
+--Function is a structure, that contains series of instructions to execute, and on their basis returns the result
+--performed instructions may differ basing on arguments given at beggining of function
+--Result of function has dual form - single value (scalar) or table
+--sclar values being a result of function can be writen to variables, nor arguments used by functions or procedures
+--Functions are created using CREATE FUNCTION:
+CREATE FUNCTION functionName() [(@arg1 TYPE, @arg2 TYPE ...)]
+RETURNS resultType AS
+BEGIN
+    ... function code ...
+    RETURN result
+END;
+
+--functions returning scalar values
+--function without arguments
+CREATE FUNCTION functionName()
+RETURNS INT AS
+BEGIN
+    RETURN (SELECT COUNT(*) FROM tableName)
+END;
+
+--function with arguments
+CREATE FUNCTION functionName(@arg1 DATE, @arg2 INT)
+RETURNS DATE AS
+BEGIN
+    RETURN DATEADD(month, @arg2, @arg1)
+END;
+
+CREATE FUNCTION functionName(@arg1 INT, @arg2 MONEY)
+RETURNS varchar(10) AS
+BEGIN
+    DECLARE @variable MONEY;
+    SET @variable = @arg1 * @arg2;
+    RETURN (CAST(@variable AS varchar(10)));
+END;
+
+--executing functions
+--functions are executed by writing database scheme (default dbo) and their name
+--ex.
+SELECT 'Value', dbo.functionName();
+SELECT 'Value', dbo.functionName(value1,value2) AS 'Result';
