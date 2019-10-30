@@ -640,3 +640,39 @@ ORDER BY COUNT(sourceTable1.sourceColumnID);
 SELECT *
 FROM #temporaryTable
 WHERE temporaryColumn2 > 1;
+
+--Procedures
+--Procedures are structures, that contain instructions to perform (nor SQL querry), and their definition is stored on server
+--Procedure structure is made by query:
+CREATE PROCEDURE procedureName [(@arg1 TYPE, @arg2 type...)] AS
+BEGIN
+    --... procedure code...
+END;
+
+--procedure without arguments
+CREATE PROCEDURE procedureName AS
+BEGIN
+    SELECT columnName1 + ' ' + columnName2 AS alias1,
+    columnName3 + ' ' + columnName4 + ' ' + columnName5 AS 'alias2'
+    FROM tableName1;
+END;
+
+--procedure with arguments
+CREATE PROCEDURE procedureName (@arg1 MONEY) AS
+BEGIN
+    SELECT *
+    FROM tableName1
+    WHERE tableName1 < @arg1;
+END;
+
+CREATE PROCEDURE procedureName (@arg1 VARCHAR(30), @arg2 MONEY) AS
+BEGIN
+    SELECT *
+    FROM tableName1 INNER JOIN tableName2
+    ON tableName1.columnID1 = tableName2.columnID1
+    WHERE tableName1.columnName1 < @arg2
+    AND tableName2.columnName2 = @arg1;
+END;
+
+--executing procetures
+EXEC procedureName [arg1Value, arg2Value ...];
