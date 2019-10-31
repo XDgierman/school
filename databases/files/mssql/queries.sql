@@ -726,3 +726,24 @@ END;
 --ex.
 SELECT 'Value', dbo.functionName();
 SELECT 'Value', dbo.functionName(value1,value2) AS 'Result';
+
+--creating function returning table values
+--diffrence between scalar and tabular functions is that the return always returns SQL querry
+CREATE FUNCTION functionName(@arg TYPE) RETURNS TABLE AS
+RETURN(
+    SELECT * FROM tableName WHERE columnName = @arg
+);
+--execution
+SELECT *
+FROM dbo.functionName('Argument');
+
+--modyfying and removing functions
+
+ALTER FUNCTION functionName [(@arg1 TYPE, @arg2 TYPE ...)]
+RETURNS resultType AS
+BEGIN
+    ... function code ...
+    RETURN result
+END;
+
+DROP FUNCTION schemaName.functionName;
