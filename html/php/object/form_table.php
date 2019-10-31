@@ -18,15 +18,26 @@
         }
         public function database_insert()
         {
-            $conn = new mysqli("localhost","root","","fabryka");
-            $conn->set_charset("utf8");
             if($conn){
                 $sqltable = "insert into rowery(Nazwa,CenaJednostkowa,Producent,Kategoria) values ('".$this->nazwa."','".$this->cena."','".$this->producent."','".$this->kategoria."');";
                 $conn->query($sqltable);
+                echo "<br>Dane zostały wprowadzone";
             } else die("<br>Połącznie nieudane: " . mysqli_connect_error());
             $conn->close();
         }
     };
+    $conn = new mysqli("localhost","root","","fabryka");
+    $conn->set_charset("utf8");
+    $rower = "SELECT * FROM kategoriaroweru;";
+    $nazwaprod = "SELECT * FROM producenci;";
+    echo "<form action='form.php' method='POST'>
+    Nazwa : <input type='text' name='nazwa'><br>
+    Cena : <input type='text' name='cena'><br>
+    Producent : <select name='producent'>";
+    $data = $conn->query($nazwaprod)->fetchAll();
+    foreach ($data as $row) {
+        echo "<option value='". $row["IDproducenta"] .">" . $row["NazwaProducenta"] . "</option>"
+    }
     ?>
 </head>
 <body>
@@ -38,8 +49,8 @@
             <option value="KROSS">KROSS</option>
         </select><br>
         Kategoria : <select name="kategoria">
-            <option value="Rower górski">Rower górski</option>
-            <option value="Rower wyczynowy">Rowery wyczynowy</option>
+            <option value="1">Rower górski</option>
+            <option value="2">Rowery wyczynowy</option>
         </select><br>
         <input type="submit" value="Wprowadź"><br>
     </form>
@@ -54,7 +65,6 @@
         }else {
                 $o = new Formularz($nz,$cn,$pr,$kt);
                 $o->database_insert();
-                echo "<br>Dane zostały wprowadzone";
             }
     }
     ?>
