@@ -747,3 +747,87 @@ BEGIN
 END;
 
 DROP FUNCTION schemaName.functionName;
+/*
+Transactions
+Transaction is made from 3 steps
+beggining - after beggining of transactions all further queries are taken as a part of instrucion, then grouping it till closure or rollback of transaction
+performing
+closure or rollback - if all oprerations of transaction been made succesfull, the changes made by instrucions will be permanently saved in database system
+if not, the database will rollback all the changes made by transaction
+
+ACID
+transactions are obeying rules of ACID:
+* atomicity - transaction can be done in full or neighter;
+* consistency - database status always shows the status before or after transaction.
+queries performed on system during transaction has to show status before transaction, not in between.
+if database is consistent before transaction, it has to be consistent after;
+* isolation - transaction is performad independently from other operation, counting other transactions;
+* durability - durability guarantees, that the efects of applied transactions will be saved on database, even while server malfunction;
+
+Ways of performing transactions
+There are three ways of performing transactions:
+
+* Autocommit transactions
+Each individual statement is a transaction.
+* Explicit transactions
+Each transaction is explicitly started with the BEGIN TRANSACTION statement and explicitly ended with a COMMIT or ROLLBACK statement.
+* Implicit transactions
+A new transaction is implicitly started when the prior transaction completes, but each transaction is explicitly completed with a COMMIT or ROLLBACK statement.
+*/
+
+--Explicit transactions
+--those transactions are made when we declare the need to perform the query or insturction block in BEGIN TRANSACTION
+--this transcation always has to end with COMMIT | ROLLBACK
+
+BEGIN TRANSACTION
+    sql query 1;
+    sql query 2;
+COMMIT | ROLLBACK
+
+--example
+BEGIN TRANSACTION
+UPDATE tableName
+SET columnName = columnName - columnName * 0.1
+WHERE columnName > 1500
+IF @@ERROR <> 0
+    BEGIN
+        RAISERROR('Error! The operation has failed!',16,-1)
+        ROLLBACK;
+    END
+UPDATE tableName
+SET columnName = columnName + columnName * 0.1
+WHERE columnName <= 1500
+IF @@ERROR <> 0
+    BEGIN
+        RAISERROR('Error! The operation has failed!',16,-1)
+        ROLLBACK;
+    END
+COMMIT;
+
+--transaction can be performet, if some conditions were met in database.
+--example
+
+DECLARE @variable INTEGER
+SELECT @variable = columnID1 FROM tableName2
+INNER JOIN tableName1 ON tableName2.foreignID = tableName1.foreignID
+WHERE tableName1.columnName1 = 'Value1' AND tableName2.columnName2 = 'Value2'
+IF @variable IS NOT NULL
+    BEGIN  
+    BEGIN TRANSACTION
+        DELETE FROM tableName1 WHERE columnID1 = @variable
+        IF @@ERROR <> 0
+        BEGIN
+            RAISERROR('Error! The operation has failed!',16,-1)
+            ROLLBACK;
+        END
+        INSERT INTO tableName1 (columnName1, columnID2, foreignID, columnName3
+        VALUES ('Value3', 1, 4, 1500)
+		IF @@ERROR <> 0
+        BEGIN
+            RAISERROR('Error! The operation has failed!',16,-1)
+            ROLLBACK;
+        END
+    COMMIT;
+	END
+ELSE
+	PRINT 'In database there is no values like that!';
