@@ -831,3 +831,10 @@ IF @variable IS NOT NULL
 	END
 ELSE
 	PRINT 'In database there is no values like that!';
+
+--global variable @@TRANCOUNT returns number of currently opened transactions in system
+--ex
+SELECT @@TRANCOUNT AS 'Number of opened transactions'
+UPDATE tableName SET columnName = '2327665'
+WHERE columnID = 3
+SELECT @@TRANCOUNT AS 'Number of opened transactions'
