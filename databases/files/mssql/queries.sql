@@ -804,7 +804,7 @@ IF @@ERROR <> 0
     END
 COMMIT;
 
---transaction can be performet, if some conditions were met in database.
+--transaction can be performed, if some conditions were met in database.
 --example
 
 DECLARE @variable INTEGER
@@ -838,3 +838,78 @@ SELECT @@TRANCOUNT AS 'Number of opened transactions'
 UPDATE tableName SET columnName = '2327665'
 WHERE columnID = 3
 SELECT @@TRANCOUNT AS 'Number of opened transactions'
+
+--IMPLICIT
+
+SET IMPLICIT_TRANSACTIONS ON
+
+--this command allows to turn the server into IMPLICIT mode
+--in this mode the DML and DDL transactions will be done, but they still need to be authorised or declined
+--after turning implicit mode, if we forget about COMMIT or ROLLBACK, the active transaction will stay open, and will block the data in database!
+
+SET IMPLICIT_TRANSACTIONS ON
+SELECT @@TRANCOUNT AS 'Number of opened transactions'
+UPDATE tableName SET columnName = '3333333'
+WHERE columnID = 4
+SELECT @@TRANCOUNT AS 'Number of opened transactions'
+
+--this code shall return that there is an opened transaction
+--after modyfying it to this state:
+
+SET IMPLICIT_TRANSACTIONS ON
+SELECT @@TRANCOUNT AS 'Number of opened transactions'
+UPDATE tableName SET columnName = '3333333'
+WHERE columnID = 4
+COMMIT;
+SELECT @@TRANCOUNT AS 'Number of opened transactions'
+
+--the count shall be seen as 0
+--to return to default AUTOCOMMIT state, we need to perform SQL query:
+
+SET IMPLICIT_TRANSACTIONS OFF
+
+--Nested Transaction
+--t-sql allows for nested transactions, like while you have one big transaction, you can perform other smaller transactions inside
+BEGIN TRANSACTION
+    sql query 1;
+    sql query 2;
+    BEGIN TRANSACTION
+        sql query 1.1;
+        sql query 2.1;
+    COMMIT | ROLLBACK
+    sql query 3;
+    sql query 4;
+COMMIT | ROLLBACK
+
+--nesting transactions works kind of defferently than you might think:
+--* performing new transaction from level of existing transaction (external transaction)
+--will activate another transaction in system (internal transaction);
+--* COMMIT command shall close the transaction from the level it was performed, so if it was from internal level,
+--internal shall be closed, but external will still run. it's impossible to close external transaction before internal;
+--* ROLLBACK command shall decline all transactions, no matter on which level it was performed, was it internal or external
+
+--ex:
+BEGIN TRANSACTION
+    PRINT 'Transaction 1 active! Current amount of active transactions ' + CAST(@@TRANCOUNT AS VARCHAR);
+    DECLARE @variable INTEGER;
+    INSERT INTO tableName1 (columnName1, columnID1, columnID2) VALUES ('2015-11-12', 3, 5);
+    SET @variable = @@IDENTITY;
+    BEGIN TRANSACTION
+        PRINT 'Transaction 2 active! Current amount of active transactions ' + CAST(@@TRANCOUNT AS VARCHAR);
+        INSERT INTO tableName2 VALUES (@variable, 4, 1, 360);
+    COMMIT;
+    PRINT 'Transaction 2 commited! Current amount of active transactions ' + CAST(@@TRANCOUNT AS VARCHAR);
+COMMIT;
+
+--Transaction save points
+--these points help find in which point of transaction ROLLBACK operation was performed
+--in case of ROLLBACK, all changes will be reverted to point of save point
+--if there are more save points, you can revert to any of them, but not to points after returned savepoint
+--ex: There are points P1, P2, P3. if you rollback to P2, you cant go to P3, but you can go to P1
+
+SAVE TRANSACTION savePoint;
+
+--each save point has to have name (name lenght max 32 chars)
+--returning to save point
+
+ROLLBACK TRANSACTION savePoint;
