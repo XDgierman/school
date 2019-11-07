@@ -913,3 +913,65 @@ SAVE TRANSACTION savePoint;
 --returning to save point
 
 ROLLBACK TRANSACTION savePoint;
+
+--example
+
+BEGIN TRANSACTION
+    PRINT 'Adding first record!';
+    INSERT INTO tableName (columnName1, columnName2,columnName3, columnName4, columnName5)
+    VALUES ('Value 1', 'Value 2',5,1,400);
+    SAVE TRANSACTION savePoint1;
+    PRINT 'Save point created!';
+    INSERT INTO tableName (columnName1, columnName2,columnName3, columnName4, columnName5)
+    VALUES ('Value 3', 'Value 4',5,1,200);
+    ROLLBACK TRANSACTION savePoint1;
+    PRINT 'Rollback transaction to savePoint1!';
+COMMIT;
+PRINT 'Transaction done! Current amount of active transactions: ' + CAST(@@TRANCOUNT AS VARCHAR);
+
+/*
+concurrencies
+* pessimistic - model states that there could be conflicts, so the date is locked each time,
+when transaction tries to read data or modify. to read there are made locks protecting from saving
+and for modifying locks protecting from saving and reading
+* optymistic - model states that there is low propability from users to use the same data, but not impossible
+this means there is no locks for reading, while there is a lock for saving while modifying
+
+just like in mysql, there can be appearances of:
+* lost updates - appears when two diffrent transactions modify the same data, so the first transactions dont know that the second is usind, and vice versa
+the last transaction overwrites the data, that transactions before added or modified.
+default server configuration doesnt allow for lost updates;
+* dirty reads - appears when first transaction modifies data, and other reads the data.
+in effect second transaction reads data, that wasnt commited and could be rollbacked.
+default server configuration doesnt allow for dirty reads;
+* non-repeatable reads - appears when repeat of data within transaction from the same read gives diffrent values.
+this can happen, when after first read(not after closure of transaction) read locs were taken off.
+unlocked data can be changed by diffrent process, so their repeat read can give diffrent (uncanny) values.
+default server configuration allow for dirty reads;
+* phantom reads -  appears, when between two reads of the same data within one transaction the number of readen recods change,
+for ex. as a result of INSERT or DELETE on those date in between operations.
+default server configuration allow for dirty reads;
+
+
+--data locking mechanism - transaction isolation
+--locking mechanism performs locks on data used by transaction, so it wont be modified nor deleted
+--generally, servers use two types of locks:
+
+--* shared lock type S - lock is put on read objects only for the time of query
+--with this type of lock, there is possibilty of setting lock on the same date by other process on server
+--by default, shared lock is put during the SELECT instruction;
+--* exclusive lock type x - lock is put on the modifyed objects for the whole time of transactions
+--by that the locked data is not available for other transactions nor processes on server;
+
+--1. extends of locks
+--locks can be put on many levels - table colums, records, tables or whole database.
+--for each transaction there is dynamicly made level, on which the lock has to be put.
+--its the database server who checks, if locks set on one level respects other locks set on diffrent level
+--the bigger objects are locket, the longer they are available for user and the lower transaction concurrencies are on server
+
+--2.  transaction clash
+--the so called clashes appear, when one transaction tries to put lock making conflict with lock, that other transaction tries to perform.
+--in that moment both transactions are blocked, and their users cant work.
+--in that moment the server treis to unlock the blocked sessions, which results, that in one session server automaticly rollback all transaction results
+*/
+--Transaction isolation levels
