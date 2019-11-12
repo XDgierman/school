@@ -69,7 +69,7 @@ CREATE TABLE tableName(
 );
 ALTER TABLE tableName ADD PRIMARY KEY(columnName);
 
---IDENTITY
+--IDENTITY (auto increment)
 CREATE TABLE tableName(
     columnName columnType IDENTITY NOT NULL PRIMARY KEY
 );
