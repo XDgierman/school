@@ -975,3 +975,103 @@ default server configuration allow for dirty reads;
 --in that moment the server treis to unlock the blocked sessions, which results, that in one session server automaticly rollback all transaction results
 */
 --Transaction isolation levels
+--There are 4 levels of isolation on SQL Server
+--* Read Uncommited;
+--* Read Commited;
+--* Repeatable Read;
+--* Serializable
+
+--Read Uncommited mode:
+--It's the lowest transaction isolation level
+--on this level there are dirty reads, non-repeatable reads and phantom reads
+--this mode is set by command:
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+
+--ex.
+╔════════════════════════════════════════╦══════════════════════════════════════════════════╗
+║                                        ║ SET TRANSACTION ISOLATION LEVEL READ UNCOMMITED; ║
+╠════════════════════════════════════════╬══════════════════════════════════════════════════╣
+║ BEGIN TRANSACTION                      ║                                                  ║
+║ UPDATE tableName SET columnName2 = 400 ║                                                  ║
+║ WHERE columnName1 = 'Value';           ║                                                  ║
+╠════════════════════════════════════════╬══════════════════════════════════════════════════╣
+║                                        ║ SELECT columnName1, columnName2                  ║
+║                                        ║ FROM tableName                                   ║
+║                                        ║ WHERE columnName1 = 'Value';                     ║
+╠════════════════════════════════════════╬══════════════════════════════════════════════════╣
+║ ROLLBACK;                              ║                                                  ║
+╠════════════════════════════════════════╬══════════════════════════════════════════════════╣
+║                                        ║ SELECT columnName1, columnName2                  ║
+║                                        ║ FROM tableName                                   ║
+║                                        ║ WHERE columnName1 = 'Value';                     ║
+╚════════════════════════════════════════╩══════════════════════════════════════════════════╝
+
+--Read Commited mode:
+--Default isolation mode
+--eliminates dirty reads, byt non-repeatable reads and phantom reads still appear
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+
+--ex.
+╔═════════════════════════════════════════════════╦════════════════════════════════════════╗
+║ SET TRANSACTION ISOLATION LEVEL READ COMMITTED; ║                                        ║
+╠═════════════════════════════════════════════════╬════════════════════════════════════════╣
+║ BEGIN TRANSACTION                               ║                                        ║
+║ SELECT columnName1, columnName2                 ║                                        ║
+║ FROM tableName                                  ║                                        ║
+║ WHERE columnName1 = 'Value';                    ║                                        ║
+╠═════════════════════════════════════════════════╬════════════════════════════════════════╣
+║                                                 ║ UPDATE tableName SET columnName2 = 400 ║
+║                                                 ║ WHERE columnName1 = 'Value';           ║
+╠═════════════════════════════════════════════════╬════════════════════════════════════════╣
+║ SELECT columnName1, columnName2                 ║                                        ║
+║ FROM tableName                                  ║                                        ║
+║ WHERE columnName1 = 'Value';                    ║                                        ║
+║ COMMIT;                                         ║                                        ║
+╚═════════════════════════════════════════════════╩════════════════════════════════════════╝
+
+--Repeatable read mode:
+--In this mode, shared locks are put to the end of transaction
+--thanks to that other process cant modify readed date in its data fields, which eliminates non-repeatable reads
+--phantom reads still apear
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+
+--ex.
+╔══════════════════════════════════════════════════╦════════════════════════════════════════╗
+║ SET TRANSACTION ISOLATION LEVEL REPEATABLE READ; ║                                        ║
+╠══════════════════════════════════════════════════╬════════════════════════════════════════╣
+║ BEGIN TRANSACTION                                ║                                        ║
+║ SELECT columnName1, columnName2                  ║                                        ║
+║ FROM tableName                                   ║                                        ║
+║ WHERE columnName1 = 'Value';                     ║                                        ║
+╠══════════════════════════════════════════════════╬════════════════════════════════════════╣
+║                                                  ║ UPDATE tableName SET columnName2 = 400 ║
+║                                                  ║ WHERE columnName1 = 'Value';           ║
+╠══════════════════════════════════════════════════╬════════════════════════════════════════╣
+║ SELECT columnName1, columnName2                  ║                                        ║
+║ FROM tableName                                   ║                                        ║
+║ WHERE columnName1 = 'Value';                     ║                                        ║
+╠══════════════════════════════════════════════════╬════════════════════════════════════════╣
+║ COMMIT;                                          ║                                        ║
+╚══════════════════════════════════════════════════╩════════════════════════════════════════╝
+
+--this time the session went smoothly, but this time we will modify already read data
+╔══════════════════════════════════════════════════╦════════════════════════════════════════╗
+║ SET TRANSACTION ISOLATION LEVEL REPEATABLE READ; ║                                        ║
+╠══════════════════════════════════════════════════╬════════════════════════════════════════╣
+║ BEGIN TRANSACTION                                ║                                        ║
+║ SELECT columnName1, columnName2                  ║                                        ║
+║ FROM tableName                                   ║                                        ║
+║ WHERE columnName2 = 400;                         ║                                        ║
+╠══════════════════════════════════════════════════╬════════════════════════════════════════╣
+║                                                  ║ UPDATE tableName SET columnName2 = 500 ║
+║                                                  ║ WHERE columnName2 = 400;               ║
+╠══════════════════════════════════════════════════╬════════════════════════════════════════╣
+║ SELECT columnName1, columnName2                  ║                                        ║
+║ FROM tableName                                   ║                                        ║
+║ WHERE columnName2 = 400;                         ║                                        ║
+╠══════════════════════════════════════════════════╬════════════════════════════════════════╣
+║ COMMIT;                                          ║                                        ║
+╚══════════════════════════════════════════════════╩════════════════════════════════════════╝
+
+--this time updating the records from second session will be possible only after the transaction basing on it from first session will end (by COMMIT),
+--and the lock is set off
