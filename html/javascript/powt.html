@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <span id="licznik-min">0</span>
+    <span>:</span>
+    <span id="licznik-sec">0</span><br>
+    <button id="start" onclick="f1()">Start</button>
+    <button id="stop" disabled="true" onclick="f2()">Stop</button>
+    <script>
+        var tim=null;
+        function f1() {
+            document.getElementById("start").disabled = true;
+            document.getElementById("stop").disabled = false;
+            var p1 = document.getElementById("licznik-sec");
+            var p2 = document.getElementById("licznik-min");
+            if (tim == null) {
+                tim=setInterval(function(){
+                var x = parseInt(p1.innerHTML);
+                x++;
+                if (x == 60) {
+                    p1.innerHTML = 0;
+                    p2.innerHTML = parseInt(p2.innerHTML) + 1;
+                } else {
+                    p1.innerHTML = x;
+                }
+            }, 1000);
+            }
+        }
+        function f2() {
+            clearInterval(tim);
+            tim = null;
+            document.getElementById("start").disabled = false;
+            document.getElementById("stop").disabled = true;
+        }
+    </script>
+</body>
+</html>
