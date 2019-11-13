@@ -1075,3 +1075,25 @@ SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 
 --this time updating the records from second session will be possible only after the transaction basing on it from first session will end (by COMMIT),
 --and the lock is set off
+				
+--Serializable mode:
+--highest isolation level
+--in this mode transactions calling out to same tables are performed one after another.
+--the lock is put on whole objects, not only on read data
+--this prevents phantom reads, but it also prevents accessing data from other users while using just one table
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+
+--ex.
+╔═══════════════════════════════════════════════╦══════════════════════════════════════════╗
+║ SET TRANSACTION ISOLATION LEVEL SERIALIZABLE; ║                                          ║
+╠═══════════════════════════════════════════════╬══════════════════════════════════════════╣
+║ BEGIN TRANSACTION                             ║                                          ║
+║ SELECT NazwaRoweru, CenaJednostkowa           ║                                          ║
+║ FROM Rowery                                   ║                                          ║
+║ WHERE NazwaRoweru = 'Bobo';                   ║                                          ║
+╠═══════════════════════════════════════════════╬══════════════════════════════════════════╣
+║                                               ║ UPDATE Rowery SET CenaJednostkowa = 1400 ║
+║                                               ║ WHERE NazwaRoweru = 'Relaks';            ║
+╠═══════════════════════════════════════════════╬══════════════════════════════════════════╣
+║ COMMIT;                                       ║                                          ║
+╚═══════════════════════════════════════════════╩══════════════════════════════════════════╝
