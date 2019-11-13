@@ -1097,3 +1097,116 @@ SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
 ╠═══════════════════════════════════════════════╬══════════════════════════════════════════╣
 ║ COMMIT;                                       ║                                          ║
 ╚═══════════════════════════════════════════════╩══════════════════════════════════════════╝
+
+--TODO (vital) - write about triggers
+
+CREATE TRIGGER triggerName on tableName
+INSTEAD OF DELETE
+AS
+SELECT * FROM tableName;
+
+--DDL triggers
+--DDL triggers activate after instructions such as CREATE, ALTER, DROP
+--Usage:
+--Base role of DDL triggers is helping audit mechanisms and observe the changes in database structure, and limit abilities of manipulating this structure
+--They are useful, when:
+--* denying performing changes in database schema
+--* perform queries in database in response to changes in database schema
+--* save changes in database schema
+
+--Creating DDL Triggers
+--DDL trigges can be created on database level or whole server
+--To create DDL triggers for server CONTROL SERVER priveleges are needed
+--To create DDL triggers for database ALTER DATABASE priveleges are needed
+
+CREATE TRIGGER triggerName ON ALL SERVER /*or*/ DATABASE
+FOR | AFTER exemption
+AS triggerCode /*or*/ EXTERNAL NAME procedureName;
+
+--where:
+--* ON DATABASE - creates trigger on database
+--* ON ALL SERVER - creates trigger on current server;
+--* exemption - responds to exemption basing on DDL, for example CREATE_TABLE, DROP_TABLE, ALTER_TABLE etc.
+--Trigger examples
+
+CREATE TRIGGER disabledDROP ON DATABASE
+FOR DROP_TABLE, ALTER_TABLE
+AS
+PRINT 'Turn off trigger "disabledDROP" to alter or drop the table in database!'
+ROLLBACK;
+
+--other example of DDL trigger is registering DDL exemptions in database
+--First, we connect with tempdb database:
+USE tempdb;
+--next, it that database we create exemptionRegister:
+CREATE TABLE exemptionRegister(
+    exemptionID INT IDENTITY PRIMARY KEY,
+    exemption VARCHAR(MAX),
+    userName VARCHAR(MAX),
+    exemptionDate DATETIME
+);
+--now the trigger
+CREATE TRIGGER registerExemptions ON DATABASE
+FOR CREATE_TABLE, ALTER_TABLE, DROP_TABLE
+AS
+DECLARE @command VARCHAR(MAX);
+SET @command = EVENTDATA().value('(/EVENT_INSTANCE/TSQLCommand/CommandText)[1]','VARCHAR(MAX)');
+INSERT INTO exemptionRegister VALUES (@command, USER_NAME(),GETDATE());
+
+--in this trigger we used special base function EVENTDATA(), which returns data about exemption in XML form
+--from that you need to read from that XML code what exemption carried and save it in @command variable
+
+--at the end some DDL exemption to test if trigger works
+
+CREATE TABLE tableName(
+    columnID INT,
+    columnName INT
+);
+DROP TABLE tableName;
+
+--LOGON triggers
+--LOGON triggers are activated , when  user tries to begin session with database
+--trigger is initialized after user verification on server, but not befor database initialization
+
+--USAGE
+--LOGON triggers are used to control and monitor server session
+--through them you can register the activity of logon and size up the session amounts for each login
+
+--Creating LOGON triggers
+--LOGON triggers are created on database level or whole server
+--to create LOGON trigger for server you need CONTROL SERVER priveleges
+CREATE TRIGGER triggerName ON ALL SERVER
+FOR | AFTER LOGON
+AS
+triggerCode /*or*/ EXTERNAL NAME procedureName
+
+--Trigger management
+--Showing info about triggers
+--Information about defined DML and DDL trigger (defined on database level) can be read from two system tables sys.triggers and sys.trigger_events
+SELECT * FROM sys.triggers;
+SELECT * FROM sys.trigger_events;
+
+--To show system triggers:
+SELECT * FROM sys.system_triggers;
+
+--Enabling and disabling DML triggers
+--Disabling command
+DISABLE TRIGGER schema.triggerName ON schema.tableName;
+--Enabling command
+ENABLE TRIGGER schema.triggerName ON schema.tableName;
+
+--Enabling and disabling DDL triggers
+--Disabling command
+DISABLE TRIGGER triggerName ON DATABASE | ALL SERVER;
+--Enabling command
+ENABLE TRIGGER triggerName ON DATABASE | ALL SERVER;
+--Disabling all triggers
+DISABLE TRIGGER ALL ON DATABASE | ALL SERVER;
+--Enabling all triggers
+ENABLE TRIGGER ALL ON DATABASE | ALL SERVER;
+
+--Removing triggers
+--Removing DML trigger
+DROP TRIGGER schema.triggerName;
+--Removing trigger from database or server
+DROP TRIGGER schema.triggerName ON DATABASE | ALL SERVER;
