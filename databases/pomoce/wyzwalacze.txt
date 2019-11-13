@@ -1,0 +1,62 @@
+Wyzwalacze s¹ procedurami sk³adowymi uruchamianymi automatycznie w wyniku zaistnienia okreœlonego zdarzenia.
+Zdarzeniemi jakie mog¹ wywo³ywaæ uruchamianie wyzwalaczy s¹ polecenia modyfikuj¹ce tabele w bazie danych, modyfikuj¹ce bazy danych, a tak¿e inn zdarzenia systemowe w bazie danych.
+Zwykle wyzwalaczy u¿ywa siê do sprawdzania poprawnoœci wprowadzanych danych, ale mo¿na za pomoc¹ nich uruchomiæ dowolne procedury.
+G³ównym przeznaczeniem wyzwalaczy jest czuwanie nad integralnoœci¹ danych w bazie.
+Wyzwalacze obs³ugiwane przez SQL Server ró¿ni¹ siê of wyzwalaczy poznanych przy okazji omawiania serwera MySQL.
+Tutaj wyzwalacz jest zawsze wywo³ywany po wykonaniu instrukcji.
+ W SQL Server nie istniej¹ wyzwalacze BEFORE, natomiast istniej¹ wyzwalacze INSTEAD OF (zamiast).
+Ponadto nale¿y pamiêtaæ, ¿e:
+* tylko w³aœciciel tabeli mo¿ê utworzyæ owi¹zany z ni¹ wyzwalacz;
+* praw do tworzenia wyzwalaczy nie mo¿na nikomu przekazaæ;
+* tabela mo¿e byæ powi¹zana z dowoln¹ liczb¹ wyzwalaczy;
+* wyzwalacze nie zwracaj¹ ¿adnych danych.
+
+Typy wyzwalaczy
+W MS SQL SERVER istniej¹ trzy typy wyzwalaczy:
+
+* wyzwalacze DML - uruchamiaj¹ siê gdy u¿ytkownik próbuje modyfkowaæ dane przy pomocy zdarzeñ jêzyka DML.
+S¹ to polecenia typu : INSERT, DELETE i UPDATE na tabeli;
+* wyzwalacze DDL - uruchamiaj¹ siê gdy wywo³ywane s¹ polecenia jêzyka DDL, takie jak polecenia CREATE, ALTER, DROP a tak¿e niektóre procedury systemowe;
+* wyzwalacze logowanie - uruchamiaj¹ siê podczas zdarzenia LOGON, gdy u¿ytkownik nawi¹zuje sesje z baz¹ danych
+
+Wyzwalacze DML
+Wyzwalacze DML mog¹ byæ inicjowane zdarzeniami modyfikuj¹cymi wiersze tabeli (czyli wywo³ywo³anymi przez polecenia INSERT, DELETE, UPDATE).
+Mo¿na wyró¿niæ trzy typy wyzwalaczy DML:
+* wyzwalacze FOR | AFTER - s¹ uruchamiane po instrukcji generu¹cej dane zdarzenie, ale co wa¿ne w ramach tej samej tansakcji.
+Wyzwalacz tego typu zostaje uruchomiony tylko wtedy, gdy wszystkie operacje generuj¹ce zdarzenie zosta³y wykonane pomyœlnie;
+* wyzwalacze INSTEAD OF - s¹ wykonywane zamiast instrukcji generuj¹cej zdarzenie. W³aœciwa instrukcja nie jest wykonywana;
+* wyzwalacze CLR (Common Language Runtime) - szczególna grupa wyzwalaczy napisana w jêzyku C# lub VB, kompilowane jako biblioteki DLL, które mog¹ byæ wywo³ywane z poziomu zapytañ jêzyka T-SQL;
+
+1.Zastosowanie wyzwalaczy DML
+Typowe zastosowanie wyzwalaczy DML to:
+* implementacja z³o¿onych regu³ integralnoœci;
+* rejestrowanie dzia³aæ u¿ytkowników;
+* zabezpieczanie przed niepo¿¹danymi operacjami;
+* wyliczanie wartoœci liczbowych na podstawie zmian w tabelach
+
+CREATE TRIGGER [schemat]nazwaWyzwalacza ON nazwaTabeli lub nazwaWidoku
+FOR | AFTER lub INSTEAD OF INSERT lub DELETE lub UPDATE
+AS
+kodWyzwalacza lub EXTERNAL NAME nazwaProcedury;
+
+1.
+
+CREATE TRIGGER Blokada ON Klienci
+AFTER DELETE
+AS ROLLBACK
+PRINT 'Nie mo¿na usuwaæ rekordów Klientów z tabeli Klienci':
+
+DELETE FROM Klienci
+WHERE IDklienta = 5;
+
+2. 
+CREATE TRIGGER LiczbaRekordow ON Rowery
+AFTER INSERT
+AS 
+DECLARE @LiczbaRekordow INTEGER;
+SELECT @LiczbaRekordow = COUNT(*) FROM Rowery
+PRINT 'Aktualna liczba rowerów w bazie to: ' + CAST(@LiczbaRekordow AS VARCHAR);
+
+INSERT INTO Rowery (NazwaRoweru, IDkategorii, IDproducenta, CenaJednostkowa)
+VALUES('Aramis', 3, 4, 1300);
+
