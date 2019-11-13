@@ -1210,3 +1210,15 @@ ENABLE TRIGGER ALL ON DATABASE | ALL SERVER;
 DROP TRIGGER schema.triggerName;
 --Removing trigger from database or server
 DROP TRIGGER schema.triggerName ON DATABASE | ALL SERVER;
+
+--modifying triggers
+--Modifying DML triggers can be done by:
+ALTER TRIGGER schema.triggerName ON tableName
+FOR | AFTER /*or*/ INSTEAD OF INSERT /*or*/ DELETE /*or*/ UPDATE
+AS
+triggerCode /*or*/ EXTERNAL NAME procedureName;
+--Modifying DLL triggers can be done by:
+ALTER TRIGGER triggerName ON DATABASE /*or*/ ALL SERVER
+FOR | AFTER exemption
+AS
+triggerCode /*or*/ EXTERNAL NAME procedureName;
