@@ -1222,3 +1222,30 @@ ALTER TRIGGER triggerName ON DATABASE /*or*/ ALL SERVER
 FOR | AFTER exemption
 AS
 triggerCode /*or*/ EXTERNAL NAME procedureName;
+
+--Changing account password
+EXEC sp_password 'oldPassword', 'newPassword', 'userName';
+
+--creating login account (server login)
+
+CREATE LOGIN userLoginName
+FROM WINDOWS /*or*/ WITH PASSWORD = 'password';
+
+--creating user account (database login)
+
+USE databaseName;
+CREATE USER userName
+FOR LOGIN userLoginName;
+
+--From newer versions of MSSQL we can use CREATE/ALTER/DROP
+--in older versions we had to use these commands (depraciated)
+--* sp_grantlogin - creates login account Win Auth type
+--* sp_addlogin - creates login account SQL Server Auth type
+--* sp_grantdbaccess - creates user
+--etc.
+
+--granting server priveleges (administrative)
+GRANT PRIVELEGE TO userLoginName;
+
+--granting database priveleges
+GRANT PRIVELEGE to userName;
