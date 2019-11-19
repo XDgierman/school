@@ -1249,3 +1249,29 @@ GRANT PRIVELEGE TO userLoginName;
 
 --granting database priveleges
 GRANT PRIVELEGE to userName;
+
+--granting priveleges to object
+GRANT PRIVELEGE
+ON objectName TO userName;
+
+--denying priveleges to object
+DENY PRIVELEGE
+ON objectName TO userName;
+
+--revoking priveleges to object
+REVOKE PRIVELEGE
+ON objectName FROM userName;
+
+--granting privelege to grant the same priveleges
+GRANT PRIVELEGE
+ON objectName TO userName
+WITH GRANT OPTION;
+
+--revoking privelege to grant the priveleges
+REVOKE GRANT OPTION FOR SELECT
+ON obiectName FROM userName; 
+
+--setting ownership while creating object
+CREATE VIEW userName.vName AS
+    SELECT columnName1, columnName2
+    FROM tableName;
