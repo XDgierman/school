@@ -1275,3 +1275,40 @@ ON obiectName FROM userName;
 CREATE VIEW userName.vName AS
     SELECT columnName1, columnName2
     FROM tableName;
+
+--checking server role permissions
+EXEC sp_srvrolepermission 'serverRoleName';
+
+--adding Logon account to administrative role
+EXEC sp_addsrvrolemember 'userLoginName','serverRoleName';
+
+--removing Logon account from administrative role
+EXEC sp_dropsrvrolemember 'userLoginName','serverRoleName';
+
+--checking database role permissions
+EXEC sp_dbfixedrolepermission 'databaseRoleName';
+
+--creating role
+CREATE ROLE databaseRoleName;
+
+--droping role
+DROP ROLE databaseRoleName;
+
+--granting priveleges to roles
+GRANT PRIVELEGE
+ON objectName TO databaseRoleName;
+
+--revoking priveleges to roles
+REVOKE PRIVELEGE
+ON objectName TO databaseRoleName;
+
+--altering roles (adding/removing members, change name)
+ALTER ROLE databaseRoleName ADD MEMBER userName;
+ALTER ROLE databaseRoleName DROP MEMBER userName;
+ALTER ROLE databaseRoleName WITH NAME = databaseRoleName1;
+
+--adding user to role
+EXEC sp_addrolemember 'databaseRoleName', 'userName';
+
+--dropping user from role
+EXEC sp_droprolemember 'databaseRoleName', 'userName';
