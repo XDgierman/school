@@ -11,7 +11,7 @@
     $woj = "SELECT * FROM `wojewodztwa`;";
     echo "Wojewodztwo: <select name='wojewodztwa'>";
     $data = $conn->query($woj)->fetch_assoc();
-    while ($row=$data->fetch_assoc()) {
+    while ($row=$data) {
         echo "<option value='". $row["IDwojewodztwa"] .">" . $row["NazwaWojewodztwa"] . "</option>";
     }
     echo "</select><br>";
