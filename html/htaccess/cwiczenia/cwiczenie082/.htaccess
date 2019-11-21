@@ -1,0 +1,4 @@
+AuthName "Podaj haslo"
+AuthType Basic
+AuthUserFile C:\xampp\htdocs\cwiczenie082\dostep\.htpasswd 
+Require valid-user
