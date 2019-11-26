@@ -1312,3 +1312,86 @@ EXEC sp_addrolemember 'databaseRoleName', 'userName';
 
 --dropping user from role
 EXEC sp_droprolemember 'databaseRoleName', 'userName';
+
+--creating new database
+CREATE DATABASE databaseName ON(
+	NAME = databaseName_dat,
+	FILENAME = 'location\databaseName.mdf',
+	SIZE = 5MB,
+	MAXSIZE = UNLIMITED,
+	FILEGROWTH = 5MB)
+	LOG ON(
+	NAME = 'databaseName_log',
+	FILENAME = 'location\databaseNamelog.ldf',
+	SIZE = 2MB,
+	MAXSIZE = UNLIMITED,
+	FILEGROWTH = 2MB
+);
+
+--showing information about database
+EXEC sp_helpdb databaseName;
+
+--showing size of database
+USE databaseName
+EXEC sp_spaceused;
+
+--showing size of an object in database
+USE databaseName
+EXEC sp_spaceused obiectName;
+
+--database parameters can be modified using ALTER DATABASE
+
+--shrinking database size (all files)
+DBCC SHRINKDATABASE (databaseName);
+--shinking database size (chosen file)
+DBCC SHRINKFILE (logicalFileName);
+
+--creating full backup
+BACKUP DATABASE databaseName
+TO DISK = 'locationOnDisc\fileName.bak'
+WITH FORMAT;
+
+--creating backup on backup device
+BACKUP DATABASE databaseName
+TO device
+WITH FORMAT;
+
+--setting up backup device location
+sp_addumpdevice "disk", "pendrive", "discLocation\fileName.bak";
+
+--creating differential backup
+BACKUP DATABASE Hurtownia
+TO DISK = 'locationOnDisc\fileName.bak';
+WITH DIFFERENTIAL;
+
+--transaction log backup
+BACKUP LOG databaseName
+TO DISK = 'locationOnDisc\fileName.trn';
+
+--backup with overwrite on device
+BACKUP DATABASE databaseName
+TO device
+WITH INIT;
+
+--backup on device without overwriting
+BACKUP DATABASE databaseName
+TO device
+WITH NOINIT;
+
+--checking information about backup file
+RESTORE HEADERONLY
+FROM DISK = 'locationOnDisc\filename.bak';
+
+--checking the database
+DBCC CHECKDB; --database level
+DBCC CHECKTABLE --table level
+DBCC CHECKCATALOG; --table integrity reference
+DBCC CHECKALLOC --allocation level
+
+--DBCC can be used with many options
+--ex.
+DBCC CHECKDB ('databaseName', option)
+
+--Repair_Allow_Data_Loss - definas all kinds of repairs, that can be performed by option. It also allows to "clear" broken records, no matter if it makes data loss or not
+--Repair_Fast - modifies broken indexes, if its safe, and performs quick and easy repairs (like broken index keys)
+--Repair_Rebuild - repairs broken indexes, like Repair_Fast, but its more time heavym like remaking the broker indexes
