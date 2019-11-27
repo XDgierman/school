@@ -1395,3 +1395,22 @@ DBCC CHECKDB ('databaseName', option)
 --Repair_Allow_Data_Loss - definas all kinds of repairs, that can be performed by option. It also allows to "clear" broken records, no matter if it makes data loss or not
 --Repair_Fast - modifies broken indexes, if its safe, and performs quick and easy repairs (like broken index keys)
 --Repair_Rebuild - repairs broken indexes, like Repair_Fast, but its more time heavym like remaking the broker indexes
+
+--restoring database from file
+
+RESTORE DATABASE databaseName
+FROM DISK = 'locationOnDisc\filename.bak';
+
+--restoring database from device
+RESTORE DATABASE databaseName
+FROM device;
+
+--restoring database overwriting data
+RESTORE DATABASE databaseName
+FROM DISK = 'locationOnDisc\filename.bak'
+WITH REPLACE;
+
+--restoring database with reqirement of restoring differential backup and transaction log
+RESTORE DATABASE databaseName
+FROM DISK = 'locationOnDisc\filename.bak'
+WITH NORECOVERY;
