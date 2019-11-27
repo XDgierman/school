@@ -1,0 +1,6 @@
+C:\Users\4ti1\Documents\GitHub\school\html\asp\BazaDanych\bin\BazaDanych.dll.config
+C:\Users\4ti1\Documents\GitHub\school\html\asp\BazaDanych\bin\BazaDanych.dll
+C:\Users\4ti1\Documents\GitHub\school\html\asp\BazaDanych\bin\BazaDanych.pdb
+C:\Users\4ti1\Documents\GitHub\school\html\asp\BazaDanych\obj\Debug\BazaDanych.csprojResolveAssemblyReference.cache
+C:\Users\4ti1\Documents\GitHub\school\html\asp\BazaDanych\obj\Debug\BazaDanych.dll
+C:\Users\4ti1\Documents\GitHub\school\html\asp\BazaDanych\obj\Debug\BazaDanych.pdb
